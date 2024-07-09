@@ -1,0 +1,66 @@
+.avatarIcon {
+  height: 56px;
+  width: 56px;
+  position: relative;
+}
+.subtitle,
+.title {
+  align-self: stretch;
+  position: relative;
+}
+.title {
+  line-height: 150%;
+  font-weight: 500;
+}
+.subtitle {
+  font-size: var(--text-sm-regular-size);
+  line-height: 20px;
+  color: var(--gray-500);
+}
+.titleSubtitle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 286px;
+  max-width: 100%;
+}
+.comment,
+.user {
+  align-self: stretch;
+}
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-5xl);
+  max-width: 100%;
+}
+.comment {
+  position: relative;
+  line-height: 24px;
+}
+.airbnbComment {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 338px;
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--text-base-medium-size);
+  color: var(--black);
+  font-family: var(--text-sm-regular);
+}
+@media screen and (max-width: 450px) {
+  .user {
+    flex-wrap: wrap;
+  }
+  .airbnbComment {
+    min-width: 100%;
+  }
+}

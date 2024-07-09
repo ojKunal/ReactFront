@@ -1,0 +1,263 @@
+.exploreOtherOptions {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: var(--text-2xl-medium-size);
+  line-height: 32px;
+  font-weight: 500;
+  font-family: inherit;
+}
+.lille,
+.paris,
+.toulouse {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.aixEnProvence,
+.montpellier,
+.nice {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.dijon,
+.lyon,
+.rouen {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.amiens,
+.grenoble,
+.marseille {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column3,
+.columns {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.column3 {
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.columns {
+  align-self: stretch;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-5xl);
+  color: var(--gray-600);
+}
+.uniqueStaysOn {
+  align-self: stretch;
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+}
+.beachHouseRentals,
+.cabinRentals {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column4 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.camperRentals,
+.tinyHouseRentals {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column5 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.glampingRentals,
+.lakehouseRentals {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column6 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.mountainChaletRentals,
+.treehouseRentals {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column7,
+.columns1,
+.section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.column7 {
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.columns1,
+.section {
+  align-self: stretch;
+}
+.columns1 {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-5xl);
+  font-size: var(--text-sm-regular-size);
+  color: var(--gray-600);
+}
+.section {
+  flex-direction: column;
+  gap: var(--gap-base);
+  font-size: var(--text-base-medium-size);
+}
+.page {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 44px;
+}
+.chevronRightIcon {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 20px;
+}
+.page1 {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 47px;
+}
+.chevronRightIcon1 {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 20px;
+}
+.page2 {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 46px;
+}
+.chevronRightIcon2 {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 20px;
+}
+.page3 {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 63px;
+}
+.airbnbFooter,
+.breadcrumb {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.airbnbFooter {
+  align-self: stretch;
+  box-shadow: 0-1px 0#e5e7eb inset;
+  background-color: var(--gray-50);
+  flex-direction: column;
+  padding: var(--padding-45xl) var(--padding-141xl);
+  gap: var(--gap-13xl);
+  text-align: left;
+  font-size: var(--text-sm-regular-size);
+  color: var(--black);
+  font-family: var(--text-sm-regular);
+}
+@media screen and (max-width: 750px) {
+  .airbnbFooter {
+    gap: var(--gap-base);
+    padding-left: var(--padding-61xl);
+    padding-right: var(--padding-61xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .exploreOtherOptions {
+    font-size: var(--font-size-lgi);
+    line-height: 26px;
+  }
+  .airbnbFooter {
+    padding: var(--padding-23xl) var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --text-sm-regular: Inter;
+  --font-roboto: Roboto;
+
+  /* font sizes */
+  --text-sm-regular-size: 14px;
+  --text-xs-medium-size: 12px;
+  --text-base-medium-size: 16px;
+  --text-2xl-medium-size: 24px;
+  --font-size-lgi: 19px;
+  --text-lg-medium-size: 18px;
+  --text-xxs-medium-size: 10px;
+  --text-xl-medium-size: 20px;
+  --text-3xl-medium-size: 30px;
+
+  /* Colors */
+  --white: #fff;
+  --gray-200: #e5e7eb;
+  --gray-700: #374151;
+  --black: #000;
+  --color-crimson: #de3151;
+  --gray-500: #6b7280;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-600: #4b5563;
+  --brand-600: #5048e5;
+  --emerald-500: #10b981;
+  --gray-300: #d1d5db;
+
+  /* Gaps */
+  --gap-5xs: 8px;
+  --gap-5xl: 24px;
+  --gap-base: 16px;
+  --gap-29xl: 48px;
+  --gap-4xl: 23px;
+  --gap-xl: 20px;
+  --gap-21xl: 40px;
+  --gap-9xs: 4px;
+  --gap-5xs-8: 7.8px;
+  --gap-13xl: 32px;
+  --gap-20xl: 39px;
+  --gap-lgi: 19px;
+  --gap-365xl: 384px;
+  --gap-61xl: 80px;
+  --gap-xs: 12px;
+
+  /* Paddings */
+  --padding-7xs: 6px;
+  --padding-mini: 15px;
+  --padding-sm: 14px;
+  --padding-6xs: 7px;
+  --padding-9xs: 4px;
+  --padding-xs: 12px;
+  --padding-4xl: 23px;
+  --padding-5xs: 8px;
+  --padding-45xl: 64px;
+  --padding-xl: 20px;
+  --padding-5xl: 24px;
+  --padding-23xl: 42px;
+  --padding-11xs: 2px;
+  --padding-4xs: 9px;
+  --padding-141xl: 160px;
+  --padding-61xl: 80px;
+  --padding-232xl: 251px;
+  --padding-base: 16px;
+  --padding-747xl: 766px;
+  --padding-364xl: 383px;
+  --padding-172xl: 191px;
+  --padding-163xl: 182px;
+  --padding-99xl: 118px;
+  --padding-8xs: 5px;
+  --padding-405xl: 424px;
+  --padding-193xl: 212px;
+  --padding-13xl: 32px;
+  --padding-3xl: 22px;
+  --padding-smi: 13px;
+  --padding-lg: 18px;
+  --padding-104xl: 123px;
+
+  /* Border radiuses */
+  --br-81xl: 100px;
+  --br-981xl: 1000px;
+  --br-5xs: 8px;
+  --br-9xs: 4px;
+  --br-12xs: 1px;
+
+  /* Effects */
+  --shadow-md: 0px 2px 4px rgba(31, 41, 55, 0.06),
+    0px 4px 6px rgba(31, 41, 55, 0.1);
+  --shadow-base: 0px 1px 2px rgba(31, 41, 55, 0.08);
+  --shadow-lg: 0px 10px 15px rgba(31, 41, 55, 0.1),
+    0px 0px 6px rgba(31, 41, 55, 0.05);
+  --shadow-xl: 0px 20px 25px rgba(31, 41, 55, 0.1),
+    0px 10px 10px rgba(31, 41, 55, 0.04);
+  --border-bottom: 0px -1px 0px #f3f4f6 inset;
+}

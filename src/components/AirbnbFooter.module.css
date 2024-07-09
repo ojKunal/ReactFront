@@ -1,0 +1,335 @@
+.support {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--text-base-medium-size);
+  line-height: 150%;
+  font-weight: 500;
+  color: var(--black);
+}
+.cancellationOptions,
+.helpCenter,
+.ourCovid19Response,
+.reportANeighborhoood,
+.safetyInformation,
+.supportingPeopleWith {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.community {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--text-base-medium-size);
+  line-height: 150%;
+  font-weight: 500;
+  color: var(--black);
+}
+.airbnborgDisasterRelief,
+.celebratingDiversity,
+.combatingDiscriminatino,
+.supportAfghanRefugees {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.hosting {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--text-base-medium-size);
+  line-height: 150%;
+  font-weight: 500;
+  color: var(--black);
+}
+.aircoverProtectionFor,
+.exploreHostingResources,
+.howToHost,
+.tryHosting,
+.visitOurCommunity {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.about {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--text-base-medium-size);
+  line-height: 150%;
+  font-weight: 500;
+  color: var(--black);
+}
+.airbnbLuxe,
+.careers,
+.investors,
+.learnAboutNew,
+.letterFromOur,
+.newsroom {
+  align-self: stretch;
+  position: relative;
+  line-height: 20px;
+}
+.column3,
+.columns {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.column3 {
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap-base);
+  min-width: 196px;
+  max-width: 262px;
+}
+.columns {
+  width: 1120px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-5xl);
+  max-width: 100%;
+}
+.kickerChild {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  border-top: 1px solid var(--gray-200);
+  box-sizing: border-box;
+}
+.airbnbInc {
+  position: relative;
+  line-height: 20px;
+}
+.legalIcons {
+  width: 2px;
+  height: 2px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--gray-600);
+}
+.legalLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-4xs) 0 0;
+}
+.privacy {
+  text-decoration: none;
+  position: relative;
+  line-height: 20px;
+  color: inherit;
+  display: inline-block;
+  min-width: 49px;
+}
+.legalLinksChild {
+  width: 2px;
+  height: 2px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--gray-600);
+}
+.legalLinks1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-4xs) 0 0;
+}
+.terms {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 41px;
+}
+.legalLinksItem {
+  width: 2px;
+  height: 2px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--gray-600);
+}
+.legalLinks2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-4xs) 0 0;
+}
+.sitemap {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 55px;
+}
+.left,
+.subfooterLinks {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.left {
+  align-self: stretch;
+  flex-direction: row;
+  gap: var(--gap-5xs-8);
+}
+.subfooterLinks {
+  width: 328px;
+  flex-direction: column;
+  padding: var(--padding-11xs) 0 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.globeIcon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.englishUs {
+  position: relative;
+  text-decoration: underline;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 82px;
+}
+.language {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-9xs);
+}
+.dollar2Icon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.usd {
+  position: relative;
+  text-decoration: underline;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 30px;
+}
+.currency,
+.languageCurrency {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-9xs);
+}
+.languageCurrency {
+  align-items: flex-start;
+  gap: var(--gap-base);
+}
+.socialMediaIcon {
+  object-fit: cover;
+}
+.socialMediaIcon,
+.socialMediaIcon1,
+.socialMediaIcon2 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  min-height: 24px;
+}
+.socialMediaIcon2 {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.right,
+.socialMedia,
+.subFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+}
+.right,
+.subFooter {
+  gap: var(--gap-21xl);
+  max-width: 100%;
+}
+.subFooter {
+  align-self: stretch;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.airbnbFooter,
+.kicker {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.kicker {
+  width: 1120px;
+  align-items: flex-start;
+  gap: var(--gap-4xl);
+}
+.airbnbFooter {
+  align-self: stretch;
+  background-color: var(--gray-50);
+  align-items: center;
+  padding: var(--padding-45xl) var(--padding-xl) var(--padding-5xl);
+  box-sizing: border-box;
+  gap: var(--gap-29xl);
+  text-align: left;
+  font-size: var(--text-sm-regular-size);
+  color: var(--gray-600);
+  font-family: var(--text-sm-regular);
+}
+@media screen and (max-width: 750px) {
+  .subFooter {
+    flex-wrap: wrap;
+  }
+  .airbnbFooter {
+    gap: var(--gap-5xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .right {
+    gap: var(--gap-xl);
+  }
+  .airbnbFooter {
+    padding-top: var(--padding-23xl);
+    padding-bottom: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
