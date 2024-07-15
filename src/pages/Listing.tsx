@@ -1,4 +1,6 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
+import { supabase } from "../supabase"; // Initialize Supabase client
+
 import AirbnbNav from "../components/AirbnbNav";
 import HostDetails from "../components/HostDetails";
 import FrameComponent from "../components/FrameComponent";
@@ -6,25 +8,70 @@ import AirbnbFooter1 from "../components/AirbnbFooter1";
 import AirbnbFooter from "../components/AirbnbFooter";
 import styles from "./Listing.module.css";
 
+
 const Listing: FunctionComponent = () => {
+  const [listing, setListing] = useState<any>(null);
+
+  useEffect(() => {
+    // Fetch data from Supabase
+    const fetchListing = async () => {
+      const { data, error } = await supabase
+        .from('Hostel')
+        .select('*')
+        .eq('id', 270987)
+        // .ilike('city_name', '%Bangalore%') // Change the query as needed
+
+// .eq(column, value): Equal to
+// .neq(column, value): Not equal to
+// .gt(column, value): Greater than
+// .gte(column, value): Greater than or equal to
+// .lt(column, value): Less than
+// .lte(column, value): Less than or equal to
+// .like(column, pattern): LIKE SQL operator
+// .ilike(column, pattern): Case-insensitive LIKE SQL operator
+// .is(column, value): IS operator
+// .in(column, array): IN operator
+// .cs(column, array): Contains
+// .cd(column, array): Contained by
+// .ov(column, array): Overlap
+// .fts(column, query): Full-text search
+
+      if (error) {
+        console.error(error);
+      } else {
+        setListing(data[0]);
+      }
+    };
+
+    fetchListing();
+  }, []);
+
+  if (!listing) {
+    return <div>Loading...</div>;
+  }
+  // Parse the JSON string into an array
+  const imagesArray = JSON.parse(listing.images_url);
+  // Get the first image
+  const firstImage = imagesArray[0];
+
   return (
     <div className={styles.listing}>
       <AirbnbNav />
       <main className={styles.page}>
         <div className={styles.mainContent}>
-          <h1 className={styles.bordeauxGetaway}>Bordeaux Getaway</h1>
+          <h1 className={styles.bordeauxGetaway}>{listing.name}</h1>
           <div className={styles.details}>
             <div className={styles.detailsHeader}>
               <div className={styles.iconText}>
                 <div className={styles.ratingStars}>
                   <img className={styles.starIcon} alt="" src="/star.svg" />
                 </div>
-                <div className={styles.text}>5.0</div>
+                <div className={styles.text}>{listing.overallRating_overall}</div>
               </div>
               <div className={styles.headerLocation}>
                 <div className={styles.dot} />
               </div>
-              <div className={styles.reviews}>7 reviews</div>
+              <div className={styles.reviews}>{listing.ratingBreakdown_ratingsCount} reviews</div>
               <div className={styles.headerLocation1}>
                 <div className={styles.dot1} />
               </div>
@@ -37,7 +84,7 @@ const Listing: FunctionComponent = () => {
               <div className={styles.headerLocation2}>
                 <div className={styles.dot2} />
               </div>
-              <div className={styles.bordeauxFrance}>Bordeaux, France</div>
+              <div className={styles.bordeauxFrance}>{listing.city_name}, {listing.country_name}</div>
             </div>
             <div className={styles.detailsActions}>
               <div className={styles.iconText2}>
@@ -60,21 +107,22 @@ const Listing: FunctionComponent = () => {
             className={styles.imageIcon}
             loading="lazy"
             alt=""
-            src="/image@2x.png"
+            src={firstImage}
           />
+
           <div className={styles.imageNavigation}>
             <div className={styles.row}>
               <img
                 className={styles.imageIcon1}
                 loading="lazy"
                 alt=""
-                src="/image-1@2x.png"
+                src={imagesArray[1] || "/image-1@2x.png"}
               />
               <img
                 className={styles.imageIcon2}
                 loading="lazy"
                 alt=""
-                src="/image-2@2x.png"
+                src={imagesArray[2] || "/image-2@2x.png"}
               />
             </div>
             <div className={styles.galleryImages}>
@@ -82,13 +130,13 @@ const Listing: FunctionComponent = () => {
                 className={styles.imageIcon3}
                 loading="lazy"
                 alt=""
-                src="/image-3@2x.png"
+                src={imagesArray[3] || "/image-3@2x.png"}
               />
               <div className={styles.image}>
                 <img
                   className={styles.imageIcon4}
                   alt=""
-                  src="/image1@2x.png"
+                  src={imagesArray[4] || "/image1@2x.png"}
                 />
                 <button className={styles.button}>
                   <div className={styles.buttonBase}>
@@ -109,7 +157,7 @@ const Listing: FunctionComponent = () => {
             <div className={styles.bookingBox}>
               <div className={styles.header}>
                 <div className={styles.nights}>
-                  <div className={styles.priceLabel}>$75</div>
+                  <div className={styles.priceLabel}>Rs {listing.lowestPricePerNight_value}</div>
                   <div className={styles.nightCount}>
                     <div className={styles.nightLabel}>/</div>
                   </div>
@@ -127,12 +175,12 @@ const Listing: FunctionComponent = () => {
                           src="/star.svg"
                         />
                       </div>
-                      <div className={styles.ratingValue}>5.0</div>
+                      <div className={styles.ratingValue}>{listing.overallRating_overall}</div>
                     </div>
                     <div className={styles.separator}>
                       <div className={styles.dot3} />
                     </div>
-                    <div className={styles.reviews1}>7 reviews</div>
+                    <div className={styles.reviews1}>{listing.ratingBreakdown_ratingsCount} reviews</div>
                   </div>
                 </div>
               </div>

@@ -5,7 +5,7 @@ import {
   useNavigationType,
   useLocation,
 } from "react-router-dom";
-import Listing from "./pages/Listing";
+import Search from "./pages/searchpage";
 
 function App() {
   const action = useNavigationType();
@@ -45,7 +45,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Listing />} />
+      <Route path="/" element={<Search/>} />
     </Routes>
   );
 }
