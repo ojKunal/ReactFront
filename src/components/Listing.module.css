@@ -1,0 +1,196 @@
+.no-scrollbar {
+  overflow-x: hidden;
+}
+.imageIcon {
+    height: 200px;
+    width: 300px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+  .subtitle,
+  .title {
+    align-self: stretch;
+    position: relative;
+    line-height: 20px;
+  }
+  .subtitle {
+    margin: 0;
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 500;
+    font-family: inherit;
+    color: #374151;
+  }
+  .titleSubtitle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 247px;
+    max-width: 100%;
+  }
+  .heartIcon {
+    height: 32px;
+    width: 32px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .header {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 24px;
+    max-width: 100%;
+  }
+  .divider {
+    width: 41px;
+    height: 1px;
+    position: relative;
+    border-top: 1px solid #e5e7eb;
+    box-sizing: border-box;
+  }
+  .guestsEntire,
+  .wifiKitchen {
+    align-self: stretch;
+    position: relative;
+    line-height: 20px;
+  }
+  .details {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .divider1 {
+    width: 41px;
+    height: 1px;
+    position: relative;
+    border-top: 1px solid #e5e7eb;
+    box-sizing: border-box;
+  }
+  .averageRating {
+    position: relative;
+    line-height: 20px;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 21px;
+  }
+  .starIcon {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    min-height: 20px;
+  }
+  .reviews {
+    position: relative;
+    line-height: 20px;
+    display: inline-block;
+    min-width: 89px;
+  }
+  .review {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4px;
+    min-width: 130px;
+    max-width: 100%;
+  }
+  .night,
+  .reviewSummary {
+    position: relative;
+    display: inline-block;
+  }
+  .reviewSummary {
+    line-height: 28px;
+    font-weight: 500;
+    min-width: 46px;
+    white-space: nowrap;
+  }
+  .night {
+    line-height: 20px;
+    min-width: 39px;
+  }
+  .nightWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4px 0 0;
+    font-size: 14px;
+  }
+  .content,
+  .footer,
+  .listing,
+  .nightWrapper,
+  .review1 {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .review1 {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 18px;
+  }
+  .content,
+  .footer,
+  .listing {
+    max-width: 100%;
+  }
+  .footer {
+    align-self: stretch;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 16px;
+    color: #374151;
+  }
+  .content,
+  .listing {
+    align-items: flex-start;
+  }
+  .content {
+    flex: 1;
+    flex-direction: column;
+    gap: 15.5px;
+    min-width: 283px;
+  }
+  .listing {
+    align-self: stretch;
+    flex-direction: row;
+    gap: 24px;
+    flex-shrink: 0;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    color: #6b7280;
+    font-family: Inter;
+  }
+  @media screen and (max-width: 750px) {
+    .imageIcon {
+      flex: 1;
+    }
+    .listing {
+      flex-wrap: wrap;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .subtitle {
+      font-size: 16px;
+      line-height: 26px;
+    }
+    .footer,
+    .header,
+    .review {
+      flex-wrap: wrap;
+    }
+  }
