@@ -1,58 +1,56 @@
-import { FunctionComponent, useEffect, useState } from "react";
-import { supabase } from "../supabase"; // Initialize Supabase client
+  import { FunctionComponent, useEffect, useState } from "react";
+  import { supabase } from "../supabase"; // Initialize Supabase client
 
-import AirbnbNav from "../components/AirbnbNav";
-import HostDetails from "../components/HostDetails";
-import FrameComponent from "../components/FrameComponent";
-import AirbnbFooter1 from "../components/AirbnbFooter1";
-import AirbnbFooter from "../components/AirbnbFooter";
-import styles from "./Listing.module.css";
+  import AirbnbNav from "../components/AirbnbNav";
+  import HostDetails from "../components/HostDetails";
+  import FrameComponent from "../components/FrameComponent";
+  import AirbnbFooter1 from "../components/AirbnbFooter1";
+  import AirbnbFooter from "../components/AirbnbFooter";
+  import styles from "./Listing.module.css";
 
 
-const Listing: FunctionComponent = () => {
-  const [listing, setListing] = useState<any>(null);
+  const Listing: FunctionComponent = () => {
+    const [listing, setListing] = useState<any>(null);
+      // Define filters
+    const filterByCity = 'bangalore'; // Example: 'Bangalore'
+    const filterByFacility = ''; // Looking for 'wifi' in facilities_Summary
 
-  useEffect(() => {
-    // Fetch data from Supabase
-    const fetchListing = async () => {
-      const { data, error } = await supabase
+
+    useEffect(() => {
+      // Fetch data from Supabase
+      const fetchListing = async () => {
+        let query = supabase
         .from('Hostel')
         .select('*')
-        .eq('id', 270987)
-        // .ilike('city_name', '%Bangalore%') // Change the query as needed
+        .limit(1);
 
-// .eq(column, value): Equal to
-// .neq(column, value): Not equal to
-// .gt(column, value): Greater than
-// .gte(column, value): Greater than or equal to
-// .lt(column, value): Less than
-// .lte(column, value): Less than or equal to
-// .like(column, pattern): LIKE SQL operator
-// .ilike(column, pattern): Case-insensitive LIKE SQL operator
-// .is(column, value): IS operator
-// .in(column, array): IN operator
-// .cs(column, array): Contains
-// .cd(column, array): Contained by
-// .ov(column, array): Overlap
-// .fts(column, query): Full-text search
+        // Apply filters conditionally
+        if (filterByCity) {
+          query = query.ilike('city_name', `%${filterByCity}%`);
+        }
+        if (filterByFacility) {
+          query = query.contains('facilitiesSummary', [filterByFacility]);
+        }
+  
+        const { data, error } = await query;
 
-      if (error) {
-        console.error(error);
-      } else {
-        setListing(data[0]);
-      }
-    };
+        if (error) {
+          console.error(error);
+        } else {
+          setListing(data[0]);
+        }
+      };
 
-    fetchListing();
-  }, []);
+      fetchListing();
+    }, [filterByCity, filterByFacility]);
 
-  if (!listing) {
-    return <div>Loading...</div>;
-  }
-  // Parse the JSON string into an array
-  const imagesArray = JSON.parse(listing.images_url);
-  // Get the first image
-  const firstImage = imagesArray[0];
+    if (!listing) {
+      return <div>Loading...</div>;
+    }
+    // Parse the JSON string into an array
+    const imagesArray = JSON.parse(listing.images_url);
+    // Get the first image
+    const firstImage = imagesArray[0];
 
   return (
     <div className={styles.listing}>
