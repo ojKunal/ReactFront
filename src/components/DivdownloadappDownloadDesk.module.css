@@ -1,5 +1,5 @@
 .divotaBannerIcon {
-    height: 283.9px;
+    height: 383.9px;
     width: 180px;
     position: absolute;
     margin: 0 !important;
@@ -38,7 +38,7 @@
     align-self: stretch;
     height: 28.3px;
     position: relative;
-    font-size: inherit;
+    font-size: 22px;
     line-height: 31.68px;
     font-weight: 600;
     font-family: inherit;

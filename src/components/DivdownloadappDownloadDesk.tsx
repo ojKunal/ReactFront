@@ -7,7 +7,7 @@ const DivdownloadappDownloadDesk: FunctionComponent = () => {
       <img
         className={styles.divotaBannerIcon}
         alt=""
-        src="/divotabanner@2x.png"
+        src="https://res.klook.com/image/upload/q_auto/v1668065898/w81j2nxwdexxuhtenhxo.webp"
       />
       <section className={styles.downloadSpacingParent}>
         <img
