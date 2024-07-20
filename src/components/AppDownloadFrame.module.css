@@ -1,0 +1,190 @@
+.downloadTheApp {
+  margin: 0;
+  width: 965.9px;
+  position: relative;
+  font-size: inherit;
+  line-height: 28px;
+  text-transform: capitalize;
+  font-weight: 700;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+.downloadCall {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.get5Off {
+  margin: 0;
+  width: 782px;
+  position: relative;
+  font-size: var(--font-size-23xl);
+  line-height: 28px;
+  text-transform: capitalize;
+  font-weight: 700;
+  font-family: inherit;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+.appTitle,
+.downloadTitle,
+.get5Off {
+  display: flex;
+  max-width: 100%;
+}
+.downloadTitle {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-56xl);
+}
+.appTitle {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--padding-2xs) 0 0;
+  box-sizing: border-box;
+}
+.bookingsBetterOn {
+  margin: 0;
+  width: 804px;
+  position: relative;
+  font-size: var(--font-size-4xl);
+  line-height: 28px;
+  text-transform: capitalize;
+  font-weight: 500;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  z-index: 4;
+}
+.appInfo {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-6xs-5);
+  max-width: 100%;
+}
+.appalPlay1Icon,
+.googlePlay1Icon {
+  align-self: stretch;
+  position: relative;
+  flex-shrink: 0;
+  object-fit: cover;
+  z-index: 3;
+}
+.appalPlay1Icon {
+  width: 146.9px;
+  max-height: 100%;
+  min-height: 49px;
+}
+.googlePlay1Icon {
+  height: 46px;
+  max-width: 100%;
+  overflow: hidden;
+}
+.appStoreButton {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-11xs-3);
+}
+.appButtons,
+.appStoreButtons {
+  display: flex;
+  flex-direction: row;
+}
+.appButtons {
+  width: 311.4px;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-4xs-5);
+}
+.appStoreButtons {
+  width: 827.6px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 var(--padding-xl);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.appDownloadContent {
+  width: 1017.2px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-41xl-5);
+  max-width: 100%;
+}
+.appDownloadContentWrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 var(--padding-xl) var(--padding-258xl-2) var(--padding-94xl);
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: center;
+  font-size: var(--font-size-lgi);
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+}
+@media screen and (max-width: 1150px) {
+  .appDownloadContentWrapper {
+    padding-left: var(--padding-37xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .get5Off {
+    font-size: var(--font-size-15xl);
+    line-height: 22px;
+  }
+  .downloadTitle {
+    gap: var(--gap-18xl);
+  }
+  .appDownloadContent {
+    gap: var(--gap-11xl);
+  }
+}
+@media screen and (max-width: 750px) {
+  .downloadTitle {
+    gap: var(--gap-lgi);
+  }
+  .appDownloadContent {
+    gap: var(--gap-mini);
+  }
+  .appDownloadContentWrapper {
+    padding-left: var(--padding-9xl);
+    padding-bottom: var(--padding-161xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .get5Off {
+    font-size: var(--font-size-6xl);
+    line-height: 17px;
+  }
+  .bookingsBetterOn {
+    font-size: var(--font-size-lg);
+    line-height: 22px;
+  }
+}

@@ -1,0 +1,475 @@
+.contactInfo1 {
+  margin: 0;
+}
+.contactInfoTxtContainer {
+  width: 100%;
+}
+.contactInfo {
+  width: 231.6px;
+  position: relative;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.email {
+  font-weight: 600;
+  font-family: var(--font-inter);
+}
+.emailFdgnhillscoffeegmailc1 {
+  margin-block-start: 0;
+  margin-block-end: 14px;
+}
+.address {
+  font-family: var(--font-inter);
+}
+.lakesStreetLas {
+  white-space: pre-wrap;
+}
+.address4454LakesStreetL {
+  margin-block-start: 0;
+  margin-block-end: 14px;
+}
+.phone {
+  font-family: var(--font-inter);
+}
+.phone145454545454 {
+  margin: 0;
+}
+.emailFdgnhillscoffeegmailc {
+  align-self: stretch;
+  height: 124.2px;
+  position: relative;
+  font-size: var(--font-size-sm);
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.contactDetails {
+  position: absolute;
+  top: 41.9px;
+  left: 1041.3px;
+  width: 325.6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-8xs-3);
+  font-size: var(--font-size-lg);
+}
+.image1Icon,
+.image8Icon {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.image1Icon {
+  align-self: stretch;
+  flex: 1;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.image8Icon {
+  width: 167px;
+  height: 39.2px;
+  object-fit: contain;
+}
+.socialIcons,
+.socialMedia {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.socialMedia {
+  align-self: stretch;
+  gap: var(--gap-20xl-7);
+}
+.socialIcons {
+  height: 176.5px;
+  padding: var(--padding-6xs-9) 0 0;
+  box-sizing: border-box;
+}
+.quickLinks {
+  position: relative;
+  text-transform: uppercase;
+  display: inline-block;
+  min-width: 111.8px;
+  z-index: 2;
+}
+.lowAcidBlends {
+  align-self: stretch;
+  position: relative;
+  text-transform: capitalize;
+  z-index: 2;
+}
+.origins {
+  text-decoration: none;
+  color: inherit;
+}
+.gifts,
+.origins,
+.roast,
+.teas {
+  align-self: stretch;
+  position: relative;
+  text-transform: capitalize;
+  z-index: 2;
+}
+.gifts {
+  text-decoration: none;
+  height: 25.6px;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.quickLinks1,
+.quickLinksParent,
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.quickLinks1 {
+  align-self: stretch;
+  gap: var(--gap-mini-8);
+  font-size: var(--font-size-sm);
+}
+.quickLinksParent,
+.socialLinks {
+  width: 129.3px;
+  gap: var(--gap-4xl-8);
+}
+.socialLinks {
+  position: absolute;
+  top: 29.6px;
+  left: 62px;
+  width: 363.1px;
+  flex-direction: row;
+  gap: var(--gap-32xl-2);
+}
+.accommodation {
+  width: 307.7px;
+  position: relative;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+.howItsMade,
+.ourStory,
+.subscribeSave {
+  position: relative;
+  text-transform: capitalize;
+  z-index: 2;
+}
+.howItsMade,
+.ourStory {
+  align-self: stretch;
+}
+.subscribeSave {
+  flex: 1;
+  display: inline-block;
+  max-width: 100%;
+}
+.footerLinkItems {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 var(--padding-8xs-7);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.hiddenHillsCoffee {
+  flex: 1;
+  position: relative;
+  text-transform: capitalize;
+  display: inline-block;
+  max-width: 100%;
+  z-index: 2;
+}
+.footerLinkItems1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 var(--padding-10xs-7);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.affiliateSignUp,
+.ambassadorsOfClean {
+  align-self: stretch;
+  position: relative;
+  text-transform: capitalize;
+  z-index: 2;
+}
+.wholesaleSignUp {
+  width: 144.5px;
+  position: relative;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+.businessLinks {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-lg-1);
+}
+.footerLinksColumn {
+  align-self: stretch;
+  gap: var(--gap-smi-3);
+}
+.footerLinks,
+.footerLinksColumn,
+.footerNavigation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.footerNavigation {
+  align-self: stretch;
+  gap: var(--gap-base-7);
+  font-size: var(--font-size-sm);
+}
+.footerLinks {
+  position: absolute;
+  top: 29.6px;
+  left: 474px;
+  width: 328px;
+  gap: var(--gap-4xl-8);
+}
+.forTravellers1 {
+  margin: 0;
+}
+.forTravellersTxtContainer {
+  width: 100%;
+}
+.forTravellers {
+  width: 227.4px;
+  height: 43.4px;
+  position: relative;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.contactUs,
+.reviews {
+  position: relative;
+  text-transform: capitalize;
+  z-index: 3;
+}
+.contactUs {
+  align-self: stretch;
+}
+.reviews {
+  flex: 1;
+}
+.reviewsLink {
+  width: 237.1px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-12xs);
+  box-sizing: border-box;
+}
+.shippingPolicy {
+  width: 281.4px;
+  position: relative;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 3;
+}
+.icoutlineMailIcon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.emailIcon,
+.shippingLink {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.emailIcon {
+  flex-direction: column;
+  padding: var(--padding-5xs-4) 0 0;
+  margin-left: -141.2px;
+}
+.shippingLink {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 var(--padding-12xs) 0 0;
+}
+.privacyPolicy {
+  text-decoration: none;
+  align-self: stretch;
+  position: relative;
+  text-transform: capitalize;
+  color: inherit;
+  z-index: 3;
+}
+.blog,
+.faq,
+.termsAndConditions {
+  position: relative;
+  text-transform: capitalize;
+  z-index: 2;
+}
+.blog,
+.faq {
+  display: inline-block;
+}
+.faq {
+  text-decoration: none;
+  color: inherit;
+  min-width: 27px;
+}
+.blog {
+  min-width: 30px;
+}
+.legalLinks,
+.policyLinks {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.legalLinks {
+  padding: 0 var(--padding-12xs) 0 0;
+  gap: var(--gap-base-5);
+}
+.policyLinks {
+  gap: var(--gap-5xs-4);
+}
+.infoLinks {
+  align-self: stretch;
+  gap: var(--gap-2xs-6);
+}
+.forTravellersParent,
+.infoLinks,
+.travelerLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.travelerLinks {
+  align-self: stretch;
+  gap: var(--gap-mini-6);
+  flex-shrink: 0;
+  margin-top: -7.6px;
+  font-size: var(--font-size-sm);
+}
+.forTravellersParent {
+  position: absolute;
+  top: 39.6px;
+  left: 805.2px;
+  width: 282.7px;
+}
+.footerBackgroundChild {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  border-radius: var(--br-11xs);
+  width: 1445px;
+  height: 471.2px;
+  z-index: 1;
+}
+.footerImage {
+  position: absolute;
+  top: 378px;
+  left: 0;
+  background-color: var(--color-gainsboro-200);
+  width: 1440px;
+  height: 93.2px;
+  z-index: 2;
+}
+.footerBackground {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: 1440px;
+  height: 429px;
+}
+.contactContent {
+  align-self: stretch;
+  height: 380px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.contactContent,
+.copyright2021By,
+.frameChild {
+  position: relative;
+  max-width: 100%;
+}
+.frameChild {
+  align-self: stretch;
+  width: 1440px;
+  background-color: var(--color-gray-700);
+  display: none;
+}
+.copyright2021By {
+  height: 62px;
+  flex: 1;
+  text-transform: capitalize;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.contact,
+.rectangleParent {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.rectangleParent {
+  background-color: var(--color-gray-700);
+  flex-direction: row;
+  align-items: flex-start;
+  z-index: 4;
+  margin-top: -13px;
+  text-align: center;
+  font-size: var(--font-size-xs);
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+}
+.contact {
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}
