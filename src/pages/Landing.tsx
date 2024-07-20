@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+
 import Navigation1 from "../components/Navigation1";
 import Popularframe from "../components/Popularframe";
 import PopularList from "../components/PopularList";
@@ -8,10 +9,14 @@ import AppDownloadFrame from "../components/AppDownloadFrame";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import styles from "./Landingpage.module.css";
+import DivdownloadappDownloadDesk from "../components/DivdownloadappDownloadDesk";
+
 
 const Landingpage: FunctionComponent = () => {
   return (
+    
     <div className={styles.Landingpage}>
+
       <section className={styles.headerBackgroundParent}>
         <img
           className={styles.headerBackgroundIcon}
@@ -30,6 +35,7 @@ const Landingpage: FunctionComponent = () => {
       </section>
       <div className={styles.cinematicRenderingShowingGr} />
       <Navigation1 />
+
       <div className={styles.rectangleParent}>
         <div className={styles.frameChild} />
         <div className={styles.frameItem} />
@@ -65,9 +71,14 @@ const Landingpage: FunctionComponent = () => {
       </section>
       <AppDownloadFrame />
       <Newsletter />
+
       <div className={styles.image2} />
       <Footer />
+      <DivdownloadappDownloadDesk />
+
     </div>
+
+
   );
 };
 
