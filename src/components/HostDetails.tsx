@@ -4,11 +4,16 @@ import styles from "./HostDetails.module.css";
 
 export type HostDetailsType = {
   className?: string;
+  data?:any
 };
 
 const HostDetails: FunctionComponent<HostDetailsType> = ({
   className = "",
+  data
 }) => {
+
+  const facilities = JSON.parse(data.facilitiesSummary);
+
   return (
     <div className={[styles.hostDetails, className].join(" ")}>
       <div className={styles.hostInfoParent}>

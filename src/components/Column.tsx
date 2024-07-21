@@ -34,7 +34,7 @@ const Column: FunctionComponent<ColumnType> = ({
         <img className={styles.icon} loading="lazy" alt="" src={icon} />
         <div className={styles.titleSubtitle}>
           <div className={styles.title}>{title}</div>
-          <div className={styles.subtitle}>Subtitle</div>
+          <div className={styles.subtitle}>Subtitlejjjjjjjjjjjjjjjjjjjjjjj</div>
         </div>
       </div>
       <div className={styles.airbnbDataDetail1}>
