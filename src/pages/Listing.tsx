@@ -1,5 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { supabase } from "../supabase"; // Initialize Supabase client
+import { useLocation } from "react-router-dom";
 
 import AirbnbNav from "../components/AirbnbNav";
 import HostDetails from "../components/HostDetails";
@@ -8,51 +9,60 @@ import AirbnbFooter1 from "../components/AirbnbFooter1";
 import AirbnbFooter from "../components/AirbnbFooter";
 import styles from "./Listing.module.css";
 
-
 const Listing: FunctionComponent = () => {
-  const [listing, setListing] = useState<any>(null);
+  const location = useLocation(); 
+  const { data } = location.state || {};
+  // const [listing, setListing] = useState<any>(null);
+  // Define filters
+  const filterByCity = "Mumbai"; // Example: 'Bangalore'
+  const filterByFacility = ""; // Looking for 'wifi' in facilities_Summary
 
-  useEffect(() => {
-    // Fetch data from Supabase
-    const fetchListing = async () => {
-      const { data, error } = await supabase
-        .from('Hostel')
-        .select('*')
-        .eq('id', 270987)
-        // .ilike('city_name', '%Bangalore%') // Change the query as needed
+  console.log("final data is here", data);
 
-// .eq(column, value): Equal to
-// .neq(column, value): Not equal to
-// .gt(column, value): Greater than
-// .gte(column, value): Greater than or equal to
-// .lt(column, value): Less than
-// .lte(column, value): Less than or equal to
-// .like(column, pattern): LIKE SQL operator
-// .ilike(column, pattern): Case-insensitive LIKE SQL operator
-// .is(column, value): IS operator
-// .in(column, array): IN operator
-// .cs(column, array): Contains
-// .cd(column, array): Contained by
-// .ov(column, array): Overlap
-// .fts(column, query): Full-text search
-
-      if (error) {
-        console.error(error);
-      } else {
-        setListing(data[0]);
-      }
-    };
-
-    fetchListing();
-  }, []);
-
-  if (!listing) {
-    return <div>Loading...</div>;
-  }
-  // Parse the JSON string into an array
-  const imagesArray = JSON.parse(listing.images_url);
+  const imagesArray = data.images_url;
   // Get the first image
   const firstImage = imagesArray[0];
+  console.log(firstImage);
+
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+
+  // Inline styles for hover effect
+  const imageStyle = (isHovered: boolean) => ({
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    transform: isHovered ? "scale(1.05)" : "scale(1)",
+    boxShadow: isHovered ? "0 4px 8px rgba(0, 0, 0, 0.2)" : "none",
+  });
+
+  // useEffect(() => {
+  //   // Fetch data from Supabase
+  //   const fetchListing = async () => {
+  //     let query = supabase.from("Hostel").select("*").limit(10);
+
+  //     // Apply filters conditionally
+  //     if (filterByCity) {
+  //       query = query.ilike("city_name", `%${filterByCity}%`);
+  //     }
+  //     if (filterByFacility) {
+  //       query = query.contains("facilitiesSummary", [filterByFacility]);
+  //     }
+
+  //     const { data, error } = await query;
+
+  //     if (error) {
+  //       console.error(error);
+  //     } else {
+  //       setListing(data[0]);
+  //       console.log("my data", data);
+  //     }
+  //   };
+
+  //   fetchListing();
+  // }, [filterByCity, filterByFacility]);
+
+  // if (!listing) {
+  //   return <div>Loading...</div>;
+  // }
+  // // Parse the JSON string into an array
 
   return (
     <div className={styles.listing}>

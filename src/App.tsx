@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import StandardSearch from "./pages/StandardSearch";
 import Listing from "./pages/Listing";
-import Landingpage from "./pages/Landing";
 import MainComponent from "./pages/data";
 
 function App() {
@@ -44,9 +43,8 @@ function App() {
   return (
     <div>
         <Routes>
-          <Route path='/StandardSearch' element = {<StandardSearch/>}/>
+          <Route path='/' element = {<StandardSearch/>}/>
           <Route path='/listing' element = {<Listing/>}/>
-          <Route path='/' element = {<Landingpage/>}/>          
         </Routes>
     </div>
   );
