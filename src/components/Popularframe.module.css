@@ -1,0 +1,611 @@
+.travelCategory {
+  height: 38px;
+  width: 1331.8px;
+  position: absolute;
+  margin: 0 !important;
+  top: 181.3px;
+  right: -1.5px;
+  line-height: 28px;
+  text-transform: capitalize;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.dateRangeChild {
+  height: 78px;
+  width: 1011px;
+  position: relative;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-mini);
+  background-color: var(--color-white);
+  display: none;
+  max-width: 100%;
+}
+.span {
+  white-space: pre-wrap;
+}
+.whereDoYou {
+  font-weight: 500;
+  font-family: var(--font-poppins);
+}
+.whereDoYouContainer {
+  align-self: stretch;
+  position: relative;
+  line-height: 30px;
+  text-transform: capitalize;
+  z-index: 3;
+}
+.locationBackground {
+  height: 1px;
+  flex: 1;
+  position: relative;
+  background-color: var(--color-gray-900);
+  z-index: 3;
+}
+.locationIcon {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--padding-9xs) 0 var(--padding-4xs);
+}
+.location,
+.locationInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.locationInput {
+  align-self: stretch;
+  align-items: flex-end;
+  gap: var(--gap-10xs);
+}
+.location {
+  width: 221px;
+  align-items: flex-start;
+  padding: var(--padding-10xs-5) 0 0;
+  box-sizing: border-box;
+  color: var(--color-black);
+}
+.dateValues {
+  width: 0.5px;
+  height: 40.5px;
+  position: relative;
+  background-color: var(--color-tomato-200);
+  border: 1px solid var(--color-darkgray-200);
+  box-sizing: border-box;
+  z-index: 3;
+}
+.dateFields {
+  width: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-10xs) 0 0;
+  box-sizing: border-box;
+}
+.div {
+  align-self: stretch;
+  height: 19.5px;
+  position: relative;
+  line-height: 28px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 4;
+}
+.checkDates {
+  width: 18.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-12xs);
+  box-sizing: border-box;
+}
+.checkIn1,
+.jul {
+  position: relative;
+  text-transform: capitalize;
+  z-index: 3;
+}
+.checkIn1 {
+  align-self: stretch;
+  height: 12px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.jul {
+  flex: 1;
+  line-height: 9px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 30px;
+}
+.selectedDates {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 var(--padding-3xl) 0 var(--padding-xs);
+  color: var(--color-black);
+}
+.checkIn,
+.checkInOut,
+.selectedDates {
+  display: flex;
+  justify-content: flex-start;
+}
+.checkInOut {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-11xs-8);
+  margin-left: -6.4px;
+  font-size: var(--font-size-3xs);
+  font-family: var(--font-roboto);
+}
+.checkIn {
+  width: 76.9px;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.dateBackgrounds {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  background-color: var(--color-gray-900);
+  z-index: 3;
+}
+.checkInParent,
+.dateFields1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.checkInParent {
+  align-self: stretch;
+  align-items: flex-end;
+  gap: var(--gap-9xs);
+}
+.dateFields1 {
+  width: 80.1px;
+  align-items: flex-start;
+  padding: var(--padding-7xs-6) 0 0;
+  box-sizing: border-box;
+}
+.dateFieldsChild {
+  width: 0.5px;
+  height: 40.5px;
+  position: relative;
+  background-color: var(--color-tomato-200);
+  border: 1px solid var(--color-darkgray-200);
+  box-sizing: border-box;
+  z-index: 3;
+}
+.dateFields2 {
+  width: 5.1px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-9xs) 0 0;
+  box-sizing: border-box;
+}
+.div1 {
+  align-self: stretch;
+  height: 19.5px;
+  position: relative;
+  line-height: 28px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 4;
+}
+.wrapper {
+  width: 18.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-12xs);
+  box-sizing: border-box;
+}
+.checkOut,
+.jul1 {
+  position: relative;
+  text-transform: capitalize;
+  z-index: 3;
+}
+.checkOut {
+  align-self: stretch;
+  height: 12px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.jul1 {
+  flex: 1;
+  line-height: 9px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 30px;
+}
+.julWrapper {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 var(--padding-3xl) 0 var(--padding-xs);
+  color: var(--color-black);
+}
+.checkOutParent,
+.frameGroup,
+.julWrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+.checkOutParent {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-11xs-8);
+  margin-left: -6.4px;
+  font-size: var(--font-size-3xs);
+  font-family: var(--font-roboto);
+}
+.frameGroup {
+  width: 76.9px;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.frameChild {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  background-color: var(--color-gray-900);
+  z-index: 3;
+}
+.dateFields3,
+.frameParent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.frameParent {
+  align-self: stretch;
+  align-items: flex-end;
+  gap: var(--gap-9xs);
+}
+.dateFields3 {
+  width: 89.8px;
+  align-items: flex-start;
+  padding: var(--padding-7xs-6) var(--padding-4xs) 0 0;
+  box-sizing: border-box;
+}
+.dateFieldsItem {
+  width: 0.5px;
+  height: 40.5px;
+  position: relative;
+  background-color: var(--color-tomato-200);
+  border: 1px solid var(--color-darkgray-200);
+  box-sizing: border-box;
+  z-index: 3;
+}
+.dateFields4 {
+  width: 5.2px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-9xs) 0 0;
+  box-sizing: border-box;
+}
+.users {
+  align-self: stretch;
+  height: 19.5px;
+  position: relative;
+  line-height: 28px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 3;
+}
+.usersWrapper {
+  width: 18.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-12xs);
+  box-sizing: border-box;
+}
+.guest1,
+.guestIcon {
+  position: relative;
+  text-transform: capitalize;
+  z-index: 3;
+}
+.guest1 {
+  align-self: stretch;
+  height: 12px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.guestIcon {
+  flex: 1;
+  line-height: 9px;
+  font-weight: 500;
+}
+.guestDropdown {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 var(--padding-3xs) 0 var(--padding-4xs);
+  color: var(--color-black);
+}
+.frameDiv,
+.frameWrapper,
+.guest,
+.guestDropdown {
+  display: flex;
+  justify-content: flex-start;
+}
+.guest {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-11xs-8);
+  font-size: var(--font-size-3xs);
+  font-family: var(--font-roboto);
+}
+.frameDiv,
+.frameWrapper {
+  flex-direction: row;
+}
+.frameDiv {
+  flex: 1;
+  align-items: flex-end;
+  gap: var(--gap-12xs-5);
+}
+.frameWrapper {
+  align-self: stretch;
+  align-items: flex-start;
+  padding: 0 var(--padding-4xs) 0 var(--padding-10xs);
+}
+.frameItem {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  background-color: var(--color-gray-900);
+  z-index: 3;
+}
+.dateFields5,
+.frameContainer {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.frameContainer {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-9xs);
+}
+.dateFields5 {
+  width: 80.1px;
+  padding: var(--padding-7xs-6) 0 0;
+  box-sizing: border-box;
+}
+.dateFields5,
+.dateInput,
+.datePicker {
+  display: flex;
+  align-items: flex-start;
+}
+.datePicker {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 var(--padding-11xs) 0 0;
+  gap: var(--gap-xl);
+}
+.dateInput {
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-12xs);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.searchButtonChild {
+  height: 44px;
+  width: 168.5px;
+  position: relative;
+  border-radius: var(--br-980xl);
+  background-color: var(--color-orangered);
+  display: none;
+}
+.submit1 {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: var(--font-poppins);
+}
+.span1 {
+  text-transform: capitalize;
+  font-family: var(--font-abeezee);
+}
+.submit {
+  flex: 1;
+  position: relative;
+  font-size: var(--font-size-lgi);
+  line-height: 29px;
+  color: var(--color-white);
+  text-align: center;
+  z-index: 4;
+}
+.date,
+.dateRange,
+.searchButton {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+.searchButton {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-5xs) 0 var(--padding-6xs);
+  background-color: var(--color-orangered);
+  width: 168.5px;
+  border-radius: var(--br-980xl);
+  align-items: flex-start;
+  justify-content: flex-start;
+  white-space: nowrap;
+  z-index: 3;
+}
+.searchButton:hover {
+  background-color: var(--color-tomato-100);
+}
+.date,
+.dateRange {
+  max-width: 100%;
+}
+.dateRange {
+  width: 1011px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-mini);
+  background-color: var(--color-white);
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: var(--padding-lg) var(--padding-22xl) var(--padding-base)
+    var(--padding-62xl);
+  gap: var(--gap-56xl-2);
+  z-index: 2;
+}
+.date {
+  align-self: stretch;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 var(--padding-xl) 0 var(--padding-6xl);
+  font-family: var(--font-abeezee);
+}
+.ourPopularTours {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: var(--font-size-9xl);
+  line-height: 28px;
+  text-transform: capitalize;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--color-black);
+  z-index: 1;
+}
+.filter,
+.tourFeatures,
+.tourHeader,
+.tourHeaderWrapper {
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.tourFeatures {
+  align-self: stretch;
+  display: grid;
+  flex-direction: row;
+  gap: var(--gap-17xl-8);
+  grid-template-columns: repeat(3, minmax(314px, 1fr));
+  font-size: var(--font-size-6xl);
+  color: var(--color-white);
+}
+.filter,
+.tourHeader,
+.tourHeaderWrapper {
+  display: flex;
+}
+.filter {
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap-55xl);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  font-family: var(--font-poppins);
+}
+.tourHeader,
+.tourHeaderWrapper {
+  flex-direction: row;
+}
+.tourHeader {
+  flex: 1;
+  position: relative;
+}
+.tourHeaderWrapper {
+  align-self: stretch;
+  padding: 0 var(--padding-37xl) 0 var(--padding-34xl);
+  box-sizing: border-box;
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--color-black);
+  font-family: var(--font-open-sans);
+}
+@media screen and (max-width: 1150px) {
+  .tourFeatures {
+    justify-content: center;
+    grid-template-columns: repeat(2, minmax(314px, 545px));
+  }
+}
+@media screen and (max-width: 1050px) {
+  .datePicker {
+    flex-wrap: wrap;
+  }
+  .dateRange {
+    gap: var(--gap-19xl);
+    padding-left: var(--padding-21xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .dateInput {
+    min-width: 100%;
+  }
+  .dateRange {
+    gap: var(--gap-lgi);
+  }
+  .tourFeatures {
+    gap: var(--gap-lg);
+    grid-template-columns: minmax(314px, 1fr);
+  }
+  .filter {
+    gap: var(--gap-18xl);
+  }
+  .tourHeaderWrapper {
+    padding-left: var(--padding-7xl);
+    padding-right: var(--padding-9xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .ourPopularTours {
+    font-size: var(--font-size-3xl);
+    line-height: 22px;
+  }
+  .filter {
+    gap: var(--gap-lg);
+  }
+}

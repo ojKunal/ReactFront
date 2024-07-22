@@ -1,0 +1,397 @@
+.divotaBannerIcon {
+    height: 383.9px;
+    width: 180px;
+    position: absolute;
+    margin: 0 !important;
+    top: -65.5px;
+    left: 258.1px;
+    border-radius: var(--br-5xl) var(--br-5xl) 0 0;
+    object-fit: cover;
+    z-index: 2;
+  }
+  .divshapeIcon,
+  .downloadSpacingIcon {
+    position: absolute;
+    margin: 0 !important;
+    overflow: hidden;
+  }
+  .downloadSpacingIcon {
+    height: 24px;
+    width: 24px;
+    top: 16px;
+    right: 16.1px;
+    flex-shrink: 0;
+  }
+  .divshapeIcon {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0.1px;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 1;
+  }
+  .get10Off {
+    margin: 0;
+    align-self: stretch;
+    height: 28.3px;
+    position: relative;
+    font-size: 22px;
+    line-height: 31.68px;
+    font-weight: 600;
+    font-family: inherit;
+    display: inline-block;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+  .usePromoCode {
+    position: relative;
+    line-height: 24px;
+  }
+  .downloadContent,
+  .p,
+  .sloganContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .p {
+    overflow: hidden;
+    flex-direction: row;
+    padding: 0 21px var(--padding-12xs-3) 0;
+    z-index: 2;
+    font-size: var(--font-size-base);
+    font-family: var(--font-poppins);
+  }
+  .downloadContent,
+  .sloganContainer {
+    flex-direction: column;
+  }
+  .sloganContainer {
+    align-self: stretch;
+    gap: 9.3px;
+  }
+  .downloadContent {
+    width: 312.6px;
+    padding: 50.2px 0 0;
+    box-sizing: border-box;
+    min-width: 312.6px;
+  }
+  .getAMagic {
+    width: 265px;
+    position: relative;
+    line-height: 24px;
+    font-weight: 600;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .divtip {
+    align-self: stretch;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 0 var(--padding-12xs-3);
+    z-index: 2;
+  }
+  .divdataInfo,
+  .send {
+    font-size: var(--font-size-base);
+  }
+  .divdataInfo {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background-color: var(--color-white);
+    height: 44px;
+    flex: 1;
+    border-radius: var(--br-xs);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--padding-3xs) 24px;
+    box-sizing: border-box;
+    font-family: var(--font-poppins);
+    color: #757575;
+    min-width: 159px;
+    z-index: 2;
+  }
+  .send {
+    text-decoration: none;
+    position: relative;
+    line-height: 22px;
+    font-weight: 600;
+    font-family: var(--font-inter);
+    color: #8a8a8a;
+    text-align: left;
+    display: inline-block;
+    min-width: 40px;
+  }
+  .buttonklkButtonklkButtonP {
+    cursor: pointer;
+    border: 0.6px solid var(--color-whitesmoke);
+    padding: var(--padding-4xs) var(--padding-3xl) var(--padding-2xs) 23px;
+    background-color: var(--color-whitesmoke);
+    border-radius: var(--br-xs);
+    overflow: hidden;
+    flex-direction: row;
+    z-index: 2;
+  }
+  .buttonklkButtonklkButtonP:hover {
+    background-color: var(--color-lightgray);
+    border: 0.6px solid var(--color-lightgray);
+    box-sizing: border-box;
+  }
+  .buttonklkButtonklkButtonP,
+  .emailInputArea,
+  .emailInputContent,
+  .emailInputWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .emailInputArea {
+    align-self: stretch;
+    flex-direction: row;
+    gap: var(--gap-9xs);
+  }
+  .emailInputContent,
+  .emailInputWrapper {
+    flex-direction: column;
+  }
+  .emailInputContent {
+    align-self: stretch;
+    gap: 12px;
+  }
+  .emailInputWrapper {
+    flex: 1;
+    padding: 35px 0 0;
+    box-sizing: border-box;
+    min-width: 217px;
+    max-width: 100%;
+  }
+  .text {
+    align-self: stretch;
+    width: 0;
+    position: relative;
+    line-height: 18px;
+    display: inline-block;
+  }
+  .before,
+  .separatorContent {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .before {
+    flex: 1;
+    background-color: var(--color-white);
+    padding: 0 0 var(--padding-28xl);
+    z-index: 2;
+  }
+  .separatorContent {
+    height: 65px;
+    padding: 0 var(--padding-8xs) 0 var(--padding-5xs);
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .or,
+  .text1 {
+    position: relative;
+    line-height: 18px;
+    display: inline-block;
+  }
+  .or {
+    text-decoration: none;
+    color: inherit;
+    min-width: 14px;
+    z-index: 2;
+  }
+  .text1 {
+    align-self: stretch;
+    width: 0;
+  }
+  .after,
+  .separatorContent1 {
+    align-self: stretch;
+    flex-direction: row;
+  }
+  .after {
+    flex: 1;
+    background-color: var(--color-white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 0 var(--padding-28xl);
+    z-index: 2;
+  }
+  .separatorContent1 {
+    height: 65px;
+    padding: 0 var(--padding-7xs) 0 var(--padding-6xs);
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .emailInputContainer,
+  .separator,
+  .separatorContent1 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .separator {
+    height: 158.9px;
+    width: 14px;
+    flex-direction: column;
+    padding: 0 0 71.3px;
+    box-sizing: border-box;
+    gap: 5.4px;
+    font-size: var(--font-size-xs);
+    font-family: var(--font-poppins);
+  }
+  .emailInputContainer {
+    flex: 1;
+    flex-direction: row;
+    gap: var(--gap-base);
+    min-width: 237px;
+    max-width: 100%;
+  }
+  .scanTheMagic {
+    text-decoration: none;
+    width: 96px;
+    height: 50.4px;
+    position: relative;
+    line-height: 18px;
+    color: inherit;
+    display: inline-block;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+  .divcodeLogoIcon {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+  .videoappDownloadCanvasdemo {
+    height: 84px;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .divappDownloadQrcode {
+    align-self: stretch;
+    border-radius: 16px;
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--padding-5xs);
+    z-index: 2;
+  }
+  .qrCodeContainer {
+    align-self: stretch;
+    flex-direction: column;
+    gap: 9.9px;
+  }
+  .emailInputContainerParent,
+  .qrCodeContainer,
+  .qrCodeContainerWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .qrCodeContainerWrapper {
+    width: 100px;
+    flex-direction: column;
+    padding: 1.7px 0 0;
+    box-sizing: border-box;
+    font-size: var(--font-size-xs);
+    font-family: var(--font-poppins);
+  }
+  .emailInputContainerParent {
+    flex: 1;
+    flex-direction: row;
+    gap: 17.8px;
+    min-width: 313px;
+    max-width: 100%;
+    font-size: var(--font-size-base);
+  }
+  .divdownloadappDownloadDesk,
+  .downloadSpacingParent {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+  .downloadSpacingParent {
+    width: 1160.1px;
+    justify-content: flex-start;
+    padding: var(--padding-9xl-2) 123px var(--padding-9xl-2) 203px;
+    gap: var(--gap-21xl);
+    max-width: 100%;
+    text-align: left;
+    font-size: var(--font-size-5xl);
+    color: var(--color-white);
+    font-family: var(--font-inter);
+  }
+  .divdownloadappDownloadDesk {
+    width: 100%;
+    background-color: #4d40cc;
+    justify-content: center;
+    padding: 0 var(--padding-xl);
+    line-height: normal;
+    letter-spacing: normal;
+  }
+  @media screen and (max-width: 1125px) {
+    .downloadSpacingParent {
+      padding-left: 101px;
+      padding-right: var(--padding-42xl);
+      box-sizing: border-box;
+    }
+  }
+  @media screen and (max-width: 1050px) {
+    .downloadContent {
+      flex: 1;
+    }
+    .downloadSpacingParent {
+      flex-wrap: wrap;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .emailInputContainerParent {
+      flex-wrap: wrap;
+    }
+    .downloadSpacingParent {
+      gap: var(--gap-xl);
+      padding-left: 50px;
+      padding-right: var(--padding-11xl);
+      box-sizing: border-box;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .get10Off {
+      font-size: var(--font-size-lgi);
+      line-height: 25px;
+    }
+    .emailInputArea,
+    .emailInputContainer {
+      flex-wrap: wrap;
+    }
+    .downloadSpacingParent {
+      padding-left: var(--padding-xl);
+      box-sizing: border-box;
+    }
+  }
+  
