@@ -38,6 +38,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     } else {
       setCategoryData(data);
       console.log("my data", data);
+    
     }
 };
 
@@ -258,9 +259,8 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
           <div className={styles.divider3} />
 
           {categoryData.map((listing: any) => {
-            const imageArray = JSON.parse(
-              listing.images_url || '["/default-image.png"]'
-            );
+            console.log("link is", listing.images_url)
+            const imageArray = listing.images_url
             const firstImage =
               imageArray.length > 0 ? imageArray[0] : "/default-image.png";
             console.log(firstImage);

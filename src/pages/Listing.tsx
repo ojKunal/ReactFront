@@ -10,7 +10,7 @@ import AirbnbFooter from "../components/AirbnbFooter";
 import styles from "./Listing.module.css";
 
 const Listing: FunctionComponent = () => {
-  const location = useLocation();
+  const location = useLocation(); 
   const { data } = location.state || {};
   // const [listing, setListing] = useState<any>(null);
   // Define filters
@@ -19,7 +19,7 @@ const Listing: FunctionComponent = () => {
 
   console.log("final data is here", data);
 
-  const imagesArray = JSON.parse(data.images_url);
+  const imagesArray = data.images_url;
   // Get the first image
   const firstImage = imagesArray[0];
   console.log(firstImage);
@@ -181,6 +181,9 @@ const Listing: FunctionComponent = () => {
             </div>
           </div>
         </section>
+
+        {/* Reservation Section  */}
+
         <section className={styles.listingContent}>
           <HostDetails data = {data}/>
           <div className={styles.bookingContainer}>
@@ -190,7 +193,7 @@ const Listing: FunctionComponent = () => {
                   <div className={styles.priceLabel}>
                     Rs {data.lowestPricePerNight_value}
                   </div>
-                  <div className={styles.nightCount}>
+                  <div className={styles.nightCount} style={{marginLeft:40}}>
                     <div className={styles.nightLabel}>/</div>
                   </div>
                   <div className={styles.nightCount1}>
@@ -301,9 +304,10 @@ const Listing: FunctionComponent = () => {
             </div>
           </div>
         </section>
-        <FrameComponent />
+       {/* Reservation Section Ends */}
+        <FrameComponent address1 = {data.address1} address2 = {data.address2} />
       </main>
-      <AirbnbFooter1 />
+      <AirbnbFooter1/>
       <AirbnbFooter />
     </div>
   );

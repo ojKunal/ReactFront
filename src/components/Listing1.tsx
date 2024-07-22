@@ -37,7 +37,7 @@ const Listing1: FunctionComponent<Listing1Type> = ({
   const navigate = useNavigate();
   const [isHeartRed, setIsHeartRed] = useState(false);
 
-  const facilities1 = JSON.parse(facilities);
+  const facilities1 = facilities;
 
   console.log("my data is here", data);
 
@@ -95,7 +95,7 @@ const Listing1: FunctionComponent<Listing1Type> = ({
         <div className={styles.divider1} />
         <div className={styles.footer}>
           <div className={styles.review}>
-            <div className={styles.star}>{rating}.0</div>
+            <div className={styles.averageRating}>{rating}.0</div>
             <img className={styles.starIcon} loading="lazy" alt="" src={star} />
             <div className={styles.reviews}>(318 reviews)</div>
           </div>
