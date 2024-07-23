@@ -1,8 +1,11 @@
 import { FunctionComponent } from "react";
+import ExpandableText from "./ExpandableText"; // Import the new component
 import styles from "./AirbnbComment.module.css";
 
 export type AirbnbCommentType = {
   className?: string;
+  reviews?: any;
+  length?: number;
   avatar?: string;
   title?: string;
   subtitle?: string;
@@ -11,6 +14,8 @@ export type AirbnbCommentType = {
 
 const AirbnbComment: FunctionComponent<AirbnbCommentType> = ({
   className = "",
+  reviews,
+  length,
   avatar,
   title,
   subtitle,
@@ -18,14 +23,27 @@ const AirbnbComment: FunctionComponent<AirbnbCommentType> = ({
 }) => {
   return (
     <div className={[styles.airbnbComment, className].join(" ")}>
-      <div className={styles.user}>
-        <img className={styles.avatarIcon} loading="lazy" alt="" src={avatar} />
-        <div className={styles.titleSubtitle}>
-          <div className={styles.title}>{title}</div>
-          <div className={styles.subtitle}>{subtitle}</div>
+      {reviews && reviews.slice(0, length).map((review: any, index: number) => (
+        <div key={index} style={{ marginBottom: 20 }}>
+          <div className={styles.user}>
+            <img
+              className={styles.avatarIcon}
+              loading="lazy"
+              alt=""
+              src={avatar}
+            />
+            <div className={styles.titleSubtitle}>
+              <div className={styles.title}>{review.user_nickname}</div>
+              <div className={styles.subtitle}>
+                {review.ratingCreated.split("T")[0]}
+              </div>
+            </div>
+          </div>
+          <div className={styles.comment} style={{ marginTop: 20 }}>
+            <ExpandableText text={review.ratingDescription} />
+          </div>
         </div>
-      </div>
-      <div className={styles.comment}>{comment}</div>
+      ))}
     </div>
   );
 };
