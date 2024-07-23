@@ -1,14 +1,71 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import AirbnbComment from "./AirbnbComment";
 import styles from "./FrameComponent.module.css";
+import { supabase } from "../Utils/SupabaseConfig";
 
 export type FrameComponentType = {
   className?: string;
+  address1?:string
+  address2?:string
 };
 
 const FrameComponent: FunctionComponent<FrameComponentType> = ({
   className = "",
+  address1,
+  address2
 }) => {
+  const [reviews, setReviews] = useState<any>([]);
+  const [length, setLength] = useState(2);
+
+  const fetchReviews = async () => {
+    try {
+      // Construct the query to fetch reviews
+      const { data, error } = await supabase
+        .from("reviews")
+        .select("*")
+        .eq("PropRef", "307209")
+        .order("ratingCreated", { ascending: true }); // Adjust ordering as needed
+      // .limit(2); // Limit the number of records
+
+      if (error) {
+        console.error("Error fetching reviews:", error);
+      } else {
+        // Update the state with the fetched data
+        setReviews(data || []);
+        console.log("Fetched reviews:", data);
+        console.log("reviews", reviews);
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
+  };
+
+  useEffect(() => {
+    // Fetch reviews data when the component mounts
+    fetchReviews();
+  }, []);
+
+  const midpoint = Math.ceil(reviews.length / 2);
+
+  // Split the array into two halves
+  const firstHalf = reviews.slice(0, midpoint);
+  const secondHalf = reviews.slice(midpoint);
+
+  const handleToggle1 = () => {
+    if (length === 2) {
+      setLength(reviews.length);
+    } else {
+      setLength(2);
+    }
+  };
+
+  const buttonStyle = (isHovered: boolean) => ({
+    backGroundColor: "red",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    transform: isHovered ? "scale(1.05)" : "scale(1)",
+    boxShadow: isHovered ? "0 4px 8px rgba(0, 0, 0, 0.2)" : "none",
+  });
+
   return (
     <section className={[styles.reviewsParent, className].join(" ")}>
       <div className={styles.reviews}>
@@ -138,64 +195,50 @@ const FrameComponent: FunctionComponent<FrameComponentType> = ({
         </div>
         <div className={styles.comments}>
           <div className={styles.row}>
-            <AirbnbComment
+            {/* <AirbnbComment
               avatar="/avatar-2.svg"
               title="Jose"
               subtitle="December 2021"
               comment="Host was very attentive."
-            />
-            <AirbnbComment
+            /> */}
+            {/* <AirbnbComment
               avatar="/avatar-3.svg"
               title="Luke"
               subtitle="December 2021"
               comment="Nice place to stay!"
-            />
+            /> */}
           </div>
           <div className={styles.row1}>
             <div className={styles.airbnbComment}>
-              <div className={styles.user}>
-                <img
-                  className={styles.avatarIcon}
-                  loading="lazy"
-                  alt=""
-                  src="/avatar-4.svg"
-                />
-                <div className={styles.titleSubtitle}>
-                  <div className={styles.title}>Shayna</div>
-                  <div className={styles.subtitle}>December 2021</div>
-                </div>
-              </div>
-              <div className={styles.comment}>
-                Wonderful neighborhood, easy access to restaurants and the
-                subway, cozy studio apartment with a super comfortable bed.
-                Great host, super helpful and responsive. Cool murphy bed...
-              </div>
-              <div className={styles.iconText}>
-                <a className={styles.text}>Show more</a>
-                <img
-                  className={styles.chevronRightIcon}
-                  loading="lazy"
-                  alt=""
-                  src="/chevronright.svg"
-                />
-              </div>
+              <AirbnbComment
+                reviews={firstHalf}
+                length={length}
+                avatar="/avatar-6.svg"
+                title="Josh"
+                subtitle="November 2021"
+                comment="Well designed and fun space, neighborhood has lots of energy and amenities."
+              />
             </div>
-            <AirbnbComment
-              avatar="/avatar-5.svg"
-              title="Josh"
-              subtitle="November 2021"
-              comment="Well designed and fun space, neighborhood has lots of energy and amenities."
-            />
+            <div className={styles.airbnbComment}>
+              <AirbnbComment
+                reviews={secondHalf}
+                length={length}
+                avatar="/avatar-6.svg"
+                title="Josh"
+                subtitle="November 2021"
+                comment="Well designed and fun space, neighborhood has lots of energy and amenities."
+              />
+            </div>
           </div>
-          <div className={styles.row2}>
+          {/* <div className={styles.row2}>
             <AirbnbComment
               avatar="/avatar-6.svg"
               title="Vladko"
               subtitle="November 2020"
               comment="This is amazing place. It has everything one needs for a monthly business stay. Very clean and organized place. Amazing hospitality affordable price."
-            />
-            <div className={styles.airbnbComment1}>
-              <div className={styles.user1}>
+            /> */}
+          {/* <div className={styles.airbnbComment1}> */}
+          {/* <div className={styles.user1}>
                 <img
                   className={styles.avatarIcon1}
                   loading="lazy"
@@ -206,32 +249,40 @@ const FrameComponent: FunctionComponent<FrameComponentType> = ({
                   <div className={styles.title1}>Jennifer</div>
                   <div className={styles.subtitle1}>January 2022</div>
                 </div>
-              </div>
-              <div className={styles.comment1}>
+              </div> */}
+          {/* <div className={styles.comment1}>
                 <p className={styles.aCentricPlace}>
                   A centric place, near of a sub station and a supermarket with
                   everything you need.
                 </p>
                 <p className={styles.p}>...</p>
-              </div>
-              <div className={styles.iconText1}>
+              </div> */}
+          {/* <div className={styles.iconText1}>
                 <a className={styles.nextMore}>Show more</a>
                 <img
                   className={styles.chevronRightIcon1}
                   alt=""
                   src="/chevronright.svg"
                 />
-              </div>
-            </div>
-          </div>
+              </div> */}
+          {/* </div> */}
+          {/* </div> */}
         </div>
       </div>
       <div className={styles.moreCommentsButtonContainer}>
-        <button className={styles.button}>
+        <button
+          className={styles.button}
+          onClick={handleToggle1}
+          // style={buttonStyle(hoveredButton === "third")}
+          // onMouseEnter={() => setHoveredButton("first")}
+          // onMouseLeave={() => setHoveredButton(null)}
+        >
           <div className={styles.buttonBase}>
-            <img className={styles.icon} alt="" src="/icon3.svg" />
-            <div className={styles.text1}>Show all 12 reviews</div>
-            <img className={styles.icon1} alt="" src="/icon2.svg" />
+            <div className={styles.showMoreLabel}>
+              {length === 2
+                ? `Show all ${reviews.length} reviews`
+                : "Show less"}
+            </div>
           </div>
         </button>
       </div>
@@ -239,7 +290,7 @@ const FrameComponent: FunctionComponent<FrameComponentType> = ({
         <div className={styles.divider1} />
       </div>
       <div className={styles.location}>
-        <h2 className={styles.whereYoullBe}>Where you’ll be</h2>
+        <h2 className={styles.whereYoullBe}>Where you'll be</h2>
         <div className={styles.locationMap}>
           <div className={styles.map}>
             <img className={styles.mapIcon} alt="" src="/map@2x.png" />
@@ -304,15 +355,15 @@ const FrameComponent: FunctionComponent<FrameComponentType> = ({
       </div>
       <div className={styles.locationDetails}>
         <div className={styles.bordeauxNouvelleAquitaine}>
-          Bordeaux, Nouvelle-Aquitaine, France
+          {address1} , {address2}
         </div>
-        <div className={styles.veryDynamicAnd}>
+        {/* <div className={styles.veryDynamicAnd}>
           Very dynamic and appreciated district by the people of Bordeaux thanks
           to rue St James and place Fernand Lafargue. Home to many historical
           monuments such as the Grosse Cloche, the Porte de Bourgogne and the
           Porte Cailhau, and cultural sites such as the Aquitaine Museum.
-        </div>
-        <div className={styles.iconText2}>
+        </div> */}
+        {/* <div className={styles.iconText2}>
           <a className={styles.text2}>Show more</a>
           <div className={styles.seeMoreIconContainer}>
             <img
@@ -322,7 +373,7 @@ const FrameComponent: FunctionComponent<FrameComponentType> = ({
               src="/chevronright.svg"
             />
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={styles.dividerParent}>
         <div className={styles.divider2} />

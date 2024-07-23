@@ -1,14 +1,52 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import Column from "./Column";
 import styles from "./HostDetails.module.css";
 
 export type HostDetailsType = {
   className?: string;
+  data?: any;
 };
 
 const HostDetails: FunctionComponent<HostDetailsType> = ({
   className = "",
+  data,
 }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded1, setIsExpanded1] = useState(false);
+  const [length, setLength] = useState(5);
+  const [isHovered, setIsHovered] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
+  };
+  const handleToggle1 = () => {
+    if (length === 5) {
+      setLength(facilitiesSummary.length);
+    } else {
+      setLength(5);
+    }
+  };
+
+  const isTextLong = data.overview.length > 250;
+  const displayedText = isExpanded
+    ? data.overview
+    : data.overview.slice(0, 250);
+
+  const facilitiesSummary = data.facilitiesSummary;
+  const midpoint = Math.ceil(facilitiesSummary.length / 2);
+
+  // Split the array into two halves
+  const firstHalf = facilitiesSummary.slice(0, midpoint);
+  const secondHalf = facilitiesSummary.slice(midpoint);
+
+  const buttonStyle = (isHovered: boolean) => ({
+    backGroundColor: "red",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    transform: isHovered ? "scale(1.05)" : "scale(1)",
+    boxShadow: isHovered ? "0 4px 8px rgba(0, 0, 0, 0.2)" : "none",
+  });
+
   return (
     <div className={[styles.hostDetails, className].join(" ")}>
       <div className={styles.hostInfoParent}>
@@ -16,21 +54,6 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
           <h2 className={styles.entireRentalUnit}>
             Entire rental unit hosted by Ghazal
           </h2>
-          <div className={styles.listingCapacity}>
-            <div className={styles.guests}>2 guests</div>
-            <div className={styles.capacityDetails}>
-              <div className={styles.dot} />
-            </div>
-            <div className={styles.bedroom}>1 bedroom</div>
-            <div className={styles.capacityDetails1}>
-              <div className={styles.dot1} />
-            </div>
-            <div className={styles.bed}>1 bed</div>
-            <div className={styles.capacityDetails2}>
-              <div className={styles.dot2} />
-            </div>
-            <div className={styles.bath}>1 bath</div>
-          </div>
         </div>
         <div className={styles.avatarWrapper}>
           <img
@@ -105,33 +128,34 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
       </div>
       <div className={styles.listingDescription}>
         <div className={styles.comeAndStayContainer}>
-          <p className={styles.comeAndStay}>
-            Come and stay in this superb duplex T2, in the heart of the historic
-            center of Bordeaux.
+          <p>
+            {displayedText}
+            {!isExpanded && isTextLong ? "..." : ""}
           </p>
-          <p className={styles.spaciousAndBright}>
-            Spacious and bright, in a real Bordeaux building in exposed stone,
-            you will enjoy all the charms of the city thanks to its ideal
-            location. Close to many shops, bars and restaurants, you can access
-            the apartment by tram A and C and bus routes 27 and 44.
-          </p>
-          <p className={styles.p}>...</p>
         </div>
-        <div className={styles.iconText}>
-          <div className={styles.readMoreLabel}>Show more</div>
-          <div className={styles.readMoreChevron}>
-            <img
-              className={styles.chevronRightIcon}
-              alt=""
-              src="/chevronright.svg"
-            />
+        {isTextLong && (
+          <div
+            className={styles.iconText}
+            onClick={handleToggle}
+            style={{ cursor: "pointer" }}
+          >
+            <div className={styles.readMoreLabel}>
+              {isExpanded ? "Show less" : "Show more"}
+            </div>
+            <div className={styles.readMoreChevron}>
+              <img
+                className={styles.chevronRightIcon}
+                alt=""
+                src="/chevronright.svg"
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
-      <div className={styles.dividerContainer}>
+      {/* <div className={styles.dividerContainer}>
         <div className={styles.divider2} />
-      </div>
-      <div className={styles.sleepingArea}>
+      </div> */}
+      {/* <div className={styles.sleepingArea}>
         <div className={styles.whereYoullSleep}>
           <h2 className={styles.whereYoullSleep1}>Where you’ll sleep</h2>
           <div className={styles.thumbnail}>
@@ -147,7 +171,7 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className={styles.dividerFrame}>
         <div className={styles.divider3} />
       </div>
@@ -155,44 +179,31 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
         <div className={styles.whereYoullSleep2}>
           <h2 className={styles.whatThisPlace}>What this place offers</h2>
           <div className={styles.columns}>
-            <Column
-              icon="/icon-5.svg"
-              title="Garden view"
-              icon1="/icon-6.svg"
-              title1="Wifi"
-              icon2="/icon-7.svg"
-              title2="Free washer - in building"
-              icon3="/icon-8.svg"
-              title3="Central air conditioning"
-              icon4="/icon-9.svg"
-              title4="Refrigerator"
-            />
-            <Column
-              icon="/icon-10.svg"
-              title="Kitchen"
-              icon1="/icon-11@2x.png"
-              title1="Pets allowed"
-              icon2="/icon-12.svg"
-              title2="Dryer"
-              icon3="/icon-13.svg"
-              title3="Security cameras on property"
-              icon4="/icon-14.svg"
-              title4="Bicycles"
-            />
+            <Column facilities={firstHalf} length={length} />
+            <Column facilities={secondHalf} length={length} />
           </div>
-          <button className={styles.button}>
+          <button
+            className={styles.button}
+            onClick={handleToggle1}
+            style={buttonStyle(hoveredButton === "third")}
+            onMouseEnter={() => setHoveredButton("first")}
+            onMouseLeave={() => setHoveredButton(null)}
+          >
             <div className={styles.buttonBase}>
               <img className={styles.icon3} alt="" src="/icon3.svg" />
-              <div className={styles.showMoreLabel}>Show all 37 amenities</div>
-              <img className={styles.icon4} alt="" src="/icon2.svg" />
+              <div className={styles.showMoreLabel}>
+                {length === 5
+                  ? `Show all ${facilitiesSummary.length} amenities`
+                  : "Show less"}
+              </div>
             </div>
           </button>
         </div>
       </div>
-      <div className={styles.frameDiv}>
+      {/* <div className={styles.frameDiv}>
         <div className={styles.divider4} />
-      </div>
-      <div className={styles.dates}>
+      </div> */}
+      {/* <div className={styles.dates}>
         <div className={styles.titleSubtitle5}>
           <h2 className={styles.title5}>7 nights in New York</h2>
           <div className={styles.subtitle5}>Feb 19, 2022 - Feb 26, 2022</div>
@@ -521,7 +532,7 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
           <img className={styles.keyboardIcon} alt="" src="/keyboard.svg" />
           <div className={styles.clearDates}>Clear dates</div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

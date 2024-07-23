@@ -1,7 +1,6 @@
-import { FunctionComponent, useCallback, useEffect,useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Listing1 from "../components/Listing1";
-// import FrameComponent1 from "./FrameComponent1";
 import styles from "./StandardSearch.module.css";
 import { supabase } from "../Utils/SupabaseConfig";
 
@@ -12,42 +11,69 @@ export type StandardSearchType = {
 const StandardSearch: FunctionComponent<StandardSearchType> = ({
   className = "",
 }) => {
-
   const navigate = useNavigate();
-  const [categoryData, setCategoryData] = useState<any>()
+  const [categoryData, setCategoryData] = useState<any>([]);
+  const [cityName, setCityName] = useState<string>("Mumbai");
+  const [limit, setLimit] = useState<number>(10);
+  const filterByCity = "Mumbai"; // Example: 'Bangalore'
+  const filterByFacility = ""; // Looking for 'wifi' in facilities_Summary
 
-  useEffect(() => {
-    getfacilitiesData();
-  }, []);
+  const fetchListing = async () => {
+    let query = supabase.from("Hostelv2").select("*").limit(limit).eq("isactiveonHW", true);
 
-  const getfacilitiesData = async () => {
-    const id = 102145;
-    const { data, error } = await supabase
-      .from('Hostelv2')
-      .select(`name, overview, images_url, city_name, address1, address2, city_country, distance_value, distance_units,
-        facilitiesSummary, hbid, latitude, longitude, lowestDormPricePerNight_value, lowestPrivatePricePerNight_value,
-        overallRating_numberOfRatings, overallRating_overall, ratingBreakdown_average, ratingBreakdown_clean,
-        ratingBreakdown_facilities, ratingBreakdown_fun, ratingBreakdown_location, ratingBreakdown_security,
-        ratingBreakdown_staff, ratingBreakdown_value`
-        )
-      .eq('id', id);
-  
+    // Apply filters conditionally
+    if (filterByCity) {
+      query = query.ilike("city_name", `%${cityName}%`);
+    }
+    if (filterByFacility) {
+      query = query.contains("facilitiesSummary", [filterByFacility]);
+    }
+    
+    // Add filter for isactiveonHW
+
+    const { data, error } = await query;
+
     if (error) {
-      console.error("Error fetching data:", error);
+      console.error(error);
     } else {
       setCategoryData(data);
-      console.log("data is", data);
-      setCategoryData(data);
+      console.log("my data", data);
+    
+    }
+};
+
+  useEffect(() => {
+    // Fetch data when component mounts and when filters or limit changes
+    fetchListing();
+  }, [cityName, limit]);
+
+  useEffect(() => {
+    // Handle scroll event
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight
+      ) {
+        setLimit((prevLimit) => prevLimit + 10);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  if (!categoryData.length) {
+    return <div>Loading...</div>;
+  }
+
+  const handleChange = (e: any) => {
+    if (e.key === 'Enter') {
+      setCityName(e.target.value);
     }
   };
-//  console.log(categoryData);
-
-
 
   return (
-    <div
-      className={[styles.standardSearch, className].join(" ")}
-    >
+    <div className={[styles.standardSearch, className].join(" ")}>
       <header className={styles.nav}>
         <div className={styles.airbnbNav}>
           <div className={styles.logoWrapper}>
@@ -62,7 +88,16 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             <div className={styles.attributeList}>
               <div className={styles.attribute}>
                 <div className={styles.attribute1}>Location</div>
-                <a className={styles.value}>Bangalore</a>
+
+                <input
+                  className={styles.value}
+                  type="text"
+                  defaultValue={cityName}
+                  onKeyDown={handleChange}
+                  spellCheck={false}
+                  style={{ border: "0px solid", outline: "none" }}
+                  placeholder="Search City"
+                />
               </div>
             </div>
             <div className={styles.searchFilters}>
@@ -77,13 +112,13 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             <div className={styles.searchFilters2}>
               <div className={styles.divider1} />
             </div>
-            <div className={styles.searchFilters3}>
+            {/* <div className={styles.searchFilters3}>
               <div className={styles.attribute4}>
                 <div className={styles.attribute5}>Guests</div>
                 <a className={styles.value2}>2 guests</a>
               </div>
-            </div>
-            <div className={styles.iconButton}>
+            </div> */}
+            <div className={styles.iconButton} style={{marginLeft:20}}>
               <div className={styles.iconButtonBase}>
                 <img
                   className={styles.icon}
@@ -162,7 +197,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             <div className={styles.button4}>
               <div className={styles.buttonBase4}>
                 <img className={styles.icon9} alt="" src="/icon.svg" />
-                <a className={styles.text4}>Soical</a>
+                <a className={styles.text4}>Social</a>
                 <img className={styles.icon10} alt="" src="/icon.svg" />
               </div>
             </div>
@@ -216,73 +251,42 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
           </div>
         </div>
       </header>
-      <section className={styles.example}
-      style={{ overflow: "hidden" }}>
-        <div className={styles.left1}
-        >
-          
-          <div className={styles.staysInBordeaux}>200+ stays in Bordeaux</div>
+      <section className={styles.example} style={{ overflow: "hidden" }}>
+        <div className={styles.left1}>
+          <div className={styles.staysInBordeaux}>
+            {categoryData.length}+ stays in {filterByCity}
+          </div>
           <div className={styles.divider3} />
-          <Listing1
-            image="/image@2x.png"
-            subtitle="Zostel Kormangla"
-            heart="/heart.svg"
-            guestsEntireHome5Beds="10+People already there with you"
-            star="/star.svg"
-            reviewSummary="$325"
-          />
-          <div className={styles.divider4} />
-          <Listing1
-            image="/image-1@2x.png"
-            subtitle="Drapers Startup House"
-            heart="/heart.svg"
-            guestsEntireHome5Beds="4-6 guests · Entire Home · 5 beds · 3 bath"
-            star="/star.svg"
-            reviewSummary="$200"
-          />
-          <div className={styles.divider5} />
-          <Listing1
-            image="/image-2@2x.png"
-            subtitle="Historic City Center Home"
-            heart="/heart.svg"
-            guestsEntireHome5Beds="4-6 guests · Entire Home · 5 beds · 3 bath"
-            star="/star.svg"
-            reviewSummary="$125"
-          />
+
+          {categoryData.map((listing: any) => {
+            console.log("link is", listing.images_url)
+            const imageArray = listing.images_url
+            const firstImage =
+              imageArray.length > 0 ? imageArray[0] : "/default-image.png";
+            console.log(firstImage);
+            return (
+              <div key={listing.id} onClick={() => JSON.stringify(listing)} style={{width:"100%"}}>
+                <Listing1
+                  data = {listing}
+                  image={firstImage}
+                  subtitle={listing.name}
+                  rating = {listing.starRating}
+                  cost = {listing.lowestPrivatePricePerNight_value}
+                  cityName = {cityName}
+                  facilities = {listing.facilitiesSummary}
+                  heart="/heart.svg"
+                  guestsEntireHome5Beds={listing.description}
+                  star="/star.svg"
+                  reviewSummary={`$${listing.price_per_night}`}
+                />
+                <div className={styles.divider4} />
+              </div>
+            );
+          })}
         </div>
-        {/* <FrameComponent1
-          map="/map@2x.png"
-          icon="/icon-4.svg"
-          icon1="/icon-5.svg"
-          icon2="/icon-6.svg"
-          icon3="/icon-7.svg"
-          icon4="/icon.svg"
-          icon5="/icon.svg"
-          icon6="/icon.svg"
-          icon7="/icon.svg"
-          icon8="/icon.svg"
-          icon9="/icon.svg"
-          icon10="/icon.svg"
-          icon11="/icon.svg"
-          icon12="/icon.svg"
-          icon13="/icon.svg"
-          icon14="/icon.svg"
-          icon15="/icon.svg"
-          icon16="/icon.svg"
-          icon17="/icon.svg"
-          icon18="/icon.svg"
-          icon19="/icon.svg"
-          icon20="/icon.svg"
-          icon21="/icon.svg"
-          icon22="/icon.svg"
-          icon23="/icon.svg"
-          icon24="/icon.svg"
-          icon25="/icon.svg"
-          icon26="/icon.svg"
-          icon27="/icon.svg"
-        /> */}
       </section>
     </div>
   );
 };
+
 export default StandardSearch;
