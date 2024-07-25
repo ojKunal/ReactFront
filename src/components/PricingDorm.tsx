@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
-import styles from "./DivroomContainer1.module.css";
+import styles from "./PricingDorm.module.css";
 
 export type DivroomContainer1Type = {
   className?: string;
 };
 
-const DivroomContainer1: FunctionComponent<DivroomContainer1Type> = ({
+const DormroomContainer: FunctionComponent<DivroomContainer1Type> = ({
   className = "",
 }) => {
   return (
@@ -199,4 +199,4 @@ const DivroomContainer1: FunctionComponent<DivroomContainer1Type> = ({
   );
 };
 
-export default DivroomContainer1;
+export default DormroomContainer;

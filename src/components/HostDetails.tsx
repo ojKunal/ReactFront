@@ -1,6 +1,8 @@
 import { FunctionComponent, useState } from "react";
 import Column from "./Column";
 import styles from "./HostDetails.module.css";
+import DormroomContainer from "../components/PricingDorm";
+import PrivateroomContainer from "../components/PricingPrivate";
 
 export type HostDetailsType = {
   className?: string;
@@ -172,6 +174,15 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
           </div>
         </div>
       </div> */}
+      <div className={styles.sleepingArea}>
+        <div className={styles.whereYoullSleep}>
+          <h2 className={styles.whereYoullSleep1}>Dorms</h2>
+              <DormroomContainer></DormroomContainer>
+          <h2 className={styles.whereYoullSleep1}>Private Rooms</h2>
+              <PrivateroomContainer></PrivateroomContainer>
+        </div>
+      </div>
+
       <div className={styles.dividerFrame}>
         <div className={styles.divider3} />
       </div>

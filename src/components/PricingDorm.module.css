@@ -67,14 +67,12 @@
   font-weight: 800;
 }
 .bedMixedDorm {
-  height: 36.1px;
-  width: 627.1px;
   position: relative;
   letter-spacing: 0.1px;
   line-height: 20px;
   display: inline-block;
   flex-shrink: 0;
-  max-width: 105%;
+  max-width: 100%;
 }
 .divbody2RegroomDetailsco {
   align-self: stretch;
@@ -717,7 +715,7 @@
   min-width: 360px;
 }
 .divroomContainer {
-  width: 1186px;
+  width: 100%;
   border-radius: var(--br-5xl);
   background-color: var(--white);
   border: 1.7px solid var(--color-gainsboro-100);

@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
-import styles from "./DivroomContainer.module.css";
+import styles from "./PricingPrivate.module.css";
 
 export type DivroomContainerType = {
   className?: string;
 };
 
-const DivroomContainer: FunctionComponent<DivroomContainerType> = ({
+const PrivateroomContainer: FunctionComponent<DivroomContainerType> = ({
   className = "",
 }) => {
   return (
@@ -191,4 +191,4 @@ const DivroomContainer: FunctionComponent<DivroomContainerType> = ({
   );
 };
 
-export default DivroomContainer;
+export default PrivateroomContainer;

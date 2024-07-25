@@ -5,6 +5,7 @@ import Listing from "./pages/Listing";
 import MainComponent from "./pages/data";
 import ImageGallery from "./components/ImageGallery";
 
+
 function App() {
   // const action = useNavigationType();
   // const location = useLocation();

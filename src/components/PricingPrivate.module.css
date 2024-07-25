@@ -693,7 +693,7 @@
   min-width: 360px;
 }
 .divroomContainer {
-  width: 1186px;
+  width: 100%;
   border-radius: var(--br-5xl);
   background-color: var(--white);
   border: 1.7px solid var(--color-gainsboro-100);

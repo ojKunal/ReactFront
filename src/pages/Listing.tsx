@@ -6,6 +6,7 @@ import FrameComponent from "../components/FrameComponent";
 import AirbnbFooter1 from "../components/AirbnbFooter1";
 import AirbnbFooter from "../components/AirbnbFooter";
 import styles from "./Listing.module.css";
+import FinalPricingContainer from "../components/PricingFinalBreakdown";
 
 const Listing: FunctionComponent = () => {
   const location = useLocation();
@@ -150,6 +151,7 @@ const Listing: FunctionComponent = () => {
           <HostDetails data={data} />
           <div className={styles.bookingContainer}>
             <div className={styles.bookingBox}>
+            <FinalPricingContainer></FinalPricingContainer>
               <div className={styles.header}>
                 <div className={styles.nights}>
                   <div className={styles.priceLabel}>

@@ -877,7 +877,7 @@
   justify-content: flex-start;
 }
 .listingContent {
-  width: 1120px;
+  width: 95%;
   flex-direction: row;
   align-items: flex-start;
   gap: var(--gap-61xl);

@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
-import styles from "./DivbreakdownWrapperhasRate.module.css";
+import styles from "./PricingFinalBreakdown.module.css";
 
 export type DivbreakdownWrapperhasRateType = {
   className?: string;
 };
 
-const DivbreakdownWrapperhasRate: FunctionComponent<
+const FinalPricingContainer: FunctionComponent<
   DivbreakdownWrapperhasRateType
 > = ({ className = "" }) => {
   return (
@@ -209,4 +209,4 @@ const DivbreakdownWrapperhasRate: FunctionComponent<
   );
 };
 
-export default DivbreakdownWrapperhasRate;
+export default FinalPricingContainer;
