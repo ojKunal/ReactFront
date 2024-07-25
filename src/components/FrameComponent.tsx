@@ -5,15 +5,29 @@ import { supabase } from "../Utils/SupabaseConfig";
 
 export type FrameComponentType = {
   className?: string;
-  address1?:string
-  address2?:string
+  hostelId: number;
+  address1?: string;
+  address2?: string;
+  ratingBreakdown: {
+    ratingBreakdown_average: number;
+    ratingBreakdown_clean: number;
+    ratingBreakdown_facilities: number;
+    ratingBreakdown_fun: number;
+    ratingBreakdown_location: number;
+    ratingBreakdown_security: number;
+    ratingBreakdown_staff: number;
+    ratingBreakdown_value: number;
+  };
 };
 
 const FrameComponent: FunctionComponent<FrameComponentType> = ({
   className = "",
+hostelId,
   address1,
-  address2
+  address2,
+  ratingBreakdown,
 }) => {
+const [ratings, setRatings] = useState(ratingBreakdown);
   const [reviews, setReviews] = useState<any>([]);
   const [length, setLength] = useState(2);
 
@@ -23,8 +37,8 @@ const FrameComponent: FunctionComponent<FrameComponentType> = ({
       const { data, error } = await supabase
         .from("reviews")
         .select("*")
-        .eq("PropRef", "307209")
-        .order("ratingCreated", { ascending: true }); // Adjust ordering as needed
+        .eq("PropRef",hostelId)
+        .order("ratingCreated", { ascending: true }) // Adjust ordering as needed
       // .limit(2); // Limit the number of records
 
       if (error) {
@@ -33,6 +47,7 @@ const FrameComponent: FunctionComponent<FrameComponentType> = ({
         // Update the state with the fetched data
         setReviews(data || []);
         console.log("Fetched reviews:", data);
+console.log("Fetched reviews:", data,ratingBreakdown);
         console.log("reviews", reviews);
       }
     } catch (err) {
