@@ -254,7 +254,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
       <section className={styles.example} style={{ overflow: "hidden" }}>
         <div className={styles.left1}>
           <div className={styles.staysInBordeaux}>
-            {categoryData.length}+ stays in {filterByCity}
+            {categoryData.length}+ stays in {cityName}
           </div>
           <div className={styles.divider3} />
 

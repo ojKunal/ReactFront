@@ -3,6 +3,7 @@ import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import StandardSearch from "./pages/StandardSearch";
 import Listing from "./pages/Listing";
 import MainComponent from "./pages/data";
+import ImageGallery from "./components/ImageGallery";
 
 function App() {
   // const action = useNavigationType();
@@ -45,6 +46,7 @@ function App() {
         <Routes>
           <Route path='/' element = {<StandardSearch/>}/>
           <Route path='/listing' element = {<Listing/>}/>
+          <Route path="/gallery" element={<ImageGallery />} />
         </Routes>
     </div>
   );

@@ -314,7 +314,7 @@
   justify-content: flex-end;
   padding: 136px var(--padding-3xl) var(--padding-5xl);
   box-sizing: border-box;
-  background-image: url(/public/image1@2x.png);
+  /* background-image: url(/public/image1@2x.png); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
