@@ -1,7 +1,5 @@
-import { FunctionComponent, useEffect, useState } from "react";
-import { supabase } from "../supabase"; // Initialize Supabase client
-import { useLocation } from "react-router-dom";
-
+import { FunctionComponent, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import AirbnbNav from "../components/AirbnbNav";
 import HostDetails from "../components/HostDetails";
 import FrameComponent from "../components/FrameComponent";
@@ -10,20 +8,11 @@ import AirbnbFooter from "../components/AirbnbFooter";
 import styles from "./Listing.module.css";
 
 const Listing: FunctionComponent = () => {
-  const location = useLocation(); 
+  const location = useLocation();
   const { data } = location.state || {};
-  // const [listing, setListing] = useState<any>(null);
-  // Define filters
-  const filterByCity = "Mumbai"; // Example: 'Bangalore'
-  const filterByFacility = ""; // Looking for 'wifi' in facilities_Summary
+  const navigate = useNavigate();
 
-  console.log("final data is here", data);
-
-  const imagesArray = data.images_url;
-  // Get the first image
-  const firstImage = imagesArray[0];
-  console.log(firstImage);
-
+  // State for hover effect
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
 
   // Inline styles for hover effect
@@ -33,41 +22,16 @@ const Listing: FunctionComponent = () => {
     boxShadow: isHovered ? "0 4px 8px rgba(0, 0, 0, 0.2)" : "none",
   });
 
-  // useEffect(() => {
-  //   // Fetch data from Supabase
-  //   const fetchListing = async () => {
-  //     let query = supabase.from("Hostel").select("*").limit(10);
-
-  //     // Apply filters conditionally
-  //     if (filterByCity) {
-  //       query = query.ilike("city_name", `%${filterByCity}%`);
-  //     }
-  //     if (filterByFacility) {
-  //       query = query.contains("facilitiesSummary", [filterByFacility]);
-  //     }
-
-  //     const { data, error } = await query;
-
-  //     if (error) {
-  //       console.error(error);
-  //     } else {
-  //       setListing(data[0]);
-  //       console.log("my data", data);
-  //     }
-  //   };
-
-  //   fetchListing();
-  // }, [filterByCity, filterByFacility]);
-
-  // if (!listing) {
-  //   return <div>Loading...</div>;
-  // }
-  // // Parse the JSON string into an array
+  // Function to handle navigation to the gallery page
+  const handleClick = () => {
+    navigate('/gallery', { state: { imagesArray: data.images_url } });
+  };
 
   return (
     <div className={styles.listing}>
       <AirbnbNav />
       <main className={styles.page}>
+        {/* Main Content Section */}
         <div className={styles.mainContent}>
           <h1 className={styles.bordeauxGetaway}>{data.name}</h1>
           <div className={styles.details}>
@@ -97,7 +61,7 @@ const Listing: FunctionComponent = () => {
                 <div className={styles.dot2} />
               </div>
               <div className={styles.bordeauxFrance}>
-                {data.city_name} , {data.city_country}
+                {data.city_name}, {data.city_country}
               </div>
             </div>
             <div className={styles.detailsActions}>
@@ -116,13 +80,15 @@ const Listing: FunctionComponent = () => {
             </div>
           </div>
         </div>
+
+        {/* Image Grid Section */}
         <section className={styles.imageGrid}>
           <img
             style={imageStyle(hoveredImage === "first")}
             className={styles.imageIcon}
             loading="lazy"
             alt=""
-            src={firstImage}
+            src={data.images_url[0]}
             onMouseEnter={() => setHoveredImage("first")}
             onMouseLeave={() => setHoveredImage(null)}
           />
@@ -130,50 +96,47 @@ const Listing: FunctionComponent = () => {
           <div className={styles.imageNavigation}>
             <div className={styles.row}>
               <img
-                style={imageStyle(hoveredImage === "second1")}
+                style={imageStyle(hoveredImage === "second")}
                 className={styles.imageIcon1}
                 loading="lazy"
                 alt=""
-                src={imagesArray[1]}
-                onMouseEnter={() => setHoveredImage("second1")}
+                src={data.images_url[1]}
+                onMouseEnter={() => setHoveredImage("second")}
                 onMouseLeave={() => setHoveredImage(null)}
               />
               <img
-                style={imageStyle(hoveredImage === "second2")}
+                style={imageStyle(hoveredImage === "third")}
                 className={styles.imageIcon2}
                 loading="lazy"
                 alt=""
-                src={imagesArray[2] || "/image-2@2x.png"}
-                onMouseEnter={() => setHoveredImage("second2")}
+                src={data.images_url[2]}
+                onMouseEnter={() => setHoveredImage("third")}
                 onMouseLeave={() => setHoveredImage(null)}
               />
             </div>
             <div className={styles.galleryImages}>
-            <img
-                style={imageStyle(hoveredImage === 'third')}
+              <img
+                style={imageStyle(hoveredImage === 'fourth')}
                 className={styles.imageIcon3}
                 loading="lazy"
                 alt=""
-                src={imagesArray[3] || "/image-3@2x.png"}
-                onMouseEnter={() => setHoveredImage('third')}
+                src={data.images_url[3]}
+                onMouseEnter={() => setHoveredImage('fourth')}
                 onMouseLeave={() => setHoveredImage(null)}
               />
-              <div className={styles.image}>
-              <img
-                  style={imageStyle(hoveredImage === 'fourth')}
-                  className={styles.imageIcon4}
+              <div>
+                <img
+                  style={imageStyle(hoveredImage === 'fifth')}
+                  className={styles.imageIcon2}
                   alt=""
-                  src={imagesArray[0]}
-                  onMouseEnter={() => setHoveredImage('fourth')}
+                  src={data.images_url[4] || "/image-2@2x.png"}
+                  onMouseEnter={() => setHoveredImage('fifth')}
                   onMouseLeave={() => setHoveredImage(null)}
                 />
-                <button className={styles.button}>
+                <button className={styles.button} onClick={handleClick}>
                   <div className={styles.buttonBase}>
-                    <img className={styles.icon} alt="" src="/icon-1.svg"
-                     />
-                    <div className={styles.navigationLabel}>
-                      Show all photos
-                    </div>
+                    <img className={styles.icon} alt="" src="/icon-1.svg" />
+                    <div className={styles.navigationLabel}>Show all photos</div>
                     <img className={styles.icon1} alt="" src="/icon2.svg" />
                   </div>
                 </button>
@@ -182,10 +145,9 @@ const Listing: FunctionComponent = () => {
           </div>
         </section>
 
-        {/* Reservation Section  */}
-
+        {/* Reservation Section */}
         <section className={styles.listingContent}>
-          <HostDetails data = {data}/>
+          <HostDetails data={data} />
           <div className={styles.bookingContainer}>
             <div className={styles.bookingBox}>
               <div className={styles.header}>
@@ -193,7 +155,7 @@ const Listing: FunctionComponent = () => {
                   <div className={styles.priceLabel}>
                     Rs {data.lowestPricePerNight_value}
                   </div>
-                  <div className={styles.nightCount} style={{marginLeft:40}}>
+                  <div className={styles.nightCount} style={{ marginLeft: 40 }}>
                     <div className={styles.nightLabel}>/</div>
                   </div>
                   <div className={styles.nightCount1}>
@@ -204,11 +166,7 @@ const Listing: FunctionComponent = () => {
                   <div className={styles.rating}>
                     <div className={styles.iconText4}>
                       <div className={styles.starIcon1}>
-                        <img
-                          className={styles.starIcon2}
-                          alt=""
-                          src="/star.svg"
-                        />
+                        <img className={styles.starIcon2} alt="" src="/star.svg" />
                       </div>
                       <div className={styles.ratingValue}>
                         {data.overallRating_overall}
@@ -280,9 +238,7 @@ const Listing: FunctionComponent = () => {
                   <div className={styles.div2}>$83</div>
                 </div>
                 <div className={styles.row6}>
-                  <div className={styles.occupancyTaxesAnd}>
-                    Occupancy taxes and fees
-                  </div>
+                  <div className={styles.occupancyTaxesAnd}>Occupancy taxes and fees</div>
                   <div className={styles.div3}>$29</div>
                 </div>
               </div>
@@ -294,20 +250,17 @@ const Listing: FunctionComponent = () => {
             </div>
             <div className={styles.iconText5}>
               <div className={styles.flag}>
-                <img
-                  className={styles.flagPriority2Icon}
-                  alt=""
-                  src="/flagpriority2.svg"
-                />
+                <img className={styles.flagPriority2Icon} alt="" src="/flagpriority2.svg" />
               </div>
               <div className={styles.text4}>Report this listing</div>
             </div>
           </div>
         </section>
-       {/* Reservation Section Ends */}
-        <FrameComponent address1 = {data.address1} address2 = {data.address2} />
+
+        {/* Frame Component Section */}
+        <FrameComponent address1={data.address1} address2={data.address2} />
       </main>
-      <AirbnbFooter1/>
+      <AirbnbFooter1 />
       <AirbnbFooter />
     </div>
   );
