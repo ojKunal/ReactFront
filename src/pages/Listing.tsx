@@ -150,7 +150,8 @@ const Listing: FunctionComponent = () => {
         <section className={styles.listingContent}>
           <HostDetails data={data} />
           <div className={styles.bookingContainer}>
-            <div className={styles.bookingBox}>
+          <FinalPricingContainer></FinalPricingContainer>
+          {/* <div className={styles.bookingBox}>
             <FinalPricingContainer></FinalPricingContainer>
               <div className={styles.header}>
                 <div className={styles.nights}>
@@ -249,7 +250,7 @@ const Listing: FunctionComponent = () => {
                 <div className={styles.total}>Total</div>
                 <div className={styles.total1}>$701</div>
               </div>
-            </div>
+            </div> */}
             <div className={styles.iconText5}>
               <div className={styles.flag}>
                 <img className={styles.flagPriority2Icon} alt="" src="/flagpriority2.svg" />
