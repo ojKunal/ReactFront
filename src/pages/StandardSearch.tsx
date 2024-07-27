@@ -72,6 +72,18 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     }
   };
 
+  const choices = [
+    'Party hostels',
+    'Peaceful Hostels',
+    'Social',
+    'Workstation',
+    'Trekking',
+    'Hiking',
+    'Free parking',
+    'Dryer',
+    'Filters',
+  ];
+  
   return (
     <div className={[styles.standardSearch, className].join(" ")}>
       <header className={styles.nav}>
@@ -179,76 +191,19 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
           <div className={styles.buttonDivider}>
             <div className={styles.divider2} />
           </div>
+          {/* top bar choice chips/ filters added */}
           <div className={styles.right1}>
-            <div className={styles.button2}>
-              <div className={styles.buttonBase2}>
-                <img className={styles.icon5} alt="" src="/icon.svg" />
-                <div className={styles.text2}>Party hostels</div>
-                <img className={styles.icon6} alt="" src="/icon.svg" />
+            {choices.map((choice, index) => (
+              <div className={styles.button2} key={index}>
+                <div className={styles.buttonBase2}>
+                  <img className={styles.icon7} alt="" src="/icon.svg" />
+                  <div className={styles.text3}>{choice}</div>
+                  {/* <img className={styles.icon8} alt="" src="/icon-2.svg" /> */}
+                </div>
               </div>
-            </div>
-            <div className={styles.button3}>
-              <div className={styles.buttonBase3}>
-                <img className={styles.icon7} alt="" src="/icon.svg" />
-                <div className={styles.text3}>Peaceful Hostels</div>
-                <img className={styles.icon8} alt="" src="/icon.svg" />
-              </div>
-            </div>
-            <div className={styles.button4}>
-              <div className={styles.buttonBase4}>
-                <img className={styles.icon9} alt="" src="/icon.svg" />
-                <a className={styles.text4}>Social</a>
-                <img className={styles.icon10} alt="" src="/icon.svg" />
-              </div>
-            </div>
-            <div className={styles.button5}>
-              <div className={styles.buttonBase5}>
-                <img className={styles.icon11} alt="" src="/icon.svg" />
-                <a className={styles.text5}>Workstation</a>
-                <img className={styles.icon12} alt="" src="/icon.svg" />
-              </div>
-            </div>
-            <div className={styles.button6}>
-              <div className={styles.buttonBase6}>
-                <img className={styles.icon13} alt="" src="/icon.svg" />
-                <div className={styles.text6}>Trekking</div>
-                <img className={styles.icon14} alt="" src="/icon.svg" />
-              </div>
-            </div>
-            <div className={styles.button7}>
-              <div className={styles.buttonBase7}>
-                <img className={styles.icon15} alt="" src="/icon.svg" />
-                <div className={styles.text7}>Hiking</div>
-                <img className={styles.icon16} alt="" src="/icon.svg" />
-              </div>
-            </div>
-            <div className={styles.button8}>
-              <div className={styles.buttonBase8}>
-                <img className={styles.icon17} alt="" src="/icon.svg" />
-                <div className={styles.text8}>Free parking</div>
-                <img className={styles.icon18} alt="" src="/icon.svg" />
-              </div>
-            </div>
-            <div className={styles.button9}>
-              <div className={styles.buttonBase9}>
-                <img className={styles.icon19} alt="" src="/icon.svg" />
-                <div className={styles.text9}>Dryer</div>
-                <img className={styles.icon20} alt="" src="/icon.svg" />
-              </div>
-            </div>
-            <div className={styles.button10}>
-              <div className={styles.buttonBase10}>
-                <img
-                  className={styles.icon21}
-                  loading="lazy"
-                  alt=""
-                  src="/icon-3.svg"
-                />
-                <a className={styles.text10}>Filters</a>
-                <img className={styles.icon22} alt="" src="/icon.svg" />
-              </div>
-            </div>
+            ))}
           </div>
+      
         </div>
       </header>
       <section className={styles.example} style={{ overflow: "hidden" }}>

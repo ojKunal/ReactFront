@@ -34,6 +34,7 @@
   color: inherit;
   display: inline-block;
   min-width: 68px;
+  text-align-last: center;
 }
 .attribute,
 .attributeList {
@@ -173,13 +174,13 @@
   justify-content: flex-start;
 }
 .airbnbSearch {
-  width: 338px;
+  width: 366px;
   box-shadow: 0 2px 4px rgba(31, 41, 55, 0.06), 0 4px 6px rgba(31, 41, 55, 0.1);
   border-radius: 1000px;
   background-color: #fff;
   border: 1px solid #e5e7eb;
   box-sizing: border-box;
-  padding: 6px 7px 6px 23px;
+  padding: 6px 7px 6px 6px;
   gap: 15.6px;
   max-width: 100%;
 }
@@ -440,7 +441,7 @@
 .text3 {
   line-height: 20px;
   display: inline-block;
-  min-width: 112px;
+  min-width: fit-content;
   white-space: nowrap;
 }
 .icon8 {
@@ -820,7 +821,7 @@
   box-shadow: 0-1px 0#f3f4f6 inset;
   background-color: #fff;
   flex-direction: column;
-  padding: 24px 24px 16px;
+  padding: 24px 6px 16px;
   box-sizing: border-box;
   gap: 24px;
   text-align: left;
