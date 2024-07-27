@@ -15,6 +15,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
   const [categoryData, setCategoryData] = useState<any>([]);
   const [cityName, setCityName] = useState<string>("Mumbai");
   const [limit, setLimit] = useState<number>(10);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const filterByCity = "Mumbai"; // Example: 'Bangalore'
   const filterByFacility = ""; // Looking for 'wifi' in facilities_Summary
 
@@ -28,8 +29,15 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     if (filterByFacility) {
       query = query.contains("facilitiesSummary", [filterByFacility]);
     }
-    
-    // Add filter for isactiveonHW
+    if (selectedCategories.length > 0) {
+      try {
+        const jsonCategories = JSON.stringify(selectedCategories);
+        query = query.containedBy("category", jsonCategories);
+        console.log("jsoncategories",jsonCategories);
+      } catch (error) {
+        console.error("Failed to convert categories to JSON:", error);
+      }
+    }
 
     const { data, error } = await query;
 
@@ -38,14 +46,13 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     } else {
       setCategoryData(data);
       console.log("my data", data);
-    
     }
-};
+  };
 
   useEffect(() => {
     // Fetch data when component mounts and when filters or limit changes
     fetchListing();
-  }, [cityName, limit]);
+  }, [cityName, limit, selectedCategories]);
 
   useEffect(() => {
     // Handle scroll event
@@ -72,18 +79,29 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     }
   };
 
+  const handleChipClick = (category: string) => {
+    setSelectedCategories((prevSelected) =>
+      prevSelected.includes(category)
+        ? prevSelected.filter((cat) => cat !== category)
+        : [...prevSelected, category]
+    );
+  };
+
   const choices = [
-    'Party hostels',
-    'Peaceful Hostels',
-    'Social',
-    'Workstation',
-    'Trekking',
-    'Hiking',
-    'Free parking',
-    'Dryer',
-    'Filters',
+    "Party",
+    "Scenery",
+    "Peaceful",
+    "Relax",
+    "Luxurious",
+    "Social",
+    "Workstation",
+    "Staycation",
+    "Trekking",
+    "Hiking",
+    "Camping",
+    "Other Activity",
   ];
-  
+
   return (
     <div className={[styles.standardSearch, className].join(" ")}>
       <header className={styles.nav}>
@@ -100,7 +118,6 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             <div className={styles.attributeList}>
               <div className={styles.attribute}>
                 <div className={styles.attribute1}>Location</div>
-
                 <input
                   className={styles.value}
                   type="text"
@@ -124,12 +141,6 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             <div className={styles.searchFilters2}>
               <div className={styles.divider1} />
             </div>
-            {/* <div className={styles.searchFilters3}>
-              <div className={styles.attribute4}>
-                <div className={styles.attribute5}>Guests</div>
-                <a className={styles.value2}>2 guests</a>
-              </div>
-            </div> */}
             <div className={styles.iconButton} style={{marginLeft:20}}>
               <div className={styles.iconButtonBase}>
                 <img
@@ -191,19 +202,24 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
           <div className={styles.buttonDivider}>
             <div className={styles.divider2} />
           </div>
-          {/* top bar choice chips/ filters added */}
           <div className={styles.right1}>
             {choices.map((choice, index) => (
-              <div className={styles.button2} key={index}>
-                <div className={styles.buttonBase2}>
+              <div
+                key={index}
+                className={styles.button2}
+                onClick={() => handleChipClick(choice)}>
+              <div
+                className={[
+                  styles.buttonBase2,
+                  selectedCategories.includes(choice) ? styles.selected : "",
+                ].join(" ")}
+                style={{ color: selectedCategories.includes(choice) ? 'white' : 'inherit' }}>
                   <img className={styles.icon7} alt="" src="/icon.svg" />
                   <div className={styles.text3}>{choice}</div>
-                  {/* <img className={styles.icon8} alt="" src="/icon-2.svg" /> */}
                 </div>
               </div>
             ))}
           </div>
-      
         </div>
       </header>
       <section className={styles.example} style={{ overflow: "hidden" }}>
@@ -212,13 +228,12 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             {categoryData.length}+ stays in {cityName}
           </div>
           <div className={styles.divider3} />
-
           {categoryData.map((listing: any) => {
-            console.log("link is", listing.images_url)
+            // console.log("link is", listing.images_url)
             const imageArray = listing.images_url
             const firstImage =
               imageArray.length > 0 ? imageArray[0] : "/default-image.png";
-            console.log(firstImage);
+            // console.log(firstImage);
             return (
               <div key={listing.id} onClick={() => JSON.stringify(listing)} style={{width:"100%"}}>
                 <Listing1

@@ -898,3 +898,7 @@
     min-width: 100%;
   }
 }
+
+.selected {
+  background-color: #e45a73; /* Example color, change as needed */
+}
