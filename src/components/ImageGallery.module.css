@@ -1,4 +1,4 @@
-29.galleryContainer {
+.galleryContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
