@@ -31,7 +31,7 @@ const ImageGallery = () => {
             <div className={styles.imageWrapper} style={{ flex: 1 }}>
               <img
                 src={image}
-                alt={Image ${index}}
+                alt={`Image ${index}`}
                 className={styles.image}
               />
               <button
@@ -41,7 +41,7 @@ const ImageGallery = () => {
                 ⛶
               </button>
               <div className={styles.description}>
-                {Description for image ${index}}
+                {`Description for image ${index}`}
               </div>
             </div>
           ) : (
@@ -49,7 +49,7 @@ const ImageGallery = () => {
               <div className={styles.imageWrapper} style={{ flex: 0.5 }}>
                 <img
                   src={imagesArray[index]}
-                  alt={Image ${index}}
+                  alt={`Image ${index}`}
                   className={styles.image}
                 />
                 <button
@@ -59,14 +59,14 @@ const ImageGallery = () => {
                   ⛶
                 </button>
                 <div className={styles.description}>
-                  {Description for image ${index}}
+                  {`Description for image ${index}`}
                 </div>
               </div>
               {index + 1 < imagesArray.length && (
                 <div className={styles.imageWrapper} style={{ flex: 0.5 }}>
                   <img
                     src={imagesArray[index + 1]}
-                    alt={Image ${index + 1}}
+                    alt={`Image ${index + 1}`}
                     className={styles.image}
                   />
                   <button
@@ -76,7 +76,7 @@ const ImageGallery = () => {
                     ⛶
                   </button>
                   <div className={styles.description}>
-                    {Description for image ${index + 1}}
+                    {`Description for image ${index + 1}`}
                   </div>
                 </div>
               )}
