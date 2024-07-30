@@ -15,7 +15,7 @@ const Section1: FunctionComponent<FrameComponent5Type> = ({
           <img
             className="w-full h-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full object-cover"
             alt=""
-            src="/divcn--hp--hero--img@2x.png"
+            src="/mainpage_icon/divcn--hp--hero--img@2x.png"
           />
           <div className="self-stretch flex flex-row items-start justify-center py-0 px-5 box-border max-w-full shrink-0">
             <h1 className="m-0 w-[873px] relative text-inherit leading-[52.8px] font-bold font-inherit inline-block [text-shadow:0px_1px_7px_rgba(0,_0,_0,_0.16)] max-w-full z-[1] mq450:text-7xl mq450:leading-[32px] mq900:text-16xl mq900:leading-[42px]">
@@ -39,7 +39,7 @@ const Section1: FunctionComponent<FrameComponent5Type> = ({
                   <img
                     className="w-4 h-5 relative overflow-hidden"
                     alt=""
-                    src="/frame.svg"
+                    src="/mainpage_icon/frame.svg"
                   />
                 </div>
                 <div className="flex-1 rounded-md overflow-hidden flex  items-center justify-center px-4">
@@ -55,7 +55,7 @@ const Section1: FunctionComponent<FrameComponent5Type> = ({
                   <img
                     className="w-4 h-[17px] relative overflow-hidden shrink-0"
                     alt=""
-                    src="/frame-1.svg"
+                    src="/mainpage_icon/frame-1.svg"
                   />
                 </div>
                 <a className="[text-decoration:none] relative font-semibold text-[inherit] inline-block min-w-[46px]">
@@ -67,7 +67,7 @@ const Section1: FunctionComponent<FrameComponent5Type> = ({
                   className="w-5 h-5 relative overflow-hidden shrink-0"
                   loading="lazy"
                   alt=""
-                  src="/frame-2.svg"
+                  src="/mainpage_icon/frame-2.svg"
                 />
               </div>
               <div className="h-[52px] w-[243px] flex flex-col items-end justify-start pt-0 px-0 pb-3 box-border gap-[23px]">
@@ -82,7 +82,7 @@ const Section1: FunctionComponent<FrameComponent5Type> = ({
                       className="h-10 w-10 relative rounded-[20px]"
                       loading="lazy"
                       alt=""
-                      src="/divomnisearch-content-searchactionarea.svg"
+                      src="/mainpage_icon/divomnisearch-content-searchactionarea.svg"
                     />
                   </div>
                 </div>
@@ -91,7 +91,7 @@ const Section1: FunctionComponent<FrameComponent5Type> = ({
                     <img
                       className="w-[17px] h-3 relative overflow-hidden shrink-0"
                       alt=""
-                      src="/frame-3.svg"
+                      src="/mainpage_icon/frame-3.svg"
                     />
                   </div>
                   <div className="flex flex-row items-start justify-start gap-[3.3px]">
