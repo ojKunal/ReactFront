@@ -6,12 +6,22 @@ import FrameComponent from "../components/FrameComponent";
 import AirbnbFooter1 from "../components/AirbnbFooter1";
 import AirbnbFooter from "../components/AirbnbFooter";
 import styles from "./Listing.module.css";
+import FinalPricingContainer from "../components/PricingFinalBreakdown";
 
 const Listing: FunctionComponent = () => {
   const location = useLocation();
   const { data } = location.state || {};
   const navigate = useNavigate();
-
+  const ratingBreakdown = {
+    ratingBreakdown_average: data.ratingBreakdown_average,
+    ratingBreakdown_clean: data.ratingBreakdown_clean,
+    ratingBreakdown_facilities: data.ratingBreakdown_facilities,
+    ratingBreakdown_fun: data.ratingBreakdown_fun,
+    ratingBreakdown_location: data.ratingBreakdown_location,
+    ratingBreakdown_security: data.ratingBreakdown_security,
+    ratingBreakdown_staff: data.ratingBreakdown_staff,
+    ratingBreakdown_value: data.ratingBreakdown_value,
+  };
   // State for hover effect
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
 
@@ -149,7 +159,9 @@ const Listing: FunctionComponent = () => {
         <section className={styles.listingContent}>
           <HostDetails data={data} />
           <div className={styles.bookingContainer}>
-            <div className={styles.bookingBox}>
+          <FinalPricingContainer></FinalPricingContainer>
+          {/* <div className={styles.bookingBox}>
+            <FinalPricingContainer></FinalPricingContainer>
               <div className={styles.header}>
                 <div className={styles.nights}>
                   <div className={styles.priceLabel}>
@@ -247,7 +259,7 @@ const Listing: FunctionComponent = () => {
                 <div className={styles.total}>Total</div>
                 <div className={styles.total1}>$701</div>
               </div>
-            </div>
+            </div> */}
             <div className={styles.iconText5}>
               <div className={styles.flag}>
                 <img className={styles.flagPriority2Icon} alt="" src="/flagpriority2.svg" />
@@ -258,7 +270,11 @@ const Listing: FunctionComponent = () => {
         </section>
 
         {/* Frame Component Section */}
-        <FrameComponent address1={data.address1} address2={data.address2} />
+        <FrameComponent 
+        address1={data.address1} 
+        address2={data.address2} 
+        hostelId={data.id}
+        ratingBreakdown={ratingBreakdown}/>
       </main>
       <AirbnbFooter1 />
       <AirbnbFooter />

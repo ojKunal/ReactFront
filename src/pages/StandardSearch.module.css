@@ -88,13 +88,14 @@
 .searchFilters1 {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 .searchFilters1 {
   flex: 1;
   flex-direction: column;
-  padding: 6px 0 0;
+ align-items: center;
+ justify-items: center;
 }
 .divider1 {
   width: 1px;
@@ -169,11 +170,11 @@
 .iconButton {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 .airbnbSearch {
-  width: 338px;
+  width: 420px;
   box-shadow: 0 2px 4px rgba(31, 41, 55, 0.06), 0 4px 6px rgba(31, 41, 55, 0.1);
   border-radius: 1000px;
   background-color: #fff;
@@ -470,6 +471,49 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+/* suggestions css */
+.value {
+  width: 100%;
+  /* padding: 8px; */
+  border-bottom: 2px solid #d1d5db; /* Tailwind gray-300 */
+  outline: none;
+}
+
+.suggestionBox {
+  position: absolute;
+  width: 400px;
+  background-color: white;
+  border: 1px solid #d1d5db; /* Tailwind gray-300 */
+  border-radius: 0.375rem; /* Tailwind rounded-md */
+  margin-top: 40px; /* Tailwind mt-1 */
+  z-index: 10;
+}
+
+.suggestionItem {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #d1d5db; /* Tailwind gray-300 */
+  font-size: 1rem;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.suggestionItem:last-child {
+  border-bottom: none;
+}
+
+
+.suggestionItem:hover,
+.suggestionItem.active {
+  background-color: #ddd;
+}
+
+/* .SuggestionsBox{
+  
+} */
+
+
 .icon9 {
   height: 20px;
   width: 20px;

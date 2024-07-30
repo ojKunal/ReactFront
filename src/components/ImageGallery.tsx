@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
-import styles from './ImageGallery.module.css';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import styles from "./ImageGallery.module.css";
+import { IoArrowBackCircle } from "react-icons/io5";
+
 
 const ImageGallery = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { imagesArray } = location.state || { imagesArray: [] };
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
-  const openFullscreen = (image:any) => {
+  const openFullscreen = (image: any) => {
     setFullscreenImage(image);
   };
 
-  const closeFullscreen = (e:any) => {
+  const closeFullscreen = (e: any) => {
     if (e.target === e.currentTarget) {
       setFullscreenImage(null);
     }
@@ -19,11 +22,18 @@ const ImageGallery = () => {
 
   return (
     <div className={styles.galleryContainer}>
-      {imagesArray.map((image:any, index:any) => (
+      <div className={styles.stickyBackButton} onClick={() => navigate(-1)}>
+      <IoArrowBackCircle size={45} color="#2d3748" />
+      </div>
+      {imagesArray.map((image: any, index: number) => (
         <div key={index} className={styles.imageRow}>
           {index % 2 === 0 ? (
             <div className={styles.imageWrapper} style={{ flex: 1 }}>
-              <img src={image} alt={`Image ${index}`} className={styles.image} />
+              <img
+                src={image}
+                alt={`Image ${index}`}
+                className={styles.image}
+              />
               <button
                 className={styles.fullscreenButton}
                 onClick={() => openFullscreen(image)}
@@ -37,7 +47,11 @@ const ImageGallery = () => {
           ) : (
             <>
               <div className={styles.imageWrapper} style={{ flex: 0.5 }}>
-                <img src={imagesArray[index]} alt={`Image ${index}`} className={styles.image} />
+                <img
+                  src={imagesArray[index]}
+                  alt={`Image ${index}`}
+                  className={styles.image}
+                />
                 <button
                   className={styles.fullscreenButton}
                   onClick={() => openFullscreen(imagesArray[index])}
