@@ -4,7 +4,7 @@ import StandardSearch from "./pages/StandardSearch";
 import Listing from "./pages/Listing";
 import MainComponent from "./pages/data";
 import ImageGallery from "./components/ImageGallery";
-
+import MainPage from "./pages/MainPage";
 
 function App() {
   // const action = useNavigationType();
@@ -45,7 +45,8 @@ function App() {
   return (
     <div>
         <Routes>
-          <Route path='/' element = {<StandardSearch/>}/>
+        <Route path='/' element = {<MainPage/>}/>
+          <Route path='/Search' element = {<StandardSearch/>}/>
           <Route path='/listing' element = {<Listing/>}/>
           <Route path="/gallery" element={<ImageGallery />} />
         </Routes>
