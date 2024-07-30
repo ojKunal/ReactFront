@@ -1,6 +1,6 @@
 .logoIcon {
   align-self: stretch;
-  height: 32px;
+  height: 40px;
   position: relative;
   max-width: 100%;
   overflow: hidden;
@@ -34,6 +34,7 @@
   color: inherit;
   display: inline-block;
   min-width: 68px;
+  text-align-last: center;
 }
 .attribute,
 .attributeList {
@@ -88,14 +89,13 @@
 .searchFilters1 {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .searchFilters1 {
   flex: 1;
   flex-direction: column;
- align-items: center;
- justify-items: center;
+  padding: 6px 0 0;
 }
 .divider1 {
   width: 1px;
@@ -170,17 +170,17 @@
 .iconButton {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .airbnbSearch {
-  width: 420px;
+  width: 366px;
   box-shadow: 0 2px 4px rgba(31, 41, 55, 0.06), 0 4px 6px rgba(31, 41, 55, 0.1);
   border-radius: 1000px;
   background-color: #fff;
   border: 1px solid #e5e7eb;
   box-sizing: border-box;
-  padding: 6px 7px 6px 23px;
+  padding: 6px 7px 6px 6px;
   gap: 15.6px;
   max-width: 100%;
 }
@@ -441,7 +441,7 @@
 .text3 {
   line-height: 20px;
   display: inline-block;
-  min-width: 112px;
+  min-width: fit-content;
   white-space: nowrap;
 }
 .icon8 {
@@ -471,49 +471,6 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-/* suggestions css */
-.value {
-  width: 100%;
-  /* padding: 8px; */
-  border-bottom: 2px solid #d1d5db; /* Tailwind gray-300 */
-  outline: none;
-}
-
-.suggestionBox {
-  position: absolute;
-  width: 400px;
-  background-color: white;
-  border: 1px solid #d1d5db; /* Tailwind gray-300 */
-  border-radius: 0.375rem; /* Tailwind rounded-md */
-  margin-top: 40px; /* Tailwind mt-1 */
-  z-index: 10;
-}
-
-.suggestionItem {
-  padding: 10px 20px;
-  cursor: pointer;
-  border-bottom: 1px solid #d1d5db; /* Tailwind gray-300 */
-  font-size: 1rem;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.suggestionItem:last-child {
-  border-bottom: none;
-}
-
-
-.suggestionItem:hover,
-.suggestionItem.active {
-  background-color: #ddd;
-}
-
-/* .SuggestionsBox{
-  
-} */
-
-
 .icon9 {
   height: 20px;
   width: 20px;
@@ -864,7 +821,7 @@
   box-shadow: 0-1px 0#f3f4f6 inset;
   background-color: #fff;
   flex-direction: column;
-  padding: 24px 24px 16px;
+  padding: 24px 6px 16px;
   box-sizing: border-box;
   gap: 24px;
   text-align: left;
@@ -940,4 +897,8 @@
     box-sizing: border-box;
     min-width: 100%;
   }
+}
+
+.selected {
+  background-color: #e45a73; /* Example color, change as needed */
 }
