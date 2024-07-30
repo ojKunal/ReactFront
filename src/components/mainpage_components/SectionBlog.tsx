@@ -61,7 +61,7 @@ const SectionBlog: FunctionComponent<FrameComponent1Type> = ({
           </div>
         </div>
         <button className={styles.browseButton}>
-          <img src="/img-5.svg" alt="Browse" className={styles.browseIcon} />
+          <img src="/mainpage_icon/img-5.svg" alt="Browse" className={styles.browseIcon} />
           <div>Browse them all</div>
         </button>
       </div>

@@ -132,14 +132,14 @@ const Footer: FunctionComponent<FrameComponentType> = ({
                 className="w-[163px] h-12 relative overflow-hidden shrink-0"
                 loading="lazy"
                 alt=""
-                src="/img-12.svg"
+                src="/mainpage_icon/img-12.svg"
               />
             </div>
             <img
               className="w-[163px] h-12 relative overflow-hidden shrink-0"
               loading="lazy"
               alt=""
-              src="/img-13.svg"
+              src="/mainpage_icon/img-13.svg"
             />
           </div>
            <div className="flex flex-row items-start justify-start gap-[29.2px]">

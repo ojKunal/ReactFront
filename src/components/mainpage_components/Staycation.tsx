@@ -56,8 +56,8 @@ const Staycation: FunctionComponent<StaycationType> = ({ className = "" }) => {
           <TitleComponentwithButton
             trendingDestinations="Activity"
             placesThatTravelersAreAdd="Keep it local and visit these destinations closer to home"
-            divcnSliderArrowsArrowcnS="/divcn--slider--arrows--arrowcn--slider--arrows--disabledcn--slider--arrows--prevarrow-2.svg"
-            divcnSliderArrowsArrowcnS1="/divcn--slider--arrows--arrowcn--slider--arrows--nextarrow-2.svg"
+            divcnSliderArrowsArrowcnS="/mainpage_icon/divcn--slider--arrows--arrowcn--slider--arrows--disabledcn--slider--arrows--prevarrow-2.svg"
+            divcnSliderArrowsArrowcnS1="/mainpage_icon/divcn--slider--arrows--arrowcn--slider--arrows--nextarrow-2.svg"
             propGap="3.3px"
           />
           <div className="w-[1476.1px] h-[400px] overflow-x-auto shrink-0 flex flex-row items-end justify-start pt-0 px-0 pb-5 box-border gap-[20px] max-w-full">
@@ -87,7 +87,7 @@ const Staycation: FunctionComponent<StaycationType> = ({ className = "" }) => {
                   className="h-[93px] w-[93px] relative overflow-hidden shrink-0 object-cover"
                   loading="lazy"
                   alt=""
-                  src="/imgcn--hp--download--info--buttons--qr-1@2x.png"
+                  src="/mainpage_icon/imgcn--hp--download--info--buttons--qr-1@2x.png"
                 />
                 <div className="flex flex-col items-start justify-start gap-[13.1px]">
                   <div className="relative tracking-[0.14px] leading-[21px] font-semibold inline-block min-w-[117px]">
@@ -97,13 +97,13 @@ const Staycation: FunctionComponent<StaycationType> = ({ className = "" }) => {
                     <img
                       className="self-stretch w-[119px] relative max-h-full overflow-hidden shrink-0 min-h-[40px]"
                       alt=""
-                      src="/img-2.svg"
+                      src="/mainpage_icon/img-2.svg"
                     />
                     <img
                       className="self-stretch w-[135px] relative max-h-full overflow-hidden shrink-0 min-h-[40px]"
                       loading="lazy"
                       alt=""
-                      src="/img-3.svg"
+                      src="/mainpage_icon/img-3.svg"
                     />
                   </div>
                 </div>
@@ -114,7 +114,7 @@ const Staycation: FunctionComponent<StaycationType> = ({ className = "" }) => {
             className="w-[813.6px] relative max-h-full overflow-hidden shrink-0 object-cover max-w-full mq1600:flex-1"
             loading="lazy"
             alt=""
-            src="/imgcn--hp--download--mobile@2x.png"
+            src="/mainpage_icon/imgcn--hp--download--mobile@2x.png"
           />
         </div>
         <div className="self-stretch flex flex-col items-start justify-start gap-[31.9px] max-w-full text-13xl text-gray-300 font-inter mq900:gap-[16px]">
