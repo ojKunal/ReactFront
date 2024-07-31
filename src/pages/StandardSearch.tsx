@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Listing1 from "../components/Listing1";
 import styles from "./StandardSearch.module.css";
 import { supabase } from "../Utils/SupabaseConfig";
+import MapComponent from "./leadlet_map";
 
 export type StandardSearchType = {
   className?: string;
@@ -178,6 +179,22 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     "Other Activity",
   ];
 
+  const hotels = categoryData.map((listing: any) => ({
+    id: listing.id,
+    coordinates: [listing.latitude, listing.longitude], // Adjust based on your actual data
+    thumbnail: listing.images_url.length > 0 ? listing.images_url[0] : '/default-image.png',
+    price: listing.lowestPrivatePricePerNight_value,
+    details: {
+      title: listing.name,
+      description: 'idk',
+      rating: listing.overallRating_overall,
+      reviews: listing.overallRating_numberOfRatings,
+      dates: 'Checkin -Checkout',
+    },
+  }
+));
+
+  
   return (
     <div className={[styles.standardSearch, className].join(" ")}>
       <header className={styles.nav}>
@@ -344,7 +361,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
                   data={listing}
                   image={firstImage}
                   subtitle={listing.name}
-                  rating={listing.starRating}
+                  rating={listing.overallRating_overall/20}
                   cost={listing.lowestPrivatePricePerNight_value}
                   cityName={cityName}
                   facilities={listing.facilitiesSummary}
@@ -357,6 +374,9 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
               </div>
             );
           })}
+        </div>
+        <div className={styles.left1  }>
+        <MapComponent hotels={hotels} />
         </div>
       </section>
     </div>
