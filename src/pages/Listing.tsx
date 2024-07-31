@@ -22,6 +22,7 @@ const Listing: FunctionComponent = () => {
     ratingBreakdown_staff: data.ratingBreakdown_staff,
     ratingBreakdown_value: data.ratingBreakdown_value,
   };
+
   // State for hover effect
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
 
@@ -275,6 +276,7 @@ const Listing: FunctionComponent = () => {
         address2={data.address2} 
         hostelId={data.id}
         ratingBreakdown={ratingBreakdown}/>
+
       </main>
       <AirbnbFooter1 />
       <AirbnbFooter />

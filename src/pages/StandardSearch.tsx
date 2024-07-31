@@ -15,12 +15,20 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
   const [categoryData, setCategoryData] = useState<any>([]);
   const [cityName, setCityName] = useState<string>("Mumbai");
   const [limit, setLimit] = useState<number>(10);
+  const [inputValue, setInputValue] = useState<string>("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [showRecentSearches, setShowRecentSearches] = useState<boolean>(false);
+  const [activeSearchIndex, setActiveSearchIndex] = useState<number>(-1);
   const filterByCity = "Mumbai"; // Example: 'Bangalore'
   const filterByFacility = ""; // Looking for 'wifi' in facilities_Summary
 
   const fetchListing = async () => {
-    let query = supabase.from("Hostelv2").select("*").limit(limit).eq("isactiveonHW", true);
+    let query = supabase
+      .from("Hostelv2")
+      .select("*")
+      .limit(limit)
+      .eq("isactiveonHW", true);
 
     // Apply filters conditionally
     if (filterByCity) {
@@ -33,7 +41,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
       try {
         const jsonCategories = JSON.stringify(selectedCategories);
         query = query.containedBy("category", jsonCategories);
-        console.log("jsoncategories",jsonCategories);
+        console.log("jsoncategories", jsonCategories);
       } catch (error) {
         console.error("Failed to convert categories to JSON:", error);
       }
@@ -69,14 +77,72 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Load recent searches from local storage
+    const storedRecentSearches = localStorage.getItem("recentSearches");
+    if (storedRecentSearches) {
+      setRecentSearches(JSON.parse(storedRecentSearches));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save recent searches to local storage
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+  }, [recentSearches]);
+
   if (!categoryData.length) {
-    return <div>Loading...</div>;
+    return <div>No Result for the given city</div>;
   }
 
   const handleChange = (e: any) => {
-    if (e.key === 'Enter') {
-      setCityName(e.target.value);
+    const value = e.target.value;
+    setInputValue(value);
+
+    if (value === "") {
+      // Show recent searches when input is cleared
+      setShowRecentSearches(true);
+    } else {
+      setShowRecentSearches(false);
     }
+
+    if (e.key === "Enter") {
+      if (activeSearchIndex >= 0) {
+        // Set city name based on selected recent search
+        const search = recentSearches[activeSearchIndex];
+        setCityName(search);
+        setInputValue(search);
+        setShowRecentSearches(false);
+        setActiveSearchIndex(-1);
+      } else {
+        const newCity = value;
+        setCityName(newCity);
+
+        // Add to recent searches if not already present
+        if (!recentSearches.includes(newCity)) {
+          setRecentSearches((prevSearches) => {
+            const updatedSearches = [newCity, ...prevSearches];
+            // Keep only the last 5 searches
+            return updatedSearches.slice(0, 10);
+          });
+        }
+        setShowRecentSearches(false);
+      }
+    } else if (e.key === "ArrowDown") {
+      setActiveSearchIndex((prevIndex) =>
+        prevIndex < recentSearches.length - 1 ? prevIndex + 1 : prevIndex
+      );
+    } else if (e.key === "ArrowUp") {
+      setActiveSearchIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : prevIndex
+      );
+    }
+  };
+
+  const handleRecentSearchClick = (search: string) => {
+    setCityName(search);
+    setInputValue(search);
+    setShowRecentSearches(false);
+    setActiveSearchIndex(-1);
   };
 
   const handleChipClick = (category: string) => {
@@ -85,6 +151,16 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
         ? prevSelected.filter((cat) => cat !== category)
         : [...prevSelected, category]
     );
+  };
+
+  const handleFocus = () => {
+    setShowRecentSearches(true);
+  };
+
+  const handleBlur = (e: any) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setShowRecentSearches(false);
+    }
   };
 
   const choices = [
@@ -114,19 +190,39 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
               src="/logo.svg"
             />
           </div>
-          <div className={styles.airbnbSearch}>
+          <div className={styles.airbnbSearch} onBlur={handleBlur}>
             <div className={styles.attributeList}>
               <div className={styles.attribute}>
                 <div className={styles.attribute1}>Location</div>
                 <input
                   className={styles.value}
                   type="text"
-                  defaultValue={cityName}
+                  value={inputValue}
                   onKeyDown={handleChange}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onFocus={handleFocus}
                   spellCheck={false}
                   style={{ border: "0px solid", outline: "none" }}
                   placeholder="Search City"
                 />
+                {showRecentSearches && !inputValue && (
+                  <div className={styles.recentSearchesBox}>
+                    <div className={styles.recentSearchesHeader}>
+                      Recent Searches
+                    </div>
+                    {recentSearches.slice(0, 10).map((search, index) => (
+                      <div
+                        key={index}
+                        className={`${styles.recentSearchItem} ${
+                          index === activeSearchIndex ? styles.active : ""
+                        }`}
+                        onMouseDown={() => handleRecentSearchClick(search)}
+                      >
+                        {search}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
             <div className={styles.searchFilters}>
@@ -141,7 +237,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             <div className={styles.searchFilters2}>
               <div className={styles.divider1} />
             </div>
-            <div className={styles.iconButton} style={{marginLeft:20}}>
+            <div className={styles.iconButton} style={{ marginLeft: 20 }}>
               <div className={styles.iconButtonBase}>
                 <img
                   className={styles.icon}
@@ -207,13 +303,19 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
               <div
                 key={index}
                 className={styles.button2}
-                onClick={() => handleChipClick(choice)}>
-              <div
-                className={[
-                  styles.buttonBase2,
-                  selectedCategories.includes(choice) ? styles.selected : "",
-                ].join(" ")}
-                style={{ color: selectedCategories.includes(choice) ? 'white' : 'inherit' }}>
+                onClick={() => handleChipClick(choice)}
+              >
+                <div
+                  className={[
+                    styles.buttonBase2,
+                    selectedCategories.includes(choice) ? styles.selected : "",
+                  ].join(" ")}
+                  style={{
+                    color: selectedCategories.includes(choice)
+                      ? "white"
+                      : "inherit",
+                  }}
+                >
                   <img className={styles.icon7} alt="" src="/icon.svg" />
                   <div className={styles.text3}>{choice}</div>
                 </div>
@@ -229,21 +331,23 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
           </div>
           <div className={styles.divider3} />
           {categoryData.map((listing: any) => {
-            // console.log("link is", listing.images_url)
-            const imageArray = listing.images_url
+            const imageArray = listing.images_url;
             const firstImage =
               imageArray.length > 0 ? imageArray[0] : "/default-image.png";
-            // console.log(firstImage);
             return (
-              <div key={listing.id} onClick={() => JSON.stringify(listing)} style={{width:"100%"}}>
+              <div
+                key={listing.id}
+                onClick={() => JSON.stringify(listing)}
+                style={{ width: "100%" }}
+              >
                 <Listing1
-                  data = {listing}
+                  data={listing}
                   image={firstImage}
                   subtitle={listing.name}
-                  rating = {listing.starRating}
-                  cost = {listing.lowestPrivatePricePerNight_value}
-                  cityName = {cityName}
-                  facilities = {listing.facilitiesSummary}
+                  rating={listing.starRating}
+                  cost={listing.lowestPrivatePricePerNight_value}
+                  cityName={cityName}
+                  facilities={listing.facilitiesSummary}
                   heart="/heart.svg"
                   guestsEntireHome5Beds={listing.description}
                   star="/star.svg"
