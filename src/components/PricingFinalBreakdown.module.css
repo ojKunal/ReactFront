@@ -1,0 +1,744 @@
+.frameIcon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.frameWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-xs);
+}
+.aug22,
+.dates {
+  position: relative;
+}
+.dates {
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  line-height: 16px;
+  color: inherit;
+  display: inline-block;
+  min-width: 34px;
+  z-index: 1;
+}
+.aug22 {
+  align-self: stretch;
+  font-size: var(--text-base-medium-size);
+  line-height: 24px;
+  color: var(--black);
+}
+.datesParent,
+.inputnativeInput {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-12xs-2);
+}
+.inputnativeInput {
+  border-radius: var(--br-base);
+  background-color: var(--white);
+  overflow: hidden;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: var(--padding-5xs-8) var(--padding-5xs) var(--padding-5xs)
+    var(--padding-base);
+  gap: var(--gap-base);
+}
+.divvDivider {
+  width: 1px;
+  height: 48px;
+  position: relative;
+  border-right: 0.6px solid var(--color-darkgray);
+  box-sizing: border-box;
+}
+.divvDividerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-9xs) 0 0;
+}
+.frameIcon1 {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.frameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-xs);
+}
+.a,
+.guests {
+  text-decoration: none;
+  position: relative;
+}
+.guests {
+  letter-spacing: 0.2px;
+  line-height: 16px;
+  color: inherit;
+  display: inline-block;
+  min-width: 41px;
+  z-index: 1;
+}
+.a {
+  align-self: stretch;
+  font-size: var(--text-base-medium-size);
+  line-height: 24px;
+  color: var(--black);
+}
+.guestsParent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-12xs-2);
+}
+.divinlineFormsmall,
+.inputnativeInput1 {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.inputnativeInput1 {
+  width: 115.6px;
+  border-radius: var(--br-base);
+  overflow: hidden;
+  flex-shrink: 0;
+  align-items: flex-end;
+  padding: var(--padding-5xs-8) var(--padding-base) var(--padding-5xs);
+  box-sizing: border-box;
+  gap: var(--gap-base);
+}
+.divinlineFormsmall {
+  align-self: stretch;
+  border-radius: 20px;
+  border: 0.6px solid var(--color-darkgray);
+  align-items: flex-start;
+  padding: var(--padding-10xs) var(--padding-9xs) var(--padding-9xs);
+  gap: var(--gap-9xs);
+}
+.doubleBedPrivate,
+.room,
+.x1Night {
+  position: relative;
+  line-height: 24px;
+}
+.doubleBedPrivate {
+  font-weight: 800;
+}
+.room,
+.x1Night {
+  display: inline-block;
+}
+.room {
+  text-decoration: none;
+  color: inherit;
+  min-width: 56px;
+}
+.x1Night {
+  min-width: 122px;
+}
+.roomPriceNight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.b {
+  position: relative;
+  letter-spacing: 0.2px;
+  line-height: 16px;
+  display: inline-block;
+  min-width: 33px;
+}
+.divtagText,
+.divtagTextWrapper {
+  display: flex;
+  align-items: flex-start;
+}
+.divtagText {
+  align-self: stretch;
+  background-color: var(--color-mediumvioletred);
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: var(--padding-11xs-7) var(--padding-6xs) var(--padding-10xs-3);
+  flex-shrink: 0;
+}
+.divtagTextWrapper {
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-9xs);
+}
+.frameIcon2 {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.frameFrame {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--padding-5xs);
+}
+.a1,
+.div {
+  position: relative;
+  line-height: 24px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.a1 {
+  text-decoration: none;
+  color: inherit;
+  min-width: 50px;
+}
+.div {
+  text-decoration: line-through;
+  font-weight: 500;
+  min-width: 55px;
+  flex-shrink: 0;
+}
+.divdiscountPricestrikethrou {
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 0 var(--padding-12xs-4) 0;
+  opacity: 0.6;
+}
+.divdiscountPricestrikethrou,
+.frameGroup,
+.frameParent,
+.parent {
+  display: flex;
+  justify-content: flex-start;
+}
+.parent {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-12xs-4);
+}
+.frameGroup,
+.frameParent {
+  align-items: flex-end;
+}
+.frameGroup {
+  flex-direction: column;
+  gap: var(--gap-4xl-6);
+  flex-shrink: 0;
+  font-size: var(--text-base-medium-size);
+  color: var(--color-gray-100);
+}
+.frameParent {
+  align-self: stretch;
+  flex-direction: row;
+  gap: var(--gap-9xs-9);
+}
+.frameDiv,
+.roomPriceNightParent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.frameDiv {
+  width: 108.7px;
+  flex-direction: column;
+  padding: 8.4px 0 0;
+  box-sizing: border-box;
+  font-size: var(--text-xs-medium-size);
+  color: var(--white);
+}
+.roomPriceNightParent {
+  margin-top: -112.3px;
+  align-self: stretch;
+  flex-direction: row;
+  gap: 11.3px;
+}
+.basicDoubleBed {
+  position: relative;
+  line-height: 24px;
+  font-weight: 800;
+}
+.b1,
+.room1,
+.x1Night1 {
+  position: relative;
+  line-height: 24px;
+  display: inline-block;
+  min-width: 56px;
+}
+.b1,
+.x1Night1 {
+  min-width: 122px;
+}
+.b1 {
+  letter-spacing: 0.2px;
+  line-height: 16px;
+  min-width: 33px;
+}
+.divtagText1,
+.divtagTextContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.divtagText1 {
+  width: 51.2px;
+  background-color: var(--color-mediumvioletred);
+  justify-content: flex-start;
+  padding: var(--padding-11xs-8) var(--padding-6xs) var(--padding-10xs-2);
+  box-sizing: border-box;
+}
+.divtagTextContainer {
+  align-self: stretch;
+  justify-content: flex-end;
+  font-size: var(--text-xs-medium-size);
+  color: var(--white);
+}
+.roomPriceNight1,
+.roomPriceNightWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.roomPriceNight1 {
+  align-self: stretch;
+  justify-content: flex-start;
+  gap: var(--gap-12xs-1);
+}
+.roomPriceNightWrapper {
+  flex: 1;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-9xs);
+}
+.frameIcon3 {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.frameWrapper1 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--padding-5xs);
+}
+.div1,
+.div2 {
+  position: relative;
+  line-height: 24px;
+  display: inline-block;
+  min-width: 50px;
+  white-space: nowrap;
+}
+.div2 {
+  text-decoration: line-through;
+  font-weight: 500;
+  min-width: 55px;
+  flex-shrink: 0;
+}
+.divdiscountPricestrikethrou1 {
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 0 var(--padding-12xs-4) 0;
+  opacity: 0.6;
+}
+.divdiscountPricestrikethrou1,
+.divrate,
+.frameParent1,
+.group {
+  display: flex;
+  justify-content: flex-start;
+}
+.group {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3px;
+}
+.divrate,
+.frameParent1 {
+  align-items: flex-end;
+}
+.frameParent1 {
+  flex-direction: column;
+  gap: 23.7px;
+}
+.divrate {
+  align-self: stretch;
+  border-top: 0.6px solid var(--color-gainsboro-100);
+  border-bottom: 0.6px solid var(--color-gainsboro-100);
+  flex-direction: row;
+  padding: var(--padding-mini) 0;
+  gap: var(--gap-9xs-9);
+}
+.b2,
+.bed,
+.standard6Bed,
+.x1Night2 {
+  position: relative;
+  line-height: 24px;
+}
+.standard6Bed {
+  font-weight: 800;
+}
+.b2,
+.bed,
+.x1Night2 {
+  display: inline-block;
+  min-width: 42px;
+}
+.b2,
+.x1Night2 {
+  min-width: 118px;
+}
+.b2 {
+  letter-spacing: 0.2px;
+  line-height: 16px;
+  min-width: 33px;
+}
+.divtagText2 {
+  width: 51.2px;
+  background-color: var(--color-mediumvioletred);
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: var(--padding-11xs-7) var(--padding-5xs) var(--padding-10xs-3);
+  box-sizing: border-box;
+}
+.bedPriceNight,
+.divtagText2,
+.divtagTextFrame {
+  display: flex;
+  align-items: flex-start;
+}
+.divtagTextFrame {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-size: var(--text-xs-medium-size);
+  color: var(--white);
+}
+.bedPriceNight {
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--gap-12xs-1);
+  flex-shrink: 0;
+}
+.frameIcon4 {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.frameWrapper2 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--padding-3xs) 0 19px;
+}
+.div3,
+.div4 {
+  position: relative;
+  line-height: 24px;
+  display: inline-block;
+  min-width: 45px;
+  white-space: nowrap;
+}
+.div4 {
+  text-decoration: line-through;
+  font-weight: 500;
+  min-width: 44px;
+  flex-shrink: 0;
+}
+.container,
+.divdiscountPricestrikethrou2,
+.frameParent2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.divdiscountPricestrikethrou2 {
+  flex-direction: row;
+  padding: 0 var(--padding-11xs) var(--padding-12xs-4) 0;
+  opacity: 0.6;
+}
+.container,
+.frameParent2 {
+  flex-direction: column;
+  gap: var(--gap-12xs-4);
+}
+.frameParent2 {
+  margin-bottom: -4px;
+  align-items: flex-end;
+  gap: var(--gap-4xl-6);
+  flex-shrink: 0;
+}
+.divrate1,
+.divrateParent,
+.divroomRates {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+}
+.divrate1 {
+  border-top: 0.6px solid var(--color-gainsboro-100);
+  flex-direction: row;
+  align-items: flex-end;
+  padding: var(--padding-mini) 0 3.9px;
+  gap: var(--gap-9xs);
+}
+.divrateParent,
+.divroomRates {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.divroomRates {
+  height: 369.6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  padding: 140px var(--padding-12xs) 16.1px 0;
+  box-sizing: border-box;
+  gap: 15.9px;
+  text-align: left;
+  font-size: var(--text-base-medium-size);
+  color: var(--color-gray-100);
+  font-family: var(--text-sm-regular);
+}
+.payableNow,
+.total {
+  position: relative;
+  line-height: 24px;
+  font-weight: 800;
+  display: inline-block;
+  min-width: 40px;
+}
+.payableNow {
+  color: var(--color-mediumseagreen-100);
+  min-width: 101px;
+}
+.totalPayable {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+}
+.div5,
+.div6 {
+  position: relative;
+  line-height: 24px;
+  font-weight: 800;
+  display: inline-block;
+  min-width: 59px;
+  white-space: nowrap;
+}
+.div6 {
+  min-width: 49px;
+}
+.parent1,
+.totalPayableParent,
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.wrapper {
+  flex-direction: row;
+  padding: 0 0 0 var(--padding-3xs);
+  color: var(--color-mediumseagreen-100);
+}
+.parent1,
+.totalPayableParent {
+  flex-direction: column;
+  gap: var(--gap-base);
+}
+.totalPayableParent {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.bookNow {
+  position: relative;
+  font-size: var(--text-base-medium-size);
+  line-height: 24px;
+  display: inline-block;
+  font-family: var(--text-sm-regular);
+  color: var(--white);
+  text-align: left;
+  min-width: 79px;
+}
+.frameIcon5 {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.frameWrapper3 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4.3px 0 0;
+}
+.buttonbtnContentfullWidth {
+  cursor: pointer;
+  border: 0;
+  padding: 11.7px var(--padding-xl) var(--padding-smi-3);
+  background-color: #f25621;
+  align-self: stretch;
+  border-radius: var(--br-base);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6.6px;
+}
+.divtagIcon {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  min-height: 20px;
+  flex-shrink: 0;
+}
+.freeCancellation {
+  position: relative;
+  letter-spacing: 0.2px;
+  line-height: 16px;
+  display: inline-block;
+  min-width: 106px;
+}
+.divtagIconParent,
+.divtagTexttagTextIcon {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+.divtagTexttagTextIcon {
+  flex: 1;
+  background-color: var(--color-mediumspringgreen);
+  padding: var(--padding-11xs-8) var(--padding-9xs) var(--padding-10xs-2);
+  white-space: nowrap;
+}
+.divtagIconParent {
+  width: 141.4px;
+}
+.changeOfPlans {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--text-sm-regular-size);
+  letter-spacing: 0.1px;
+  line-height: 20px;
+  color: var(--black);
+  flex-shrink: 0;
+}
+.frameParent3,
+.frameParent4 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.frameParent4 {
+  height: 89.7px;
+  padding: 0 var(--padding-xs) 69.7px 0;
+  box-sizing: border-box;
+  gap: 9.7px;
+  font-size: var(--text-xs-medium-size);
+  color: var(--white);
+}
+.frameParent3 {
+  gap: 16.1px;
+  flex-shrink: 0;
+}
+.imgIcon,
+.imgIcon1 {
+  height: 25px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 25px;
+}
+.imgIcon2 {
+  object-fit: cover;
+}
+.imgIcon2,
+.imgIcon3 {
+  height: 25px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 25px;
+}
+.imageContainer,
+.imageContainerWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.imageContainer {
+  gap: var(--gap-base);
+}
+.imageContainerWrapper {
+  padding: 0 var(--padding-5xs);
+}
+.divbreakdownWrapperhasRate,
+.frameSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  text-align: left;
+  font-family: var(--text-sm-regular);
+}
+.frameSection {
+  align-self: stretch;
+  height: 297.3px;
+  padding: 0 var(--padding-12xs) 63.3px 0;
+  gap: 38.3px;
+  font-size: var(--text-base-medium-size);
+  color: var(--black);
+}
+.divbreakdownWrapperhasRate {
+  width: 366px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 32px;
+  background-color: var(--white);
+  max-width: 100%;
+  padding: var(--padding-base) var(--padding-mini) 22.2px var(--padding-base);
+  gap: var(--gap-base-8);
+  line-height: normal;
+  letter-spacing: normal;
+  font-size: var(--text-xs-medium-size);
+  color: var(--color-slategray-200);
+}

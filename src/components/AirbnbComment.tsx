@@ -29,8 +29,8 @@ const AirbnbComment: FunctionComponent<AirbnbCommentType> = ({
             <img
               className={styles.avatarIcon}
               loading="lazy"
-              alt=""
-              src={avatar}
+              alt={review.user_nickname}
+              src={`https://api.dicebear.com/9.x/fun-emoji/svg?seed=${review.user_nickname}&radius=50&size=32`}
             />
             <div className={styles.titleSubtitle}>
               <div className={styles.title}>{review.user_nickname}</div>
