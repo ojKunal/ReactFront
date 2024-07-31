@@ -4,7 +4,6 @@ import StandardSearch from "./pages/StandardSearch";
 import Listing from "./pages/Listing";
 import MainComponent from "./pages/data";
 import ImageGallery from "./components/ImageGallery";
-import MainPage from "./pages/MainPage";
 
 function App() {
   // const action = useNavigationType();
