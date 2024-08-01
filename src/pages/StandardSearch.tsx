@@ -353,6 +353,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
                   star="/star.svg"
                   reviewSummary={`$${listing.price_per_night}`}
                 />
+                
                 <div className={styles.divider4} />
               </div>
             );

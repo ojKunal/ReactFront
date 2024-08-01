@@ -868,7 +868,7 @@
 
 .recentSearchesBox {
   position: absolute;
-  height: 200px;
+  max-height: 200px;
   width: 400px;
   border-radius: 20px 0px 0px 20px;
   background-color: white;
