@@ -25,7 +25,7 @@ const Section2: FunctionComponent<FrameComponent3Type> = ({ className = "" }) =>
                 <div className="w-full flex flex-row flex-wrap items-start justify-start gap-4 text-sm text-black font-inter">
                   <div className="flex rounded-2xl shadow-lg flex flex-row items-end justify-start p-4 gap-2 border border-solid border-gainsboro">
                     <div className="flex flex-col items-start justify-end">
-                      <img className="w-6 h-6" alt="" src="/img.svg" />
+                      <img className="w-6 h-6" alt="" src="/mainpage_icon/img.svg" />
                     </div>
                     <div className="flex flex-col items-start justify-start gap-2">
                       <div className="flex flex-row items-start justify-start gap-2">
@@ -37,13 +37,13 @@ const Section2: FunctionComponent<FrameComponent3Type> = ({ className = "" }) =>
                       </div>
                     </div>
                     <div className="flex flex-col items-start justify-end">
-                      <img className="w-3 h-3" alt="" src="/frame-7.svg" />
+                      <img className="w-3 h-3" alt="" src="/mainpage_icon/frame-7.svg" />
                     </div>
                   </div>
 
                   <div className="w-60 shadow-lg rounded-2xl flex flex-row items-end justify-start p-4 gap-2 border border-solid border-gainsboro">
                     <div className="flex flex-col items-start justify-end">
-                      <img className="w-6 h-6" alt="" src="/img-1.svg" />
+                      <img className="w-6 h-6" alt="" src="/mainpage_icon/img-1.svg" />
                     </div>
                     <div className="w-full flex flex-col items-start justify-start gap-2">
                       <div className="font-semibold">India</div>
@@ -52,7 +52,7 @@ const Section2: FunctionComponent<FrameComponent3Type> = ({ className = "" }) =>
                       </div>
                     </div>
                     <div className="flex flex-col items-start justify-end">
-                      <img className="w-3 h-3" alt="" src="/frame-8.svg" />
+                      <img className="w-3 h-3" alt="" src="/mainpage_icon/frame-8.svg" />
                     </div>
                   </div>
                 </div>
@@ -72,20 +72,20 @@ const Section2: FunctionComponent<FrameComponent3Type> = ({ className = "" }) =>
             <TitleComponentwithButton
               trendingDestinations="Stay Types"
               placesThatTravelersAreAdd="Plan your next trip with these unmissable CuddlyNest deals"
-              divcnSliderArrowsArrowcnS="/divcn--slider--arrows--arrowcn--slider--arrows--disabledcn--slider--arrows--prevarrow-1.svg"
-              divcnSliderArrowsArrowcnS1="/divcn--slider--arrows--arrowcn--slider--arrows--nextarrow-1.svg"
+              divcnSliderArrowsArrowcnS="/mainpage_icon/divcn--slider--arrows--arrowcn--slider--arrows--disabledcn--slider--arrows--prevarrow-1.svg"
+              divcnSliderArrowsArrowcnS1="/mainpage_icon/divcn--slider--arrows--arrowcn--slider--arrows--nextarrow-1.svg"
             />
       <div className="w-full h-full shrink-0 flex flex-row items-end justify-start pt-0 px-0 pb-5 box-border gap-[20px] max-w-full text-base font-poppins">
       <div className="w-full overflow-x-auto flex flex-col items-start justify-start gap-[20px]">
                 <div className="flex flex-row items-start justify-start gap-[10px]">
-                  <CategoryHotelCard imgcnImageDefault="/imgcn--imagedefault@2x.png" hotels="Hotels" properties="1,506,710 properties" />
-                  <CategoryHotelCard imgcnImageDefault="/imgcn--imagedefault-1@2x.png" hotels="Apartments" properties="237,285 properties" />
-                  <CategoryHotelCard imgcnImageDefault="/imgcn--imagedefault-2@2x.png" hotels="Vacation homes" properties="236,574 properties" />
-                  <CategoryHotelCard imgcnImageDefault="/imgcn--imagedefault-3@2x.png" hotels="B&Bs" properties="148,854 properties" />
-                  <CategoryHotelCard imgcnImageDefault="/imgcn--imagedefault-4@2x.png" hotels="Villas" properties="83,172 properties" />
-                  <CategoryHotelCard imgcnImageDefault="/imgcn--imagedefault-5@2x.png" hotels="Bungalows" properties="54,770 properties" />
-                  <CategoryHotelCard imgcnImageDefault="/imgcn--imagedefault-6@2x.png" hotels="Hostels" properties="41,610 properties" />
-                  <CategoryHotelCard imgcnImageDefault="/imgcn--imagedefault-7@2x.png" hotels="Cabins" properties="4,792 properties" />
+                  <CategoryHotelCard imgcnImageDefault="/mainpage_icon/imgcn--imagedefault@2x.png" hotels="Hotels" properties="1,506,710 properties" />
+                  <CategoryHotelCard imgcnImageDefault="/mainpage_icon/imgcn--imagedefault-1@2x.png" hotels="Apartments" properties="237,285 properties" />
+                  <CategoryHotelCard imgcnImageDefault="/mainpage_icon/imgcn--imagedefault-2@2x.png" hotels="Vacation homes" properties="236,574 properties" />
+                  <CategoryHotelCard imgcnImageDefault="/mainpage_icon/imgcn--imagedefault-3@2x.png" hotels="B&Bs" properties="148,854 properties" />
+                  <CategoryHotelCard imgcnImageDefault="/mainpage_icon/imgcn--imagedefault-4@2x.png" hotels="Villas" properties="83,172 properties" />
+                  <CategoryHotelCard imgcnImageDefault="/mainpage_icon/imgcn--imagedefault-5@2x.png" hotels="Bungalows" properties="54,770 properties" />
+                  <CategoryHotelCard imgcnImageDefault="/mainpage_icon/imgcn--imagedefault-6@2x.png" hotels="Hostels" properties="41,610 properties" />
+                  <CategoryHotelCard imgcnImageDefault="/mainpage_icon/imgcn--imagedefault-7@2x.png" hotels="Cabins" properties="4,792 properties" />
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@ const Section2: FunctionComponent<FrameComponent3Type> = ({ className = "" }) =>
 
         {/* Promise Banner start */}
         <div className="flex flex-row items-center justify-between space-between py-5 max-w-full gap-5 text-4xl text-white rounded-xl bg-mediumturquoise">
-          <img className="w-9 h-full object-contain" alt="" src="/frame-9@2x.png" loading="lazy" />
+          <img className="w-9 h-full object-contain" alt="" src="/mainpage_icon/frame-9@2x.png" loading="lazy" />
           <div className="w-96 flex flex-col items-start justify-start gap-8">
             <h1 className="text-inherit font-bold leading-tight">The CuddlyNest Promise</h1>
             <div className="flex flex-row items-start justify-center px-5 text-lg">

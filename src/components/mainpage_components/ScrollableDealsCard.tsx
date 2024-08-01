@@ -50,8 +50,8 @@ const ScrollableDealsCard: FunctionComponent<DestinationType> = ({ className = "
         <TitleComponentwithButton
           trendingDestinations="Deals of The Day"
           placesThatTravelersAreAdd="Plan your next trip with these unmissable CuddlyNest deals"
-          divcnSliderArrowsArrowcnS="/divcn--slider--arrows--arrowcn--slider--arrows--disabledcn--slider--arrows--prevarrow-1.svg"
-          divcnSliderArrowsArrowcnS1="/divcn--slider--arrows--arrowcn--slider--arrows--nextarrow-1.svg"
+          divcnSliderArrowsArrowcnS="/mainpage_icon/divcn--slider--arrows--arrowcn--slider--arrows--disabledcn--slider--arrows--prevarrow-1.svg"
+          divcnSliderArrowsArrowcnS1="/mainpage_icon/divcn--slider--arrows--arrowcn--slider--arrows--nextarrow-1.svg"
         />
         <div className="w-full h-full shrink-0 flex flex-row items-end justify-start pt-0 px-0 pb-0 box-border gap-[20px] max-w-full text-base font-poppins">
           <div className="w-full overflow-x-auto flex flex-col items-start justify-start gap-[20px]">
