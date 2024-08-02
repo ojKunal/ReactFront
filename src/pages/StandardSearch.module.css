@@ -18,65 +18,57 @@
 }
 .attribute1 {
   width: 162px;
-  position: relative;
-  line-height: 16px;
+  /* position: relative; */
+  /* line-height: 16px; */
   font-weight: 600;
   display: none;
-  align-items: center;
-  flex-shrink: 0;
+  /* align-items: center; */
+  /* flex-shrink: 0; */
 }
 .value {
   text-decoration: none;
-  position: relative;
+  /* position: relative; */
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
   color: inherit;
   display: inline-block;
   min-width: 68px;
-  text-align-last: center;
+  /* text-align-last: center; */
 }
 .attribute,
 .attributeList {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 .attributeList {
   flex: 1;
   flex-direction: column;
-  padding: 6px 0 0;
+  /* padding: 6px 0 0; */
 }
 .divider {
   width: 1px;
-  height: 25px;
+  height: 35px;
   position: relative;
   background-color: #6b7280;
   border-right: 1px solid #e5e7eb;
   box-sizing: border-box;
 }
-.searchFilters {
-  height: 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 4px 0 0;
-  box-sizing: border-box;
-}
-.attribute3,
+
 .value1 {
   position: relative;
   white-space: nowrap;
 }
 .attribute3 {
-  width: 162px;
-  line-height: 16px;
+  /* width: 162px; */
+  /* line-height: 16px; */
   font-weight: 600;
-  display: none;
-  align-items: center;
-  flex-shrink: 0;
+  font-size: 12px;
+  /* display: none; */
+  /* align-items: center; */
+  /* flex-shrink: 0; */
 }
 .value1 {
   font-size: 14px;
@@ -84,18 +76,20 @@
   font-weight: 500;
   display: inline-block;
   min-width: 68px;
+  outline: none;
+  border: none;
+  
+  
 }
-.attribute2,
-.searchFilters1 {
+.attribute2{
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  flex-direction: column;
 }
 .searchFilters1 {
+  background-color: red;
   flex: 1;
-  flex-direction: column;
-  padding: 6px 0 0;
+  flex-direction: row;
+  
 }
 .divider1 {
   width: 1px;
@@ -154,8 +148,10 @@
   flex-shrink: 0;
 }
 .iconButtonBase {
-  height: 32px;
-  width: 32px;
+  margin-right: 20px;
+  margin-top: 2px;
+  height: 35px;
+  width: 35px;
   box-shadow: 0 1px 2px rgba(31, 41, 55, 0.08);
   border-radius: 100px;
   background-color: #de3151;
@@ -163,10 +159,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 4px;
-  box-sizing: border-box;
+  cursor: pointer;
+  
+  /* padding: 4px; */
+  /* box-sizing: border-box; */
 }
-.airbnbSearch,
+/* .airbnbSearch, */
 .iconButton {
   display: flex;
   flex-direction: row;
@@ -174,7 +172,7 @@
   justify-content: flex-start;
 }
 .airbnbSearch {
-  width: 366px;
+  width: 770px;
   box-shadow: 0 2px 4px rgba(31, 41, 55, 0.06), 0 4px 6px rgba(31, 41, 55, 0.1);
   border-radius: 1000px;
   background-color: #fff;
@@ -183,6 +181,8 @@
   padding: 6px 7px 6px 6px;
   gap: 15.6px;
   max-width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 .title {
   position: relative;
@@ -861,20 +861,22 @@
   background-color: white; /* Ensure the header has a background color */
   font-size: 1.1rem; /* Adjust size as needed */
   margin-bottom: 3px; /* Space between header and recent searches items */
-  color: #333; /* Adjust color as needed */
+  color: #de3151; /* Adjust color as needed */
   padding-left: 10px;
   z-index: 1; /* Ensure header stays above the items */
 }
 
 .recentSearchesBox {
   position: absolute;
+  top: 10px;
+left: 400px;
   max-height: 200px;
   width: 400px;
   border-radius: 20px 0px 0px 20px;
   background-color: white;
   border: 1px solid #d1d5db; /* Tailwind gray-300 */
-  margin-top: 40px; /* Tailwind mt-1 */
-  z-index: 10;
+  margin-top: 80px; /* Tailwind mt-1 */
+  z-index: 2000;
   padding-left: 16px;
   max-height: 300px; /* Adjust height as needed */
   overflow-y: auto; /* Enable vertical scrolling */
@@ -906,6 +908,18 @@
   font-size: 16px;
   cursor: pointer;
   padding: 0;
+}
+
+/* celender  */
+
+.calendarContainer {
+  position: absolute;
+  top: 80px; /* Adjust as necessary to position below the input */
+  z-index: 2000; /* Ensure the calendar appears above other elements */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .left1 {
@@ -943,7 +957,7 @@
   flex-direction: column;
   line-height: normal;
   letter-spacing: normal;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 @media screen and (max-width: 1125px) {
   .example {
