@@ -22,7 +22,7 @@ const createCustomIcon = (price: number) => {
   return L.divIcon({
     className: "custom-marker",
     html: `
-      <div style="background: black; color: white; font-weight: bold; border: 5px solid black; border-radius: 18px; padding: 2px; text-align: center;">
+      <div style="background: #de3151; color: white; font-weight: bold; border: 5px ; border-radius: 20px; padding: 2px; text-align: center;">
         ₹${price}
       </div>
     `,
@@ -106,7 +106,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ hotels }) => {
 export default MapComponent;
 
 // use different map style :
-{/* <TileLayer
+{/*
+   <TileLayer
 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
 />
