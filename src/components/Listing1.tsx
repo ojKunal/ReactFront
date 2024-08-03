@@ -103,7 +103,7 @@ const Listing1: FunctionComponent<Listing1Type> = ({
             <div className={styles.reviewSummary}>₹{cost}</div>
             <div className={styles.nightWrapper}>
               <div className={styles.night} style={{}}>
-                night
+                /night
               </div>
             </div>
           </div>

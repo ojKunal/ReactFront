@@ -197,3 +197,29 @@ body {
     display: none;
   }
 }
+
+/* MAP POPUP */
+.leaflet-popup,
+.leaflet-popup-content-wrapper {
+  width: 350px;
+  height: 300px;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.leaflet-popup-content p, .leaflet-popup-content h3 {
+  margin: 0 !important;
+  font-family: "Inter";
+}
+
+.leaflet-popup-close-button {
+  color: #000 !important;
+  background: #fff !important;
+  border-radius: 50%;
+  top: 10px !important;
+  right: 7px !important;
+  font-weight: 700 !important;
+}
