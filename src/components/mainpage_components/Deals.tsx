@@ -42,7 +42,7 @@ const Deals: FunctionComponent<DestinationType> = ({ className = "" }) => {
 
   return (
     <section
-      className={`mt-10 self-stretch flex flex-row items-start justify-center pt-0 px-5 pb-[4.9px] box-border max-w-full shrink-0 text-left text-13xl text-gray-300 font-inter mq900:pb-[62px] mq900:box-border ${className} overflow-hidden`}
+      className={`w-[1920px] self-center mt-10 flex flex-row items-start justify-center pt-0 px-5 pb-[4.9px] box-border max-w-full shrink-0 text-left text-13xl text-gray-300 font-inter mq900:pb-[62px] mq900:box-border ${className} overflow-hidden`}
     >
       <div className="w-full flex flex-col items-start justify-start gap-[23px] max-w-full">
         <TitleComponentwithButton
