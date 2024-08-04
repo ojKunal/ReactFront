@@ -2277,7 +2277,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  max-width: 100%;
 }
 .dates {
   align-self: stretch;
@@ -2286,11 +2285,11 @@
 .hostDetails {
   flex: 1;
   gap: var(--gap-5xl);
-  min-width: 435px;
   text-align: left;
   font-size: var(--text-2xl-medium-size);
   color: var(--black);
   font-family: var(--text-sm-regular);
+  width: 75%;
 }
 @media screen and (max-width: 750px) {
   .hostInfoParent {

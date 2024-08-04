@@ -708,6 +708,30 @@
   color: var(--black);
   font-family: var(--text-sm-regular);
 }
+
+@media screen and (max-width: 1600px) {
+  .contentContainer {
+    max-width: 300px;
+  }
+  .divroomContainer {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .contentContainer {
+    max-width: 250px;
+  }
+}
+
+
+@media screen and (max-width: 1300px) {
+  .mainContainer {
+    flex-direction: column;
+  }
+}
+
+
 @media screen and (max-width: 950px) {
   .divrateList {
     flex: 1;

@@ -877,9 +877,10 @@
   justify-content: flex-start;
 }
 .listingContent {
-  width: 95%;
+  width: 100%;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: space-between;
   gap: var(--gap-61xl);
   max-width: 100%;
   text-align: left;
