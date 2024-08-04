@@ -31,18 +31,46 @@ const createCustomIcon = (price: number) => {
   });
 };
 
-const CustomMarker: React.FC<CustomMarkerProps> = ({ position, thumbnail, price, details }) => {
+const CustomMarker: React.FC<CustomMarkerProps> = ({
+  position,
+  thumbnail,
+  price,
+  details,
+}) => {
   const icon = createCustomIcon(price);
   return (
     <Marker position={position} icon={icon}>
       <Popup>
-        <div style={{ textAlign: "center" }}>
-          <img src={thumbnail} alt="Hotel" style={{ width: "100%", height: "auto", objectFit: "cover", borderRadius: "10px" }} />
-          <div>
-            <h3>{details.title}</h3>
+        <div style={{ textAlign: "left", width: "100%" }}>
+          <img
+            src={thumbnail}
+            alt="Hotel"
+            style={{
+              width: "100%",
+              height: "210px",
+              objectFit: "cover",
+              borderRadius: "10px 10px 0 0",
+            }}
+          />
+          <div style={{ padding: "0 10px" }}>
+            <div
+              style={{
+                display: "flex",
+                margin: "8px 0",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <h3>{details.title}</h3>
+              <p>
+                ⭐ {details.rating} ({details.reviews})
+              </p>
+            </div>
             <p>{details.description}</p>
-            <p>₹{price} night • {details.dates}</p>
-            <p>⭐ {details.rating} ({details.reviews})</p>
+            <p style={{ paddingTop: "4px" }}>
+              <span style={{ fontWeight: "900" }}>₹{price}</span> night •{" "}
+              {details.dates}
+            </p>
           </div>
         </div>
       </Popup>
@@ -72,24 +100,26 @@ const MapComponent: React.FC<MapComponentProps> = ({ hotels }) => {
 
   useEffect(() => {
     if (mapRef.current && hotels.length > 0) {
-      const bounds: LatLngBoundsExpression = hotels.map(hotel => hotel.coordinates);
+      const bounds: LatLngBoundsExpression = hotels.map(
+        (hotel) => hotel.coordinates
+      );
       mapRef.current.fitBounds(bounds, { padding: [50, 50] });
     }
   }, [hotels]);
 
   return (
-    <div style={{ height: '100vh', width: '100%' }}>
+    <div style={{ height: "100vh", width: "100%" }}>
       <MapContainer
         ref={mapRef}
         center={[12.9716, 77.5946]}
         zoom={13}
-        style={{ height: '100%', width: '100%' }}
+        style={{ height: "100%", width: "100%" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
-        {hotels.map(hotel => (
+        {hotels.map((hotel) => (
           <CustomMarker
             key={hotel.id}
             position={hotel.coordinates}
@@ -106,9 +136,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ hotels }) => {
 export default MapComponent;
 
 // use different map style :
-{/*
-   <TileLayer
+{
+  /* <TileLayer
+
 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
 />
- */}
+ */
+}

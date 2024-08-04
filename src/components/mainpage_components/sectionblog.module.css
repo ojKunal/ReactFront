@@ -2,11 +2,11 @@
   margin-top: 60px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
   max-width: 100%;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: #b0b0b0;
 }
 
@@ -72,7 +72,8 @@
 
 .blogs {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 20px;
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
@@ -125,4 +126,34 @@
   width: 24px;
   height: 24px;
   margin-right: 10px;
+}
+
+@media (max-width: 650px) {
+  .container {
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 28px;
+    color: #242526;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    max-width: 75%;
+  }
+
+  .browseButton {
+    margin-top: 40px;
+  }
 }

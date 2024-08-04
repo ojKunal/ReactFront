@@ -1,40 +1,38 @@
 import { FunctionComponent } from "react";
 
-
 export type FrameComponentType = {
   className?: string;
 };
 
-
-const Footer: FunctionComponent<FrameComponentType> = ({
-  className = "",
-}) => {
+const Footer: FunctionComponent<FrameComponentType> = ({ className = "" }) => {
   return (
-    
     <footer
-      className={`flex flex-col items-start justify-start gap-[90.6px] max-w-full text-left text-sm text-gray-100 font-inter mq450:gap-[23px] mq900:gap-[45px] ${className}`}
+      className={`flex flex-col items-start justify-start gap-[90.6px] max-w-[1920px] self-center w-full text-left text-sm text-gray-100 font-inter mq450:gap-[23px] mq900:gap-[45px] mt-[50px] px-5 ${className}`}
     >
-
-      <div className="flex flex-row flex-wrap items-start justify-start gap-[58.4px] max-w-full mq900:gap-[29px]">
-        <div className="w-[437.5px] flex flex-row items-start justify-start py-0 pr-[135px] pl-0 box-border gap-[17.3px] max-w-full text-36xl text-darkgray-100 mq450:gap-[89px] mq450:pr-5 mq450:box-border">
-          <div className="self-stretch flex flex-row h-[121.1px] relative">
-            <h1 className="m-0 absolute top-[0px] left-[0px] text-inherit tracking-[-2.2px] leading-[55px] font-extrabold font-inherit inline-block w-[302.4px] mq450:text-14xl mq450:leading-[33px] mq900:text-25xl mq900:leading-[44px]">
+      <div className="flex flex-row mq900:flex-col flex-wrap items-start justify-start gap-[58.4px] max-w-full w-full mq900:gap-[29px] mx-5">
+        <div className="w-[25%] mq650:mb-5 flex flex-row items-start justify-start py-0 pr-[135px] pl-0 box-border gap-[17.3px] max-w-full text-36xl text-darkgray-100 mq450:gap-[89px] mq450:pr-5 mq450:box-border">
+          <div className="self-stretch flex flex-row h-[80px] mq650:h-[20px] relative">
+            <h1 className="font-extrabold m-0 absolute top-[0px] left-[0px] text-inherit tracking-[-2.2px] leading-[55px] font-extrabold font-inherit inline-block w-[302.4px] mq650:text-14xl mq650:leading-[33px] mq900:text-25xl mq900:leading-[44px]">
               Travel is for everyone
-            </h1>
-            <div className="absolute top-[66.1px] left-[253.1px] bg-hotpink w-4 h-[55px] flex flex-row items-start justify-start z-[1]">
-              <h1 className="!m-[0] w-full absolute top-[-11.1px] right-[-1px] text-inherit tracking-[-2.2px] leading-[55px] font-extrabold font-inherit inline-block h-full mq450:text-14xl mq450:leading-[33px] mq900:text-25xl mq900:leading-[44px]">
+              <span
+                className="bg-clip-text text-transparent inline-block"
+                style={{
+                  background: "#f35597",
+                  backgroundSize: "100% 200%",
+                  backgroundPosition: "50% 100%",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  width: "16px",
+                }}
+              >
                 .
-              </h1>
-            </div>
+              </span>
+            </h1>
           </div>
-
         </div>
 
-        <div className="w-[365.6px] flex flex-col items-start justify-start pt-[10.6px] px-0 pb-0 box-border max-w-full font-poppins">
-          <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
-          <div className="w-[189.2px] flex flex-col items-start justify-start pt-[11.6px] px-0 pb-0 box-border text-lg text-gray-300">
-
-        </div>
+        <div className="w-[60%] mq900:w-full flex flex-col items-start justify-start pt-[10.6px] px-0 pb-0 box-border max-w-full font-poppins">
+          <div className="self-stretch flex flex-row mq650:flex-wrap items-start justify-between gap-[20px] mq450:flex-wrap mq900@">
             <div className="flex flex-col items-start justify-start  pb-0 pr-4 pl-0 font-poppins">
               <div className="flex flex-col items-start justify-start gap-[15px]">
                 <div className="relative text-lg leading-[27px] uppercase font-semibold font-inter text-gray-300 inline-block min-w-[123px]">
@@ -123,37 +121,35 @@ const Footer: FunctionComponent<FrameComponentType> = ({
               </div>
             </div>
             <div className=" flex flex-col items-start justify-start gap-[36.5px] text-xs text-gray-100 font-poppins mq450:gap-[18px]">
-            <div className="self-stretch flex flex-col items-start justify-start gap-[11.6px]">
-            <div className="self-stretch flex flex-col items-start justify-start gap-[4.5px]">
-              <div className="self-stretch relative leading-[27px] font-semibold">
-                Millions of places to stay, one app.
+              <div className="self-stretch flex flex-col items-start justify-start gap-[11.6px]">
+                <div className="self-stretch flex flex-col items-start justify-start gap-[4.5px]">
+                  <div className="self-stretch relative leading-[27px] font-semibold">
+                    Millions of places to stay, one app.
+                  </div>
+                  <img
+                    className="w-[163px] h-12 relative overflow-hidden shrink-0"
+                    loading="lazy"
+                    alt=""
+                    src="/mainpage_icon/img-12.svg"
+                  />
+                </div>
+                <img
+                  className="w-[163px] h-12 relative overflow-hidden shrink-0"
+                  loading="lazy"
+                  alt=""
+                  src="/mainpage_icon/img-13.svg"
+                />
               </div>
-              <img
-                className="w-[163px] h-12 relative overflow-hidden shrink-0"
-                loading="lazy"
-                alt=""
-                src="/mainpage_icon/img-12.svg"
-              />
+              <div className="flex flex-row items-start justify-start gap-[29.2px]">
+                <div className="relative tracking-[0.24px] leading-[15px] inline-block min-w-[120px]">{`Terms & conditions`}</div>
+                <div className="relative tracking-[0.24px] leading-[15px] inline-block min-w-[86px]">
+                  Privacy policy
+                </div>
+              </div>
             </div>
-            <img
-              className="w-[163px] h-12 relative overflow-hidden shrink-0"
-              loading="lazy"
-              alt=""
-              src="/mainpage_icon/img-13.svg"
-            />
           </div>
-           <div className="flex flex-row items-start justify-start gap-[29.2px]">
-             <div className="relative tracking-[0.24px] leading-[15px] inline-block min-w-[120px]">{`Terms & conditions`}</div>
-             <div className="relative tracking-[0.24px] leading-[15px] inline-block min-w-[86px]">
-               Privacy policy
-             </div>
-           </div>
-         </div>
-          </div>
-          
         </div>
       </div>
-      
     </footer>
   );
 };

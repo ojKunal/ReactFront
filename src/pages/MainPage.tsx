@@ -24,21 +24,18 @@ const MainPage: FunctionComponent = () => {
   };
   return (
     <div className="w-full relative bg-whitesmoke-100 flex flex-row items-start justify-start py-0 px-0 box-border leading-normal tracking-normal overflow-hidden">
-      <main className="w-full flex bg-white flex-col items-start justify-start pt-0 px-0 box-border gap-[1.8px] mq450:h-auto mq900:pb-[304px] mq900:box-border mq1275:pb-[467px] mq1275:box-border">
-        <button
-          onClick={() => handleMainClick("mumbai")}
-          className="absolute top-20 left-10 z-10"
-        >
-          Tab this for temporary navigation to search page
-        </button>
+      <main className="w-full flex bg-white flex flex-col items-start justify-start pt-0 px-0 box-border gap-[1.8px] mq450:h-auto mq900:pb-[304px] mq900:box-border mq1275:pb-[50px] mq1275:box-border">
         <Section1 />
-        <Section2 />
-        <Deals />
-        <Staycation />
-        <SectionBlog />
-        {/* <Section_OtherPlatform /> */}
-        <Newsletter />
-        <Footer />
+        <div className="w-full flex bg-white flex flex-col items-start justify-start pt-0 px-0 box-border gap-[1.8px] mq450:h-auto px-[100px] mq1000:px-0 ">
+          <Section2 />
+          <Deals />
+          <Staycation />
+          <SectionBlog />
+          {/* <Section_OtherPlatform /> */}
+          <Newsletter />
+          <Footer />
+        </div>
+
       </main>
     </div>
   );
