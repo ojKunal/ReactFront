@@ -4,6 +4,9 @@ import Listing1 from "../components/Listing1";
 import styles from "./StandardSearch.module.css";
 import { supabase } from "../Utils/SupabaseConfig";
 import MapComponent from "./leadlet_map";
+import Calendar from "react-calendar";
+import { useLocation } from "react-router-dom";
+import "react-calendar/dist/Calendar.css";
 
 export type StandardSearchType = {
   className?: string;
@@ -12,6 +15,16 @@ export type StandardSearchType = {
 const StandardSearch: FunctionComponent<StandardSearchType> = ({
   className = "",
 }) => {
+  // Taking the atributes from the main page //
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const [checkin, setCheckin] = useState<string | null>(null);
+  const [checkout, setCheckout] = useState<string | null>(null);
+  const [param1, setParam1] = useState<string | null>(null);
+  const [param2, setParam2] = useState<string | null>(null);
+  const [param3, setParam3] = useState<string | null>(null);
+  //end of the attributes//
+  
   const navigate = useNavigate();
   const [categoryData, setCategoryData] = useState<any>([]);
   const [cityName, setCityName] = useState<string>("Mumbai");
@@ -23,6 +36,11 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
   const [activeSearchIndex, setActiveSearchIndex] = useState<number>(-1);
   const filterByCity = "Mumbai"; // Example: 'Bangalore'
   const filterByFacility = ""; // Looking for 'wifi' in facilities_Summary
+  const [showCheckInCalendar, setShowCheckInCalendar] = useState(false);
+  const [showCheckOutCalendar, setShowCheckOutCalendar] = useState(false);
+  const [checkInDate, setCheckInDate] = useState<Date | null>(null);
+  const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
+  
 
   const fetchListing = async () => {
     let query = supabase
@@ -164,6 +182,51 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     }
   };
 
+  const handleCheckInClick = () => {
+    // setShowCheckInCalendar(true);
+    if (showCheckOutCalendar) {
+      setShowCheckOutCalendar(false); // Close check-out calendar if open
+    }
+    if (showRecentSearches) {
+      setShowRecentSearches(false); // Close recent searches if open
+    }
+  };
+  const handleCheckOutClick = () => {
+    // setShowCheckOutCalendar(true);
+    if (showCheckInCalendar) {
+      setShowCheckInCalendar(false); // Close check-in calendar if open
+    }
+    if (showRecentSearches) {
+      setShowRecentSearches(false); // Close recent searches if open
+    }
+  };
+  const handleCelenderShow = () => {
+    setShowCheckInCalendar(false);
+  };
+
+  const handleCheckInDateChange = (newDate: Date) => {
+    setCheckInDate(newDate);
+    setShowCheckInCalendar(false); // Close the calendar after selecting a date
+  };
+  const handleCheckOutDateChange = (newDate: Date) => {
+    setCheckOutDate(newDate);
+    setShowCheckOutCalendar(false); // Close the calendar after selecting a date
+  };
+
+
+  // for Navigation //
+  const handleListingClick = (id: string) => {
+    const checkin = "2024-08-01"; // Example value, replace with actual data
+    const checkout = "2024-08-05"; // Example value, replace with actual data
+    const param1 = "exampleParam1"; // Example value, replace with actual data
+    const param2 = "exampleParam2"; // Example value, replace with actual data
+    const param3 = "exampleParam3"; // Example value, replace with actual data
+  
+    const url = `/listing/${id}?checkin=${checkin}&checkout=${checkout}&param1=${param1}&param2=${param2}&param3=${param3}`;
+  
+    navigate(url);
+  };
+
   const choices = [
     "Party",
     "Scenery",
@@ -182,19 +245,20 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
   const hotels = categoryData.map((listing: any) => ({
     id: listing.id,
     coordinates: [listing.latitude, listing.longitude], // Adjust based on your actual data
-    thumbnail: listing.images_url.length > 0 ? listing.images_url[0] : '/default-image.png',
+    thumbnail:
+      listing.images_url.length > 0
+        ? listing.images_url[0]
+        : "/default-image.png",
     price: listing.lowestPrivatePricePerNight_value,
     details: {
       title: listing.name,
-      description: 'idk',
+      description: "idk",
       rating: listing.overallRating_overall,
       reviews: listing.overallRating_numberOfRatings,
-      dates: 'Checkin -Checkout',
+      dates: "Checkin -Checkout",
     },
-  }
-));
+  }));
 
-  
   return (
     <div className={[styles.standardSearch, className].join(" ")}>
       <header className={styles.nav}>
@@ -220,7 +284,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
                   onFocus={handleFocus}
                   spellCheck={false}
                   style={{ border: "0px solid", outline: "none" }}
-                  placeholder="Search City"
+                  placeholder="Where do you want to go?"
                 />
                 {showRecentSearches && !inputValue && (
                   <div className={styles.recentSearchesBox}>
@@ -245,16 +309,56 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             <div className={styles.searchFilters}>
               <div className={styles.divider} />
             </div>
-            <div className={styles.searchFilters1}>
-              <div className={styles.attribute2}>
+            <div className="flex-1 flex-row">
+              <div className={styles.attribute2} onClick={handleCheckInClick}>
                 <div className={styles.attribute3}>Check in</div>
-                <div className={styles.value1}>Feb 19-26</div>
+                <input
+                  type="text"
+                  className={styles.value1}
+                  value={checkInDate ? checkInDate.toLocaleDateString() : ""}
+                  placeholder="Select date"
+                  onClick={() => setShowCheckInCalendar(true)}
+                  readOnly
+                />
+                {showCheckInCalendar && (
+                  <div className={styles.calendarContainer}>
+                    <Calendar
+                      onChange={(date: any) => handleCheckInDateChange(date)}
+                      value={checkInDate}
+                    />
+                  </div>
+                )}
               </div>
             </div>
-            <div className={styles.searchFilters2}>
-              <div className={styles.divider1} />
+            <div className={styles.searchFilters}>
+              <div className={styles.divider} />
             </div>
-            <div className={styles.iconButton} style={{ marginLeft: 20 }}>
+            <div>
+              <div className={styles.attribute2} onClick={handleCheckOutClick}>
+                <div className={styles.attribute3}>Check out</div>
+                <input
+                  type="text"
+                  className={styles.value1}
+                  value={checkOutDate ? checkOutDate.toLocaleDateString() : ""}
+                  placeholder="Select date"
+                  onClick={() => setShowCheckOutCalendar(true)}
+                  readOnly
+                />
+                {showCheckOutCalendar && (
+                  <div className={styles.calendarContainer}>
+                    <Calendar
+                      onChange={(date: any) => handleCheckOutDateChange(date)}
+                      value={checkOutDate}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.searchFilters}>
+              <div className={styles.divider} />
+            </div>
+            
               <div className={styles.iconButtonBase}>
                 <img
                   className={styles.icon}
@@ -262,7 +366,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
                   alt=""
                   src="/icon.svg"
                 />
-              </div>
+              
             </div>
           </div>
           <div className={styles.right}>
@@ -354,14 +458,14 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             return (
               <div
                 key={listing.id}
-                onClick={() => JSON.stringify(listing)}
+                onClick={() => handleListingClick(listing.id)}
                 style={{ width: "100%" }}
               >
                 <Listing1
                   data={listing}
                   image={firstImage}
                   subtitle={listing.name}
-                  rating={listing.overallRating_overall/20}
+                  rating={listing.overallRating_overall / 20}
                   cost={listing.lowestPrivatePricePerNight_value}
                   cityName={cityName}
                   facilities={listing.facilitiesSummary}
@@ -370,13 +474,14 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
                   star="/star.svg"
                   reviewSummary={`$${listing.price_per_night}`}
                 />
+
                 <div className={styles.divider4} />
               </div>
             );
           })}
         </div>
-        <div className={styles.left1  }>
-        <MapComponent hotels={hotels} />
+        <div className={styles.left1}>
+          <MapComponent hotels={hotels} />
         </div>
       </section>
     </div>
