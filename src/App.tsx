@@ -5,7 +5,7 @@ import Listing from "./pages/Listing";
 import MainComponent from "./pages/data";
 import ImageGallery from "./components/ImageGallery";
 import MainPage from "./pages/MainPage";
-
+import GenerateSitePage from "./pages/sitemap"
 function App() {
   // const action = useNavigationType();
   // const location = useLocation();
@@ -46,8 +46,8 @@ function App() {
     <div>
         <Routes>
         <Route path='/' element = {<MainPage/>}/>
-          <Route path='/Search' element = {<StandardSearch/>}/>
-          <Route path='/listing' element = {<Listing/>}/>
+          <Route path='/Search/:city_name' element = {<StandardSearch/>}/>
+          <Route path='/listing/:id' element={<Listing/>} />
           <Route path="/gallery" element={<ImageGallery />} />
         </Routes>
     </div>

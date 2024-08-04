@@ -1,0 +1,10 @@
+# Allow all bots to access the entire site except for specific directories
+User-agent: *
+
+
+# Block specific bad bots
+User-agent: BadBot
+Disallow: /
+
+# Specify the location of the XML sitemap
+Sitemap: https://www.tripandthrill.com/sitemap.xml
