@@ -10,6 +10,7 @@ import AirbnbFooter1 from "../components/AirbnbFooter1";
 import AirbnbFooter from "../components/AirbnbFooter";
 import styles from "./Listing.module.css";
 import FinalPricingContainer from "../components/PricingFinalBreakdown";
+import axios from "axios";
 
 const Listing: FunctionComponent = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,6 +22,7 @@ const Listing: FunctionComponent = () => {
   const param2 = searchParams.get('param2');
   const param3 = searchParams.get('param3');
   const [listingData, setListingData] = useState<any>(null);
+  const [pricingData, setPricingData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -52,6 +54,34 @@ const Listing: FunctionComponent = () => {
     }
   }, [id]);
 
+  // Fetching Api for Pricing Details
+  useEffect(() => {
+    const fetchPricing = async () => {
+      if (listingData) {
+        const userName = "user_ip";
+        const members = 2;
+        const timestamp = new Date().toISOString();
+        const url = '';
+        const hotelid = id;
+        const cityid = listingData.city_id;
+        const checkin = "2024-08-10";
+        const checkout="2024-08-11";
+
+        const apiUrl = `https://919huplmmh.execute-api.ap-south-1.amazonaws.com/prodTravelAPI/lambdafunction/HW?user_id=${userName}&checkin=${checkin}&checkout=${checkout}&members=${members}&hotelid=${hotelid}&cityid=${cityid}&url=${url}&timestamp=${timestamp}`;
+
+        try {
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+          setPricingData(data);
+          console.log("Fetched pricing data:", data);
+        } catch (error) {
+          console.error("Error fetching pricing data:", error);
+        }
+      }
+    };
+
+    fetchPricing();
+  }, [listingData]);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -59,6 +89,8 @@ const Listing: FunctionComponent = () => {
   if (!listingData) {
     return <div>No listing found for id: {id}</div>;
   }
+
+  console.log("id is :",listingData.hotelid);
   
   const ratingBreakdown = {
     ratingBreakdown_average: listingData.ratingBreakdown_average,
@@ -70,8 +102,7 @@ const Listing: FunctionComponent = () => {
     ratingBreakdown_staff: listingData.ratingBreakdown_staff,
     ratingBreakdown_value: listingData.ratingBreakdown_value,
   };
-
-  // State for hover effect
+  
 
   // Inline styles for hover effect
   const imageStyle = (isHovered: boolean) => ({

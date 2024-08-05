@@ -15,7 +15,7 @@ export type StandardSearchType = {
 const StandardSearch: FunctionComponent<StandardSearchType> = ({
   className = "",
 }) => {
-  // Taking the atributes from the main page //
+  // Taking the attributes from the main page //
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [checkin, setCheckin] = useState<string | null>(null);
@@ -34,6 +34,8 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [showRecentSearches, setShowRecentSearches] = useState<boolean>(false);
   const [activeSearchIndex, setActiveSearchIndex] = useState<number>(-1);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const filterByCity = "Mumbai"; // Example: 'Bangalore'
   const filterByFacility = ""; // Looking for 'wifi' in facilities_Summary
   const [showCheckInCalendar, setShowCheckInCalendar] = useState(false);
@@ -76,6 +78,21 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     }
   };
 
+  const fetchSuggestions = async (input: string) => {
+    const { data, error } = await supabase
+      .from("Hostelv2")
+      .select("city_name")
+      .ilike("city_name", `%${input}%`)
+      .limit(5);
+
+    if (error) {
+      console.error("Error fetching suggestions:", error);
+    } else {
+      const uniqueSuggestions = Array.from(new Set(data.map((item: any) => item.city_name)));
+      setSuggestions(uniqueSuggestions);
+    }
+  };
+
   useEffect(() => {
     // Fetch data when component mounts and when filters or limit changes
     fetchListing();
@@ -109,58 +126,102 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
   }, [recentSearches]);
 
+  useEffect(() => {
+    if (inputValue) {
+      fetchSuggestions(inputValue);
+      setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false);
+    }
+  }, [inputValue]);
+
   if (!categoryData.length) {
     return <div>No Result for the given city</div>;
   }
 
-  const handleChange = (e: any) => {
-    const value = e.target.value;
+  const handleChange = (e: React.KeyboardEvent<HTMLInputElement> | React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
     setInputValue(value);
-
+  
     if (value === "") {
       // Show recent searches when input is cleared
       setShowRecentSearches(true);
+      setShowSuggestions(false); // Hide suggestions
     } else {
       setShowRecentSearches(false);
+      // Fetch suggestions when input changes
+      fetchSuggestions(value);
+      setShowSuggestions(true);
     }
-
-    if (e.key === "Enter") {
-      if (activeSearchIndex >= 0) {
-        // Set city name based on selected recent search
-        const search = recentSearches[activeSearchIndex];
-        setCityName(search);
-        setInputValue(search);
-        setShowRecentSearches(false);
-        setActiveSearchIndex(-1);
-      } else {
-        const newCity = value;
-        setCityName(newCity);
-
-        // Add to recent searches if not already present
-        if (!recentSearches.includes(newCity)) {
-          setRecentSearches((prevSearches) => {
-            const updatedSearches = [newCity, ...prevSearches];
-            // Keep only the last 5 searches
-            return updatedSearches.slice(0, 10);
-          });
+  
+    if (e.type === "keydown") {
+      const keyEvent = e as React.KeyboardEvent<HTMLInputElement>;
+      if (keyEvent.key === "Enter") {
+        if (activeSearchIndex >= 0 && showRecentSearches) {
+          // Set city name based on selected recent search
+          const search = recentSearches[activeSearchIndex];
+          setCityName(search);
+          setInputValue(search);
+          setShowRecentSearches(false);
+          setActiveSearchIndex(-1);
+        } else if (activeSearchIndex >= 0 && showSuggestions) {
+          // Set city name based on selected suggestion
+          const suggestion = suggestions[activeSearchIndex];
+          setCityName(suggestion);
+          setInputValue(suggestion);
+          setShowSuggestions(false);
+          setActiveSearchIndex(-1);
+        } else {
+          const newCity = value;
+          setCityName(newCity);
+  
+          // Add to recent searches if not already present
+          if (!recentSearches.includes(newCity)) {
+            setRecentSearches((prevSearches) => {
+              const updatedSearches = [newCity, ...prevSearches];
+              // Keep only the last 10 searches
+              return updatedSearches.slice(0, 10);
+            });
+          }
+          setShowRecentSearches(false);
+          setShowSuggestions(false);
         }
-        setShowRecentSearches(false);
+      } else if (keyEvent.key === "ArrowDown") {
+        if (showRecentSearches) {
+          setActiveSearchIndex((prevIndex) =>
+            prevIndex < recentSearches.length - 1 ? prevIndex + 1 : prevIndex
+          );
+        } else if (showSuggestions) {
+          setActiveSearchIndex((prevIndex) =>
+            prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
+          );
+        }
+      } else if (keyEvent.key === "ArrowUp") {
+        if (showRecentSearches) {
+          setActiveSearchIndex((prevIndex) =>
+            prevIndex > 0 ? prevIndex - 1 : prevIndex
+          );
+        } else if (showSuggestions) {
+          setActiveSearchIndex((prevIndex) =>
+            prevIndex > 0 ? prevIndex - 1 : prevIndex
+          );
+        }
       }
-    } else if (e.key === "ArrowDown") {
-      setActiveSearchIndex((prevIndex) =>
-        prevIndex < recentSearches.length - 1 ? prevIndex + 1 : prevIndex
-      );
-    } else if (e.key === "ArrowUp") {
-      setActiveSearchIndex((prevIndex) =>
-        prevIndex > 0 ? prevIndex - 1 : prevIndex
-      );
     }
   };
+  
 
   const handleRecentSearchClick = (search: string) => {
     setCityName(search);
     setInputValue(search);
     setShowRecentSearches(false);
+    setActiveSearchIndex(-1);
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setCityName(suggestion);
+    setInputValue(suggestion);
+    setShowSuggestions(false);
     setActiveSearchIndex(-1);
   };
 
@@ -179,6 +240,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
   const handleBlur = (e: any) => {
     if (!e.currentTarget.contains(e.relatedTarget)) {
       setShowRecentSearches(false);
+      setShowSuggestions(false);
     }
   };
 
@@ -218,12 +280,19 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
   const handleListingClick = (id: string) => {
     const checkin = "2024-08-01"; // Example value, replace with actual data
     const checkout = "2024-08-05"; // Example value, replace with actual data
-    const param1 = "exampleParam1"; // Example value, replace with actual data
-    const param2 = "exampleParam2"; // Example value, replace with actual data
-    const param3 = "exampleParam3"; // Example value, replace with actual data
-  
-    const url = `/listing/${id}?checkin=${checkin}&checkout=${checkout}&param1=${param1}&param2=${param2}&param3=${param3}`;
-  
+    const param1 = "value1"; // Example value, replace with actual data
+    const param2 = "value2"; // Example value, replace with actual data
+    const param3 = "value3"; // Example value, replace with actual data
+
+    const searchParams = new URLSearchParams({
+      checkin: checkin,
+      checkout: checkout,
+      param1: param1,
+      param2: param2,
+      param3: param3,
+    });
+
+    const url = `/listing/${id}?${searchParams.toString()}`;
     navigate(url);
   };
 
@@ -304,6 +373,21 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
                     ))}
                   </div>
                 )}
+                {showSuggestions && suggestions.length > 0 && (
+          <div className = {styles.recentSearchesBox} onBlur={handleBlur}>
+            {suggestions.map((suggestion, index) => (
+              <div
+                key={index}
+                className={`${styles.recentSearchItem} ${
+                  index === activeSearchIndex ? styles.active : ""
+                }`}
+                onMouseDown={() => handleSuggestionClick(suggestion)}
+              >
+                {suggestion}
+              </div>
+            ))}
+          </div>
+        )}
               </div>
             </div>
             <div className={styles.searchFilters}>
