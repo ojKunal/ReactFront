@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FunctionComponent} from "react";
+import { FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../Utils/SupabaseConfig";
@@ -16,19 +16,26 @@ const Listing: FunctionComponent = () => {
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const checkin = searchParams.get('checkin');
-  const checkout = searchParams.get('checkout');
-  const param1 = searchParams.get('param1');
-  const param2 = searchParams.get('param2');
-  const param3 = searchParams.get('param3');
+  const checkin = searchParams.get("checkin");
+  const checkout = searchParams.get("checkout");
+  const param1 = searchParams.get("param1");
+  const param2 = searchParams.get("param2");
+  const param3 = searchParams.get("param3");
   const [listingData, setListingData] = useState<any>(null);
   const [pricingData, setPricingData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+  // pricing data states//
+  const [maxPrice1, setMaxPrice1] = useState(0);
+  const [discountPrice1, setDiscountPrice1] = useState(0);
+  const [selectedBeds1, setSelectedBeds1] = useState(0);
+  const [currency1, setCurrency1] = useState();
+  const [percent1, setPercent1] = useState<number>(0);
+  const [isdormShow1, setIsdormShow1] = useState<boolean>(false);
   const navigate = useNavigate();
 
   // for now data is fetched based on id, will have to update the query once (checkin,checkout,param1,param2,param3) updated in database //
-  
+
   useEffect(() => {
     const fetchListing = async () => {
       console.log("Fetching listing with id:", id);
@@ -61,11 +68,11 @@ const Listing: FunctionComponent = () => {
         const userName = "user_ip";
         const members = 2;
         const timestamp = new Date().toISOString();
-        const url = '';
+        const url = "";
         const hotelid = id;
         const cityid = listingData.city_id;
         const checkin = "2024-08-10";
-        const checkout="2024-08-11";
+        const checkout = "2024-08-11";
 
         const apiUrl = `https://919huplmmh.execute-api.ap-south-1.amazonaws.com/prodTravelAPI/lambdafunction/HW?user_id=${userName}&checkin=${checkin}&checkout=${checkout}&members=${members}&hotelid=${hotelid}&cityid=${cityid}&url=${url}&timestamp=${timestamp}`;
 
@@ -90,8 +97,8 @@ const Listing: FunctionComponent = () => {
     return <div>No listing found for id: {id}</div>;
   }
 
-  console.log("id is :",listingData.hotelid);
-  
+  console.log("id is :", listingData.hotelid);
+
   const ratingBreakdown = {
     ratingBreakdown_average: listingData.ratingBreakdown_average,
     ratingBreakdown_clean: listingData.ratingBreakdown_clean,
@@ -102,7 +109,6 @@ const Listing: FunctionComponent = () => {
     ratingBreakdown_staff: listingData.ratingBreakdown_staff,
     ratingBreakdown_value: listingData.ratingBreakdown_value,
   };
-  
 
   // Inline styles for hover effect
   const imageStyle = (isHovered: boolean) => ({
@@ -113,7 +119,7 @@ const Listing: FunctionComponent = () => {
 
   // Function to handle navigation to the gallery page
   const handleClick = () => {
-    navigate('/gallery', { state: { imagesArray: listingData.images_url } });
+    navigate("/gallery", { state: { imagesArray: listingData.images_url } });
   };
 
   return (
@@ -205,27 +211,29 @@ const Listing: FunctionComponent = () => {
             </div>
             <div className={styles.galleryImages}>
               <img
-                style={imageStyle(hoveredImage === 'fourth')}
+                style={imageStyle(hoveredImage === "fourth")}
                 className={styles.imageIcon3}
                 loading="lazy"
                 alt=""
                 src={listingData.images_url[3]}
-                onMouseEnter={() => setHoveredImage('fourth')}
+                onMouseEnter={() => setHoveredImage("fourth")}
                 onMouseLeave={() => setHoveredImage(null)}
               />
               <div>
                 <img
-                  style={imageStyle(hoveredImage === 'fifth')}
+                  style={imageStyle(hoveredImage === "fifth")}
                   className={styles.imageIcon2}
                   alt=""
                   src={listingData.images_url[4] || "/image-2@2x.png"}
-                  onMouseEnter={() => setHoveredImage('fifth')}
+                  onMouseEnter={() => setHoveredImage("fifth")}
                   onMouseLeave={() => setHoveredImage(null)}
                 />
                 <button className={styles.button} onClick={handleClick}>
                   <div className={styles.buttonBase}>
                     <img className={styles.icon} alt="" src="/icon-1.svg" />
-                    <div className={styles.navigationLabel}>Show all photos</div>
+                    <div className={styles.navigationLabel}>
+                      Show all photos
+                    </div>
                     <img className={styles.icon1} alt="" src="/icon2.svg" />
                   </div>
                 </button>
@@ -236,10 +244,26 @@ const Listing: FunctionComponent = () => {
 
         {/* Reservation Section */}
         <section className={styles.listingContent}>
-          <HostDetails data={listingData} />
+          <HostDetails
+            data={listingData}
+            pricingData={pricingData}
+            // setMaxPrice1={setMaxPrice1}
+            // setDiscountPrice1={setDiscountPrice1}
+            // setSelectedBeds1={setSelectedBeds1}
+            // setCurrency1={setCurrency1}
+            // setPercent1={setPercent1}
+            // setIsdormShow1={setIsdormShow1}
+          />
           <div className={styles.bookingContainer}>
-          <FinalPricingContainer></FinalPricingContainer>
-          {/* <div className={styles.bookingBox}>
+            <FinalPricingContainer
+              // setMaxPrice1={setMaxPrice1}
+              // setDiscountPrice1={setDiscountPrice1}
+              // setSelectedBeds1={setSelectedBeds1}
+              // setCurrency1={setCurrency1}
+              // setPercent1={setPercent1}
+              // setIsdormShow1={setIsdormShow1}
+            />
+            {/* <div className={styles.bookingBox}>
             <FinalPricingContainer></FinalPricingContainer>
               <div className={styles.header}>
                 <div className={styles.nights}>
@@ -341,7 +365,11 @@ const Listing: FunctionComponent = () => {
             </div> */}
             <div className={styles.iconText5}>
               <div className={styles.flag}>
-                <img className={styles.flagPriority2Icon} alt="" src="/flagpriority2.svg" />
+                <img
+                  className={styles.flagPriority2Icon}
+                  alt=""
+                  src="/flagpriority2.svg"
+                />
               </div>
               <div className={styles.text4}>Report this listing</div>
             </div>
@@ -349,12 +377,12 @@ const Listing: FunctionComponent = () => {
         </section>
 
         {/* Frame Component Section */}
-        <FrameComponent 
-        address1={listingData.address1} 
-        address2={listingData.address2} 
-        hostelId={listingData.id}
-        ratingBreakdown={ratingBreakdown}/>
-
+        <FrameComponent
+          address1={listingData.address1}
+          address2={listingData.address2}
+          hostelId={listingData.id}
+          ratingBreakdown={ratingBreakdown}
+        />
       </main>
       <AirbnbFooter1 />
       <AirbnbFooter />

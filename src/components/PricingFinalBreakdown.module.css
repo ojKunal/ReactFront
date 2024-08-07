@@ -199,6 +199,7 @@
   align-items: flex-start;
   justify-content: flex-end;
   padding: 0 var(--padding-5xs);
+  cursor: pointer;
 }
 .a1,
 .div {
@@ -267,7 +268,6 @@
   color: var(--white);
 }
 .roomPriceNightParent {
-  margin-top: -112.3px;
   align-self: stretch;
   flex-direction: row;
   gap: 11.3px;
@@ -337,6 +337,7 @@
   flex-shrink: 0;
 }
 .frameWrapper1 {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -385,7 +386,6 @@
 }
 .divrate {
   align-self: stretch;
-  border-top: 0.6px solid var(--color-gainsboro-100);
   border-bottom: 0.6px solid var(--color-gainsboro-100);
   flex-direction: row;
   padding: var(--padding-mini) 0;
@@ -504,6 +504,7 @@
 }
 .divrate1 {
   border-top: 0.6px solid var(--color-gainsboro-100);
+  margin-top: 0;
   flex-direction: row;
   align-items: flex-end;
   padding: var(--padding-mini) 0 3.9px;
@@ -515,10 +516,10 @@
   align-items: flex-start;
 }
 .divroomRates {
-  height: 369.6px;
-  overflow: hidden;
+  /* height: 369.6px; */
+  /* overflow: hidden; */
   flex-shrink: 0;
-  padding: 140px var(--padding-12xs) 16.1px 0;
+  padding: 20px var(--padding-12xs) 16.1px 0;
   box-sizing: border-box;
   gap: 15.9px;
   text-align: left;
@@ -713,6 +714,7 @@
 }
 .divbreakdownWrapperhasRate,
 .frameSection {
+  margin-top: 0px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -724,11 +726,16 @@
 .frameSection {
   align-self: stretch;
   height: 297.3px;
-  padding: 0 var(--padding-12xs) 63.3px 0;
+  padding: 0 var(--padding-12xs) 3.3px 0;
   gap: 38.3px;
   font-size: var(--text-base-medium-size);
   color: var(--black);
 }
+
+
+/* PricingDorm.module.css */
+
+/* Existing styles */
 .divbreakdownWrapperhasRate {
   width: 366px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -741,4 +748,23 @@
   letter-spacing: normal;
   font-size: var(--text-xs-medium-size);
   color: var(--color-slategray-200);
+}
+
+/* Sticky class */
+.sticky {
+  position: fixed; /* Fixes the element in place */
+  top: 10px; /* Distance from the top of the viewport */
+  width: 366px; /* Ensure the width is consistent */
+  z-index: 1000; /* Ensure it's above other content */
+  /* Optional: Add a background color to ensure visibility */
+  background-color: var(--white); 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Maintain box-shadow if needed */
+}
+
+/* Media query for small devices */
+@media (max-width: 913px) { /* Adjust the max-width as needed */
+  .sticky {
+    position: static; /* Removes fixed positioning */
+    top: auto; /* Reset top value */
+  }
 }

@@ -1,74 +1,333 @@
-import { FunctionComponent } from "react";
-import styles from "./PricingPrivate.module.css";
+import React, { useEffect, useState } from "react";
+import { usePricingContext } from "./PricingContext"; // Adjust the path to your PricingContext file
+import styles from "./PricingDorm.module.css";
+import { PiCaretDoubleLeftBold } from "react-icons/pi";
+import { PiCaretDoubleRightBold } from "react-icons/pi";
 
-export type DivroomContainerType = {
+export type PrivateroomContainerType = {
   className?: string;
+  rooms_private: any;
 };
 
-const PrivateroomContainer: FunctionComponent<DivroomContainerType> = ({
+const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
   className = "",
+  rooms_private,
 }) => {
+  const {
+    maxPrice2,
+    setMaxPrice2,
+    discountPrice2,
+    setDiscountPrice2,
+    selectedBeds2,
+    setSelectedBeds2,
+    currency2,
+    setCurrency2,
+    percent2,
+    setPercent2,
+    isDormShow2,
+    setIsDormShow2,
+    titleName2,
+    setTitleName2,
+  } = usePricingContext();
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleRoomsIncrement = () => {
+    if (
+      rooms_private &&
+      rooms_private[0] &&
+      selectedBeds2 < rooms_private[0].totalBedsAvailable
+    ) {
+      setSelectedBeds2(selectedBeds2 + 1);
+    }
+  };
+  console.log("currency is", currency2);
+  const handleRoomsDecrement = () => {
+    if (rooms_private && rooms_private[0] && selectedBeds2 > 0) {
+      setSelectedBeds2(selectedBeds2 - 1);
+    }
+    if (selectedBeds2 === 1) {
+      setIsDormShow2(false);
+    }
+  };
+
+  const handleDormsPrice = () => {
+    setSelectedBeds2(1);
+    setIsDormShow2(true);
+  };
+
+  useEffect(() => {
+    if (
+      rooms_private &&
+      rooms_private[0] &&
+      rooms_private[0].totalPrice &&
+      rooms_private[0].totalPrice[0].price &&
+      rooms_private[0].totalPrice[0].price.value
+    ) {
+      const newMaxPrice =
+        rooms_private[0].totalPrice[0].price.value * selectedBeds2;
+      setMaxPrice2(newMaxPrice);
+      setCurrency2(rooms_private[0].totalPrice[0].price.currency);
+    }
+    if (
+      rooms_private &&
+      rooms_private[0] &&
+      rooms_private[0].averagePricePerNight &&
+      rooms_private[0].averagePricePerNight[0] &&
+      rooms_private[0].averagePricePerNight[0].price
+    ) {
+      setDiscountPrice2(
+        rooms_private[0].averagePricePerNight[0].price.value * selectedBeds2
+      );
+    }
+  }, [selectedBeds2, rooms_private]);
+
+  useEffect(() => {
+    if (maxPrice2 > 0) {
+      const newPercent = ((maxPrice2 - discountPrice2) / maxPrice2) * 100;
+      setPercent2(newPercent);
+    }
+  }, [maxPrice2, discountPrice2]);
+
+  const dummyImages = [
+   "/imgactiveslidevlazyimagevlazyimageloaded@2x.png",
+    "https://a.hwstatic.com/image/upload/f_auto,q_auto/v1/propertyimages/3/320257/nwr6wlojrgmyxhqibvbh",
+    "https://a.hwstatic.com/image/upload/f_auto,q_auto/v1/propertyimages/3/319841/kqedepjewqf65q80ihan",
+  ];
+
+  useEffect(() => {
+    if (rooms_private && rooms_private[0]?.images) {
+      const interval = setInterval(() => {
+        setCurrentIndex(
+          (prevIndex) => (prevIndex + 1) % rooms_private[0].images.length
+        );
+      }, 2500); // Change image every 2 seconds
+
+      return () => clearInterval(interval); // Clear interval on component unmount
+    }
+    else {
+      const interval = setInterval(() => {
+        setCurrentIndex(
+          (prevIndex) => (prevIndex + 1) % dummyImages.length
+        );
+      }, 2500); // Change image every 2 seconds
+
+      return () => clearInterval(interval); // Clear interval on component unmount
+    }
+  }, [rooms_private]);
+
+  useEffect(() => {
+    const titleName =
+      rooms_private && rooms_private[0]
+        ? rooms_private[0].name
+        : "Basic Double Bed Private Ensuite";
+    setTitleName2(titleName);
+  }, [rooms_private, setTitleName2]);
+
+  const images = rooms_private?.[0]?.images || dummyImages;
+  const goToPrevious = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
   return (
     <div className={[styles.divroomContainer, className].join(" ")}>
-      <section className={styles.mainContainer}>
-        <div className={styles.divcarousel}>
-          <img
-            className={styles.imgactiveSlidevLazyImageIcon}
-            loading="lazy"
-            alt=""
-            src="/imgactiveslidevlazyimagevlazyimageloaded@2x.png"
-          />
-          <div className={styles.divsliderDotactive} />
-          <div className={styles.divsliderDot} />
-          <div className={styles.sliderDotsContainer}>
-            <div className={styles.divsliderDot1} />
-            <div className={styles.divsliderDot2} />
-          </div>
-          <div className={styles.divsliderDot3} />
-        </div>
-        <div className={styles.contentContainer}>
-          <div className={styles.headingContainer}>
-            <div className={styles.basicDoubleBedPrivateEnsuiWrapper}>
-              <div className={styles.basicDoubleBed}>
-                Basic Double Bed Private Ensuite
-              </div>
+      <section className={styles.divcarouselParent}>
+        <div
+          className={styles.divcarousel}
+          style={{ backgroundColor: "", width: "80px" }}
+        >
+          <button
+            className={`${styles.carouselButton} ${styles.left}`}
+            onClick={goToPrevious}
+            style={{
+              position: "absolute",
+              left: "10px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: "1000",
+              background: "transparent",
+              border: "none",
+            }}
+          >
+            <PiCaretDoubleLeftBold size={30} />
+          </button>
+          <button
+            className={`${styles.carouselButton} ${styles.right}`}
+            onClick={goToNext}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: "1000",
+              background: "transparent",
+              border: "none",
+            }}
+          >
+            <PiCaretDoubleRightBold size={30} />
+          </button>
+          {images.map((image: any, index: any) => {
+            let imageUrl;
+            if(rooms_private?.[0]?.images) {
+              imageUrl = `https://${image.prefix}${image.suffix}`;
+            }
+            else {
+              imageUrl = image;
+            }
+            console.log("url is : ", imageUrl);
+            return (
+              <img
+                key={index}
+                className={`${styles.imgactiveSlidevLazyImageIcon} ${
+                  index === currentIndex ? styles.active : ""
+                }`}
+                loading="lazy"
+                alt=""
+                src={imageUrl}
+              />
+            );
+          })}
+          <div style={{ width: "100%" }}>
+            <div
+              className={styles.dotsContainer}
+              style={{
+                position: "absolute",
+                bottom: "6px",
+                left: "0",
+                right: "0",
+                margin: "auto",
+                display: "flex",
+                justifyContent: "center",
+                pointerEvents: "none", // To ensure clicks on the dots are not blocked
+              }}
+            >
+              {images.map((image: any, index: any) => {
+                const imageUrl = `https://${image.prefix}${image.suffix}`;
+                console.log("url is : ", imageUrl);
+                return (
+                  <img
+                    key={index}
+                    className={`${styles.imgactiveSlidevLazyImageIcon} ${
+                      index === currentIndex ? styles.active : ""
+                    }`}
+                    loading="lazy"
+                    alt=""
+                    src={imageUrl}
+                  />
+                );
+              })}
+              <div style={{ width: "100%" }}>
+            <div
+              className={styles.dotsContainer}
+              style={{
+                position: "absolute",
+                bottom: "6px",
+                left: "0",
+                right: "0",
+                margin: "auto",
+                display: "flex",
+                justifyContent: "center",
+                pointerEvents: "none", // To ensure clicks on the dots are not blocked
+              }}
+            >
+              {images.map((_: any, index: any) => (
+                <div
+                  key={index}
+                  className={`${styles.divsliderDot} ${
+                    index === currentIndex ? styles.divsliderDotactive : ""
+                  }`}
+                  onClick={() => setCurrentIndex(index)}
+                  style={{
+                    cursor: "pointer",
+                    pointerEvents: "auto", // To ensure clicks on the dots are functional
+                  }}
+                />
+              ))}
             </div>
-            <div className={styles.detailsContainer}>
-              <div className={styles.detailsRow}>
-                <div className={styles.roomFeatures}>
-                  <div className={styles.sleepsEnsuite}>
+          </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.frameWrapper}>
+          <div className={styles.frameParent}>
+            <div className={styles.titleContainerWrapper}>
+              <div className={styles.titleContainer}>
+                {rooms_private && rooms_private[0] ? (
+                  <div className={styles.standard6Bed}>
+                    {rooms_private[0].name}
+                  </div>
+                ) : (
+                  <div className={styles.standard6Bed}>
+                    Basic Double Bed Private Ensuite
+                  </div>
+                )}
+                <div className={styles.detailsContainerParent}>
+                  <div className={styles.detailsContainer}>
+                    <div className={styles.divbody2RegroomDetailsco}>
+                      {rooms_private && rooms_private[0] ? (
+                        <div className={styles.bedMixedDorm}>
+                          {rooms_private[0].description}
+                        </div>
+                      ) : (
+                        <div className={styles.bedMixedDorm}>
+                          6 Bed Mixed Dorm without Air Conditioning, En suite
+                          Washroom, Digital Lockers, Reading Light, Bed Fans,
+                          Cloth Hanger, International Sockets, Key Card Access.
+                        </div>
+                      )}
+                    </div>
+                    <div className={styles.frameGroup}>
+                      <img
+                        className={styles.frameIcon}
+                        loading="lazy"
+                        alt=""
+                        src="/frame2.svg"
+                      />
+                      {rooms_private &&
+                      rooms_private[0] &&
+                      rooms_private[0].capacity ? (
+                        <div className={styles.sleeps6Wrapper}>
+                          <a className={styles.sleeps6}>
+                            {" "}
+                            Sleeps {rooms_private[0].capacity}
+                          </a>
+                        </div>
+                      ) : (
+                        <div className={styles.sleeps6Wrapper}>
+                          <a className={styles.sleeps6}> Sleeps 2</a>
+                        </div>
+                      )}
+                    </div>
+                    <div className={styles.divtagText}>
+                      <b className={styles.bestBedPrice}>Best Bed Price</b>
+                    </div>
+                  </div>
+                  <div className={styles.itoggleDescriptioniconCoreWrapper}>
                     <img
-                      className={styles.sleepsIcon}
+                      className={styles.itoggleDescriptioniconCore}
                       loading="lazy"
                       alt=""
-                      src="/frame1.svg"
+                      src="/itoggledescriptioniconcorechevrondown.svg"
                     />
-                    <a className={styles.sleeps2}> Sleeps 2</a>
                   </div>
-                  <div className={styles.sleepsEnsuite1}>
-                    <img
-                      className={styles.frameIcon}
-                      loading="lazy"
-                      alt=""
-                      src="/frame-1.svg"
-                    />
-                    <a className={styles.ensuite}> Ensuite</a>
-                  </div>
-                </div>
-                <div className={styles.divtagText}>
-                  <b className={styles.only3Rooms}>Only 3 rooms left!</b>
                 </div>
               </div>
             </div>
             <div className={styles.divnotesDivider}>
               <div className={styles.pricesArePer}>Prices are per room -</div>
               <input
-                className={styles.taxInfoContainer}
+                className={styles.divnotesDividerChild}
                 placeholder="Taxes Not Included"
                 type="text"
               />
-              <div className={styles.spacerContainer}>
-                <img className={styles.spacerIcon} alt="" src="/frame-2.svg" />
+              <div className={styles.frameContainer}>
+                <img className={styles.frameIcon1} alt="" src="/frame-2.svg" />
               </div>
             </div>
           </div>
@@ -76,24 +335,38 @@ const PrivateroomContainer: FunctionComponent<DivroomContainerType> = ({
       </section>
       <div className={styles.divrateList}>
         <div className={styles.divraterateContainerhighli}>
-          <div className={styles.highlightedRateContent}>
+          <div className={styles.priceContainerWrapper}>
             <div className={styles.priceContainer}>
-              <div className={styles.priceDetails}>
-                <div className={styles.parent}>
-                  <a className={styles.a}>€17.96</a>
-                  <div className={styles.strikethroughPriceContainer}>
+              <div className={styles.innerPriceDetailsWrapper}>
+                <div className={styles.innerPriceDetails}>
+                  {rooms_private?.[0]?.averagePricePerNight?.[0]?.price ? (
+                    <a className={styles.a}>
+                      {rooms_private[0].averagePricePerNight[0].price.currency}{" "}
+                      {rooms_private[0].averagePricePerNight[0].price.value}
+                    </a>
+                  ) : (
+                    <a className={styles.a}>{currency2} 0</a>
+                  )}
+                  <div className={styles.divtagTextParent}>
                     <div className={styles.divtagText1}>
-                      <b className={styles.discountPercentage}>-36%</b>
+                      <a className={styles.a1}>-{percent2}%</a>
                     </div>
                     <div className={styles.spanpriceStrikethroughbodyWrapper}>
                       <div className={styles.spanpriceStrikethroughbody}>
-                        <a className={styles.a1}>€28.06</a>
+                        {rooms_private?.[0]?.totalPrice?.[0]?.price ? (
+                          <a className={styles.a2}>
+                            {rooms_private[0].totalPrice[0].price.currency}{" "}
+                            {rooms_private[0].totalPrice[0].price.value}
+                          </a>
+                        ) : (
+                          <a className={styles.a}>{currency2} 0</a>
+                        )}
                       </div>
                     </div>
                   </div>
-                  <div className={styles.cancellationInfoContainer}>
+                  <div className={styles.frameDiv}>
                     <img
-                      className={styles.cancellationIcon}
+                      className={styles.frameIcon2}
                       loading="lazy"
                       alt=""
                       src="/frame-3.svg"
@@ -102,66 +375,92 @@ const PrivateroomContainer: FunctionComponent<DivroomContainerType> = ({
                   </div>
                 </div>
               </div>
-              <div className={styles.guestCounterContainer}>
-                <div className={styles.divcounterButtonguestsCoun}>
-                  <div className={styles.guestCount}>
-                    <img
-                      className={styles.guestIcon}
-                      loading="lazy"
-                      alt=""
-                      src="/frame-4.svg"
-                    />
+              {isDormShow2 && (
+                <div className={styles.divcounterButtonguestsCounParent}>
+                  <div className={styles.divcounterButtonguestsCoun}>
+                    <div
+                      className={styles.counterButtons}
+                      onClick={() => handleRoomsDecrement()}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        className={styles.emptyCounterButton}
+                        loading="lazy"
+                        alt=""
+                        src="/frame-4.svg"
+                      />
+                    </div>
+                    <a className={styles.guestCount}>{selectedBeds2}</a>
+                    <div
+                      className={styles.counterButtons1}
+                      onClick={() => handleRoomsIncrement()}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        className={styles.frameIcon3}
+                        loading="lazy"
+                        alt=""
+                        src="/frame-5.svg"
+                      />
+                    </div>
                   </div>
-                  <a className={styles.guestNumber}>1</a>
-                  <div className={styles.guestCount1}>
-                    <img
-                      className={styles.frameIcon1}
-                      loading="lazy"
-                      alt=""
-                      src="/frame-5.svg"
-                    />
+                  <div className={styles.bedWrapper}>
+                    <a className={styles.bed}>{selectedBeds2} Room</a>
                   </div>
                 </div>
-                <div className={styles.roomLabelContainer}>
-                  <a className={styles.room}>1 Room</a>
-                </div>
-              </div>
+              )}
+              {!isDormShow2 && (
+                <button
+                  className={styles.buttonbtnContent}
+                  onClick={handleDormsPrice}
+                >
+                  <div className={styles.emptyButtonContentWrapper}>
+                    <img
+                      className={styles.emptyButtonContent}
+                      loading="lazy"
+                      alt=""
+                      src="/frame-8.svg"
+                    />
+                  </div>
+                  <a className={styles.add}>Add</a>
+                </button>
+              )}
             </div>
           </div>
           <div className={styles.divdivider} />
         </div>
         <div className={styles.rateContainer}>
-          <div className={styles.rateContent}>
-            <a className={styles.a2}>€22.32</a>
-            <div className={styles.rateDetails}>
-              <div className={styles.rateInfo}>
-                <div className={styles.originalPriceContainerParent}>
-                  <div className={styles.originalPriceContainer}>
+          <div className={styles.rateDetails}>
+            <a className={styles.a3}>€7.01</a>
+            <div className={styles.frameParent1}>
+              <div className={styles.innerRateStrikethroughWrapper}>
+                <div className={styles.innerRateStrikethrough}>
+                  <div className={styles.divtagTextGroup}>
                     <div className={styles.divtagText2}>
-                      <b className={styles.discountValue}>-36%</b>
+                      <b className={styles.b}>-36%</b>
                     </div>
-                    <div className={styles.strikethroughPrice}>
+                    <div className={styles.spanpriceStrikethroughbodyContainer}>
                       <div className={styles.spanpriceStrikethroughbody1}>
-                        <div className={styles.div}>€34.87</div>
+                        <div className={styles.div}>€10.96</div>
                       </div>
                     </div>
                   </div>
-                  <div className={styles.rateFeatures}>
-                    <div className={styles.featuresIcons}>
+                  <div className={styles.includedIconsParent}>
+                    <div className={styles.includedIcons}>
                       <img
-                        className={styles.featureIcon}
+                        className={styles.emptyIncludedIcon}
                         loading="lazy"
                         alt=""
                         src="/frame-6.svg"
                       />
                       <img
-                        className={styles.featureIcon1}
+                        className={styles.emptyIncludedIcon1}
                         loading="lazy"
                         alt=""
                         src="/frame-7.svg"
                       />
                     </div>
-                    <div className={styles.featuresLabels}>
+                    <div className={styles.freeCancellationParent}>
                       <div className={styles.freeCancellation1}>
                         Free Cancellation
                       </div>
@@ -172,17 +471,6 @@ const PrivateroomContainer: FunctionComponent<DivroomContainerType> = ({
                   </div>
                 </div>
               </div>
-              <button className={styles.buttonbtnContent}>
-                <div className={styles.buttonContent}>
-                  <img
-                    className={styles.buttonIcon}
-                    loading="lazy"
-                    alt=""
-                    src="/frame-8.svg"
-                  />
-                </div>
-                <a className={styles.add}>Add</a>
-              </button>
             </div>
           </div>
         </div>

@@ -1,0 +1,29 @@
+/* Calendar container with background adjustment */
+.calendarContainer {
+    position: relative;
+    /* Ensures the calendar takes up the correct amount of space */
+  }
+  
+  .dateRangeCalendar {
+    background-color: white; /* Default background color for the calendar */
+    border-radius: 8px; /* Rounded corners for the calendar */
+    overflow: hidden; /* Ensures no overflow from the container */
+  }
+  
+  /* Clip the right half of the calendar */
+  .dateRangeCalendar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%; /* Adjust the left position to control the width of the visible part */
+    background: rgba(255, 255, 255, 0); /* Transparent background for the clipped part */
+    z-index: 1;
+  }
+  
+  /* Ensure calendar itself is positioned correctly */
+  .dateRangeCalendar {
+    position: relative;
+  }
+  

@@ -1,46 +1,257 @@
-import { FunctionComponent } from "react";
+import React, { useEffect, useState } from "react";
+import { usePricingContext } from "./PricingContext"; // Adjust the import path as necessary
 import styles from "./PricingDorm.module.css";
+import { PiCaretDoubleLeftBold } from "react-icons/pi";
+import { PiCaretDoubleRightBold } from "react-icons/pi";
 
 export type DivroomContainer1Type = {
   className?: string;
+  rooms_dorms?: any;
 };
 
-const DormroomContainer: FunctionComponent<DivroomContainer1Type> = ({
+const DormroomContainer: React.FC<DivroomContainer1Type> = ({
   className = "",
+  rooms_dorms,
 }) => {
+  const {
+    maxPrice1,
+    setMaxPrice1,
+    discountPrice1,
+    setDiscountPrice1,
+    selectedBeds1,
+    setSelectedBeds1,
+    currency1,
+    setCurrency1,
+    percent1,
+    setPercent1,
+    isDormShow1,
+    setIsDormShow1,
+    doomsName,
+    setDoomsName,
+  } = usePricingContext();
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleBedsIncrement = () => {
+    if (
+      rooms_dorms &&
+      rooms_dorms[0] &&
+      selectedBeds1 < rooms_dorms[0].totalBedsAvailable
+    ) {
+      setSelectedBeds1(selectedBeds1 + 1);
+    }
+  };
+
+  const handleBedsDecrement = () => {
+    if (rooms_dorms && rooms_dorms[0] && selectedBeds1 > 0) {
+      setSelectedBeds1(selectedBeds1 - 1);
+    }
+    if (selectedBeds1 === 1) {
+      setIsDormShow1(false);
+    }
+  };
+
+  const handleDormsPrice = () => {
+    setSelectedBeds1(1);
+    setIsDormShow1(true);
+  };
+
+  useEffect(() => {
+    if (rooms_dorms && rooms_dorms[0]?.images) {
+      const interval = setInterval(() => {
+        setCurrentIndex(
+          (prevIndex) => (prevIndex + 1) % rooms_dorms[0].images.length
+        );
+      }, 2500); // Change image every 2 seconds
+
+      return () => clearInterval(interval); // Clear interval on component unmount
+    }
+    else {
+      const interval = setInterval(() => {
+        setCurrentIndex(
+          (prevIndex) => (prevIndex + 1) % dummyImages.length
+        );
+      }, 2500); // Change image every 2 seconds
+
+      return () => clearInterval(interval); // Clear interval on component unmount
+    }
+  }, [rooms_dorms]);
+
+  useEffect(() => {
+    if (
+      rooms_dorms &&
+      rooms_dorms[0] &&
+      rooms_dorms[0].totalPrice &&
+      rooms_dorms[0].totalPrice[0].price &&
+      rooms_dorms[0].totalPrice[0].price.value
+    ) {
+      const newMaxPrice =
+        rooms_dorms[0].totalPrice[0].price.value * selectedBeds1;
+      setMaxPrice1(newMaxPrice);
+      setCurrency1(rooms_dorms[0].totalPrice[0].price.currency);
+    }
+    if (
+      rooms_dorms &&
+      rooms_dorms[0] &&
+      rooms_dorms[0].averagePricePerNight &&
+      rooms_dorms[0].averagePricePerNight[0] &&
+      rooms_dorms[0].averagePricePerNight[0].price
+    ) {
+      setDiscountPrice1(
+        rooms_dorms[0].averagePricePerNight[0].price.value * selectedBeds1
+      );
+    }
+  }, [selectedBeds1, rooms_dorms]);
+
+  useEffect(() => {
+    if (maxPrice1 > 0) {
+      const newPercent = ((maxPrice1 - discountPrice1) / maxPrice1) * 100;
+      setPercent1(newPercent);
+    }
+  }, [maxPrice1, discountPrice1]);
+
+  const dummyImages = [
+    "/imgactiveslidevlazyimagevlazyimageloaded@2x.png",
+    "https://a.hwstatic.com/image/upload/f_auto,q_auto/v1/propertyimages/3/320257/nwr6wlojrgmyxhqibvbh",
+    "https://a.hwstatic.com/image/upload/f_auto,q_auto/v1/propertyimages/3/319841/kqedepjewqf65q80ihan",
+  ];
+
+  useEffect(() => {
+    const titleName =
+      rooms_dorms && rooms_dorms[0]
+        ? rooms_dorms[0].name
+        : "Basic 4 Bed Male Dorm";
+    setDoomsName(titleName);
+  }, [rooms_dorms, setDoomsName]);
+
+  const images = rooms_dorms?.[0]?.images || dummyImages;
+
+  const goToPrevious = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
   return (
     <div className={[styles.divroomContainer, className].join(" ")}>
       <section className={styles.divcarouselParent}>
-        <div className={styles.divcarousel}>
-          <img
-            className={styles.imgactiveSlidevLazyImageIcon}
-            loading="lazy"
-            alt=""
-            src="/imgactiveslidevlazyimagevlazyimageloaded1@2x.png"
-          />
-          <div className={styles.divsliderDotactive} />
-          <div className={styles.divsliderDot} />
-          <div className={styles.divsliderDotParent}>
-            <div className={styles.divsliderDot1} />
-            <div className={styles.divsliderDot2} />
+        <div
+          className={styles.divcarousel}
+          style={{ backgroundColor: "", width: "80px" }}
+        >
+          <button
+            className={`${styles.carouselButton} ${styles.left}`}
+            onClick={goToPrevious}
+            style={{
+              position: "absolute",
+              left: "10px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: "1000",
+              background: "transparent",
+              border: "none",
+            }}
+          >
+            <PiCaretDoubleLeftBold size={30} />
+          </button>
+          <button
+            className={`${styles.carouselButton} ${styles.right}`}
+            onClick={goToNext}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: "1000",
+              background: "transparent",
+              border: "none",
+            }}
+          >
+            <PiCaretDoubleRightBold size={30} />
+          </button>
+          {images.map((image: any, index: any) => {
+            let imageUrl;
+            if(rooms_dorms?.[0]?.images) {
+              imageUrl = `https://${image.prefix}${image.suffix}`;
+            }
+            else {
+              imageUrl = image;
+            }
+            console.log("url is : ", imageUrl);
+            return (
+              <img
+                key={index}
+                className={`${styles.imgactiveSlidevLazyImageIcon} ${
+                  index === currentIndex ? styles.active : ""
+                }`}
+                loading="lazy"
+                alt=""
+                src={imageUrl}
+              />
+            );
+          })}
+
+          <div style={{ width: "100%" }}>
+            <div
+              className={styles.dotsContainer}
+              style={{
+                position: "absolute",
+                bottom: "6px",
+                left: "0",
+                right: "0",
+                margin: "auto",
+                display: "flex",
+                justifyContent: "center",
+                pointerEvents: "none", // To ensure clicks on the dots are not blocked
+              }}
+            >
+              {images.map((_: any, index: any) => (
+                <div
+                  key={index}
+                  className={`${styles.divsliderDot} ${
+                    index === currentIndex ? styles.divsliderDotactive : ""
+                  }`}
+                  onClick={() => setCurrentIndex(index)}
+                  style={{
+                    cursor: "pointer",
+                    pointerEvents: "auto", // To ensure clicks on the dots are functional
+                  }}
+                />
+              ))}
+            </div>
           </div>
-          <div className={styles.divsliderDot3} />
         </div>
         <div className={styles.frameWrapper}>
           <div className={styles.frameParent}>
             <div className={styles.titleContainerWrapper}>
               <div className={styles.titleContainer}>
-                <div className={styles.standard6Bed}>
-                  Standard 6 Bed Mixed Dorm Ensuite
-                </div>
+                {rooms_dorms && rooms_dorms[0] ? (
+                  <div className={styles.standard6Bed}>
+                    {rooms_dorms[0].name}
+                  </div>
+                ) : (
+                  <div className={styles.standard6Bed}>
+                    Basic 4 Bed Male Dorm
+                  </div>
+                )}
                 <div className={styles.detailsContainerParent}>
                   <div className={styles.detailsContainer}>
                     <div className={styles.divbody2RegroomDetailsco}>
-                      <div className={styles.bedMixedDorm}>
-                        6 Bed Mixed Dorm without Air Conditioning, En suite
-                        Washroom, Digital Lockers, Reading Light, Bed Fans,
-                        Cloth Hanger, International Sockets, Key Card Access.
-                      </div>
+                      {rooms_dorms && rooms_dorms[0] ? (
+                        <div className={styles.bedMixedDorm}>
+                          {rooms_dorms[0].description}
+                        </div>
+                      ) : (
+                        <div className={styles.bedMixedDorm}>
+                          6 Bed Mixed Dorm without Air Conditioning, En suite
+                          Washroom, Digital Lockers, Reading Light, Bed Fans,
+                          Cloth Hanger, International Sockets, Key Card Access.
+                        </div>
+                      )}
                     </div>
                     <div className={styles.frameGroup}>
                       <img
@@ -49,9 +260,20 @@ const DormroomContainer: FunctionComponent<DivroomContainer1Type> = ({
                         alt=""
                         src="/frame2.svg"
                       />
-                      <div className={styles.sleeps6Wrapper}>
-                        <a className={styles.sleeps6}> Sleeps 6</a>
-                      </div>
+                      {rooms_dorms &&
+                      rooms_dorms[0] &&
+                      rooms_dorms[0].capacity ? (
+                        <div className={styles.sleeps6Wrapper}>
+                          <a className={styles.sleeps6}>
+                            {" "}
+                            Sleeps {rooms_dorms[0].capacity}
+                          </a>
+                        </div>
+                      ) : (
+                        <div className={styles.sleeps6Wrapper}>
+                          <a className={styles.sleeps6}> Sleeps 6</a>
+                        </div>
+                      )}
                     </div>
                     <div className={styles.divtagText}>
                       <b className={styles.bestBedPrice}>Best Bed Price</b>
@@ -88,14 +310,28 @@ const DormroomContainer: FunctionComponent<DivroomContainer1Type> = ({
             <div className={styles.priceContainer}>
               <div className={styles.innerPriceDetailsWrapper}>
                 <div className={styles.innerPriceDetails}>
-                  <a className={styles.a}>€4.34</a>
+                  {rooms_dorms?.[0]?.averagePricePerNight?.[0]?.price ? (
+                    <a className={styles.a}>
+                      {rooms_dorms[0].averagePricePerNight[0].price.currency}{" "}
+                      {rooms_dorms[0].averagePricePerNight[0].price.value}
+                    </a>
+                  ) : (
+                    <a className={styles.a}>{currency1} 0</a>
+                  )}
                   <div className={styles.divtagTextParent}>
                     <div className={styles.divtagText1}>
-                      <a className={styles.a1}>-36%</a>
+                      <a className={styles.a1}>-{percent1}%</a>
                     </div>
                     <div className={styles.spanpriceStrikethroughbodyWrapper}>
                       <div className={styles.spanpriceStrikethroughbody}>
-                        <a className={styles.a2}>€6.78</a>
+                        {rooms_dorms?.[0]?.totalPrice?.[0]?.price ? (
+                          <a className={styles.a2}>
+                            {rooms_dorms[0].totalPrice[0].price.currency}{" "}
+                            {rooms_dorms[0].totalPrice[0].price.value}
+                          </a>
+                        ) : (
+                          <a className={styles.a}>{currency1} 0</a>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -110,30 +346,56 @@ const DormroomContainer: FunctionComponent<DivroomContainer1Type> = ({
                   </div>
                 </div>
               </div>
-              <div className={styles.divcounterButtonguestsCounParent}>
-                <div className={styles.divcounterButtonguestsCoun}>
-                  <div className={styles.counterButtons}>
-                    <img
-                      className={styles.emptyCounterButton}
-                      loading="lazy"
-                      alt=""
-                      src="/frame-4.svg"
-                    />
+              {isDormShow1 && (
+                <div className={styles.divcounterButtonguestsCounParent}>
+                  <div className={styles.divcounterButtonguestsCoun}>
+                    <div
+                      className={styles.counterButtons}
+                      onClick={() => handleBedsDecrement()}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        className={styles.emptyCounterButton}
+                        loading="lazy"
+                        alt=""
+                        src="/frame-4.svg"
+                      />
+                    </div>
+                    <a className={styles.guestCount}>{selectedBeds1}</a>
+                    <div
+                      className={styles.counterButtons1}
+                      onClick={() => handleBedsIncrement()}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        className={styles.frameIcon3}
+                        loading="lazy"
+                        alt=""
+                        src="/frame-5.svg"
+                      />
+                    </div>
                   </div>
-                  <a className={styles.guestCount}>1</a>
-                  <div className={styles.counterButtons1}>
-                    <img
-                      className={styles.frameIcon3}
-                      loading="lazy"
-                      alt=""
-                      src="/frame-5.svg"
-                    />
+                  <div className={styles.bedWrapper}>
+                    <a className={styles.bed}>{selectedBeds1} Bed</a>
                   </div>
                 </div>
-                <div className={styles.bedWrapper}>
-                  <a className={styles.bed}>1 Bed</a>
-                </div>
-              </div>
+              )}
+              {!isDormShow1 && (
+                <button
+                  className={styles.buttonbtnContent}
+                  onClick={handleDormsPrice}
+                >
+                  <div className={styles.emptyButtonContentWrapper}>
+                    <img
+                      className={styles.emptyButtonContent}
+                      loading="lazy"
+                      alt=""
+                      src="/frame-8.svg"
+                    />
+                  </div>
+                  <a className={styles.add}>Add</a>
+                </button>
+              )}
             </div>
           </div>
           <div className={styles.divdivider} />
@@ -180,17 +442,6 @@ const DormroomContainer: FunctionComponent<DivroomContainer1Type> = ({
                   </div>
                 </div>
               </div>
-              <button className={styles.buttonbtnContent}>
-                <div className={styles.emptyButtonContentWrapper}>
-                  <img
-                    className={styles.emptyButtonContent}
-                    loading="lazy"
-                    alt=""
-                    src="/frame-8.svg"
-                  />
-                </div>
-                <a className={styles.add}>Add</a>
-              </button>
             </div>
           </div>
         </div>
