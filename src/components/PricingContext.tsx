@@ -1,5 +1,6 @@
 // PricingContext.tsx
 import { createContext, useContext, useState, ReactNode } from "react";
+import { ListFormat } from "typescript";
 
 type PricingContextType = {
   maxPrice1: number;
@@ -31,6 +32,8 @@ type PricingContextType = {
   setIsDormShow2: (value: boolean) => void;
   titleName2: string;
   setTitleName2: (value: string) => void;
+  selectedDormsData : any[];
+  setSelectedDormsData:(value: any[]) => void;
 };
 
 const PricingContext = createContext<PricingContextType | undefined>(undefined);
@@ -51,6 +54,7 @@ export const PricingProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [percent2, setPercent2] = useState<number>(0);
   const [isDormShow2, setIsDormShow2] = useState<boolean>(false);
   const [titleName2, setTitleName2] = useState<string>("");
+  const [selectedDormsData, setSelectedDormsData] = useState<any[]>([]);
 
   return (
     <PricingContext.Provider
@@ -82,7 +86,9 @@ export const PricingProvider: React.FC<{ children: ReactNode }> = ({ children })
         isDormShow2,
         setIsDormShow2,
         titleName2,
-        setTitleName2
+        setTitleName2,
+        selectedDormsData,
+        setSelectedDormsData
       }}
     >
       {children}

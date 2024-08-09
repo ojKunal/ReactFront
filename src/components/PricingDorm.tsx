@@ -7,11 +7,13 @@ import { PiCaretDoubleRightBold } from "react-icons/pi";
 export type DivroomContainer1Type = {
   className?: string;
   rooms_dorms?: any;
+  key?: number;
 };
 
 const DormroomContainer: React.FC<DivroomContainer1Type> = ({
   className = "",
   rooms_dorms,
+  key,
 }) => {
   const {
     maxPrice1,
@@ -28,22 +30,21 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
     setIsDormShow1,
     doomsName,
     setDoomsName,
+    selectedDormsData, // Array to store selected dorms data
+    setSelectedDormsData, // Function to update selected dorms data
   } = usePricingContext();
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [clickedItemIndex, setClickedItemIndex] = useState<number | null>(null);
 
   const handleBedsIncrement = () => {
-    if (
-      rooms_dorms &&
-      rooms_dorms[0] &&
-      selectedBeds1 < rooms_dorms[0].totalBedsAvailable
-    ) {
+    if (rooms_dorms && selectedBeds1 < rooms_dorms.totalBedsAvailable) {
       setSelectedBeds1(selectedBeds1 + 1);
     }
   };
 
   const handleBedsDecrement = () => {
-    if (rooms_dorms && rooms_dorms[0] && selectedBeds1 > 0) {
+    if (rooms_dorms && selectedBeds1 > 0) {
       setSelectedBeds1(selectedBeds1 - 1);
     }
     if (selectedBeds1 === 1) {
@@ -52,53 +53,48 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
   };
 
   const handleDormsPrice = () => {
+    // setClickedItemIndex(index);
     setSelectedBeds1(1);
     setIsDormShow1(true);
   };
 
   useEffect(() => {
-    if (rooms_dorms && rooms_dorms[0]?.images) {
+    if (rooms_dorms?.images) {
       const interval = setInterval(() => {
         setCurrentIndex(
-          (prevIndex) => (prevIndex + 1) % rooms_dorms[0].images.length
+          (prevIndex) => (prevIndex + 1) % rooms_dorms.images.length
         );
-      }, 2500); // Change image every 2 seconds
+      }, 2500);
 
-      return () => clearInterval(interval); // Clear interval on component unmount
-    }
-    else {
+      return () => clearInterval(interval);
+    } else {
       const interval = setInterval(() => {
-        setCurrentIndex(
-          (prevIndex) => (prevIndex + 1) % dummyImages.length
-        );
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % dummyImages.length);
       }, 2500); // Change image every 2 seconds
 
-      return () => clearInterval(interval); // Clear interval on component unmount
+      return () => clearInterval(interval);
     }
   }, [rooms_dorms]);
 
   useEffect(() => {
     if (
       rooms_dorms &&
-      rooms_dorms[0] &&
-      rooms_dorms[0].totalPrice &&
-      rooms_dorms[0].totalPrice[0].price &&
-      rooms_dorms[0].totalPrice[0].price.value
+      rooms_dorms.totalPrice &&
+      rooms_dorms.totalPrice[0].price &&
+      rooms_dorms.totalPrice[0].price.value
     ) {
-      const newMaxPrice =
-        rooms_dorms[0].totalPrice[0].price.value * selectedBeds1;
+      const newMaxPrice = rooms_dorms.totalPrice[0].price.value * selectedBeds1;
       setMaxPrice1(newMaxPrice);
-      setCurrency1(rooms_dorms[0].totalPrice[0].price.currency);
+      setCurrency1(rooms_dorms.totalPrice[0].price.currency);
     }
     if (
       rooms_dorms &&
-      rooms_dorms[0] &&
-      rooms_dorms[0].averagePricePerNight &&
-      rooms_dorms[0].averagePricePerNight[0] &&
-      rooms_dorms[0].averagePricePerNight[0].price
+      rooms_dorms.averagePricePerNight &&
+      rooms_dorms.averagePricePerNight[0] &&
+      rooms_dorms.averagePricePerNight[0].price
     ) {
       setDiscountPrice1(
-        rooms_dorms[0].averagePricePerNight[0].price.value * selectedBeds1
+        rooms_dorms.averagePricePerNight[0].price.value * selectedBeds1
       );
     }
   }, [selectedBeds1, rooms_dorms]);
@@ -117,14 +113,11 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
   ];
 
   useEffect(() => {
-    const titleName =
-      rooms_dorms && rooms_dorms[0]
-        ? rooms_dorms[0].name
-        : "Basic 4 Bed Male Dorm";
+    const titleName = rooms_dorms ? rooms_dorms.name : "Basic 4 Bed Male Dorm";
     setDoomsName(titleName);
   }, [rooms_dorms, setDoomsName]);
 
-  const images = rooms_dorms?.[0]?.images || dummyImages;
+  const images = rooms_dorms?.images || dummyImages;
 
   const goToPrevious = () => {
     setCurrentIndex(
@@ -175,13 +168,12 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
           </button>
           {images.map((image: any, index: any) => {
             let imageUrl;
-            if(rooms_dorms?.[0]?.images) {
+            if (rooms_dorms?.images) {
               imageUrl = `https://${image.prefix}${image.suffix}`;
-            }
-            else {
+            } else {
               imageUrl = image;
             }
-            console.log("url is : ", imageUrl);
+            // console.log("url is : ", imageUrl);
             return (
               <img
                 key={index}
@@ -229,10 +221,8 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
           <div className={styles.frameParent}>
             <div className={styles.titleContainerWrapper}>
               <div className={styles.titleContainer}>
-                {rooms_dorms && rooms_dorms[0] ? (
-                  <div className={styles.standard6Bed}>
-                    {rooms_dorms[0].name}
-                  </div>
+                {rooms_dorms ? (
+                  <div className={styles.standard6Bed}>{rooms_dorms.name}</div>
                 ) : (
                   <div className={styles.standard6Bed}>
                     Basic 4 Bed Male Dorm
@@ -241,9 +231,9 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
                 <div className={styles.detailsContainerParent}>
                   <div className={styles.detailsContainer}>
                     <div className={styles.divbody2RegroomDetailsco}>
-                      {rooms_dorms && rooms_dorms[0] ? (
+                      {rooms_dorms ? (
                         <div className={styles.bedMixedDorm}>
-                          {rooms_dorms[0].description}
+                          {rooms_dorms.description}
                         </div>
                       ) : (
                         <div className={styles.bedMixedDorm}>
@@ -260,13 +250,11 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
                         alt=""
                         src="/frame2.svg"
                       />
-                      {rooms_dorms &&
-                      rooms_dorms[0] &&
-                      rooms_dorms[0].capacity ? (
+                      {rooms_dorms && rooms_dorms.capacity ? (
                         <div className={styles.sleeps6Wrapper}>
                           <a className={styles.sleeps6}>
                             {" "}
-                            Sleeps {rooms_dorms[0].capacity}
+                            Sleeps {rooms_dorms.capacity}
                           </a>
                         </div>
                       ) : (
@@ -310,10 +298,10 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
             <div className={styles.priceContainer}>
               <div className={styles.innerPriceDetailsWrapper}>
                 <div className={styles.innerPriceDetails}>
-                  {rooms_dorms?.[0]?.averagePricePerNight?.[0]?.price ? (
+                  {rooms_dorms?.averagePricePerNight?.[0]?.price ? (
                     <a className={styles.a}>
-                      {rooms_dorms[0].averagePricePerNight[0].price.currency}{" "}
-                      {rooms_dorms[0].averagePricePerNight[0].price.value}
+                      {rooms_dorms.averagePricePerNight[0].price.currency}{" "}
+                      {rooms_dorms.averagePricePerNight[0].price.value}
                     </a>
                   ) : (
                     <a className={styles.a}>{currency1} 0</a>
@@ -324,10 +312,10 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
                     </div>
                     <div className={styles.spanpriceStrikethroughbodyWrapper}>
                       <div className={styles.spanpriceStrikethroughbody}>
-                        {rooms_dorms?.[0]?.totalPrice?.[0]?.price ? (
+                        {rooms_dorms.totalPrice?.[0]?.price ? (
                           <a className={styles.a2}>
-                            {rooms_dorms[0].totalPrice[0].price.currency}{" "}
-                            {rooms_dorms[0].totalPrice[0].price.value}
+                            {rooms_dorms.totalPrice[0].price.currency}{" "}
+                            {rooms_dorms.totalPrice[0].price.value}
                           </a>
                         ) : (
                           <a className={styles.a}>{currency1} 0</a>

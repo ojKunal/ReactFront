@@ -34,16 +34,16 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
 
   const handleRoomsIncrement = () => {
     if (
-      rooms_private &&
-      rooms_private[0] &&
-      selectedBeds2 < rooms_private[0].totalBedsAvailable
+      
+     rooms_private &&
+      selectedBeds2 <rooms_private.totalBedsAvailable
     ) {
       setSelectedBeds2(selectedBeds2 + 1);
     }
   };
   console.log("currency is", currency2);
   const handleRoomsDecrement = () => {
-    if (rooms_private && rooms_private[0] && selectedBeds2 > 0) {
+    if (rooms_private && selectedBeds2 > 0) {
       setSelectedBeds2(selectedBeds2 - 1);
     }
     if (selectedBeds2 === 1) {
@@ -58,26 +58,26 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
 
   useEffect(() => {
     if (
-      rooms_private &&
-      rooms_private[0] &&
-      rooms_private[0].totalPrice &&
-      rooms_private[0].totalPrice[0].price &&
-      rooms_private[0].totalPrice[0].price.value
+      
+     rooms_private &&
+     rooms_private.totalPrice &&
+     rooms_private.totalPrice[0].price &&
+     rooms_private.totalPrice[0].price.value
     ) {
       const newMaxPrice =
-        rooms_private[0].totalPrice[0].price.value * selectedBeds2;
+       rooms_private.totalPrice[0].price.value * selectedBeds2;
       setMaxPrice2(newMaxPrice);
-      setCurrency2(rooms_private[0].totalPrice[0].price.currency);
+      setCurrency2(rooms_private.totalPrice[0].price.currency);
     }
     if (
-      rooms_private &&
-      rooms_private[0] &&
-      rooms_private[0].averagePricePerNight &&
-      rooms_private[0].averagePricePerNight[0] &&
-      rooms_private[0].averagePricePerNight[0].price
+      
+     rooms_private &&
+     rooms_private.averagePricePerNight &&
+     rooms_private.averagePricePerNight[0] &&
+     rooms_private.averagePricePerNight[0].price
     ) {
       setDiscountPrice2(
-        rooms_private[0].averagePricePerNight[0].price.value * selectedBeds2
+       rooms_private.averagePricePerNight[0].price.value * selectedBeds2
       );
     }
   }, [selectedBeds2, rooms_private]);
@@ -96,35 +96,35 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
   ];
 
   useEffect(() => {
-    if (rooms_private && rooms_private[0]?.images) {
+    if (rooms_private?.images) {
       const interval = setInterval(() => {
         setCurrentIndex(
-          (prevIndex) => (prevIndex + 1) % rooms_private[0].images.length
+          (prevIndex) => (prevIndex + 1) %rooms_private.images.length
         );
-      }, 2500); // Change image every 2 seconds
+      }, 2500); 
 
-      return () => clearInterval(interval); // Clear interval on component unmount
+      return () => clearInterval(interval); 
     }
     else {
       const interval = setInterval(() => {
         setCurrentIndex(
           (prevIndex) => (prevIndex + 1) % dummyImages.length
         );
-      }, 2500); // Change image every 2 seconds
+      }, 2500); 
 
-      return () => clearInterval(interval); // Clear interval on component unmount
+      return () => clearInterval(interval); 
     }
   }, [rooms_private]);
 
   useEffect(() => {
     const titleName =
-      rooms_private && rooms_private[0]
-        ? rooms_private[0].name
+      rooms_private
+        ?rooms_private.name
         : "Basic Double Bed Private Ensuite";
     setTitleName2(titleName);
   }, [rooms_private, setTitleName2]);
 
-  const images = rooms_private?.[0]?.images || dummyImages;
+  const images = rooms_private?.images || dummyImages;
   const goToPrevious = () => {
     setCurrentIndex(
       (prevIndex) => (prevIndex - 1 + images.length) % images.length
@@ -174,13 +174,13 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
           </button>
           {images.map((image: any, index: any) => {
             let imageUrl;
-            if(rooms_private?.[0]?.images) {
+            if(rooms_private?.images) {
               imageUrl = `https://${image.prefix}${image.suffix}`;
             }
             else {
               imageUrl = image;
             }
-            console.log("url is : ", imageUrl);
+            // console.log("url is : ", imageUrl);
             return (
               <img
                 key={index}
@@ -209,7 +209,7 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
             >
               {images.map((image: any, index: any) => {
                 const imageUrl = `https://${image.prefix}${image.suffix}`;
-                console.log("url is : ", imageUrl);
+                // console.log("url is : ", imageUrl);
                 return (
                   <img
                     key={index}
@@ -233,7 +233,7 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
                 margin: "auto",
                 display: "flex",
                 justifyContent: "center",
-                pointerEvents: "none", // To ensure clicks on the dots are not blocked
+                pointerEvents: "none", 
               }}
             >
               {images.map((_: any, index: any) => (
@@ -245,7 +245,7 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
                   onClick={() => setCurrentIndex(index)}
                   style={{
                     cursor: "pointer",
-                    pointerEvents: "auto", // To ensure clicks on the dots are functional
+                    pointerEvents: "auto",
                   }}
                 />
               ))}
@@ -258,9 +258,9 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
           <div className={styles.frameParent}>
             <div className={styles.titleContainerWrapper}>
               <div className={styles.titleContainer}>
-                {rooms_private && rooms_private[0] ? (
+                {rooms_private ? (
                   <div className={styles.standard6Bed}>
-                    {rooms_private[0].name}
+                    {rooms_private.name}
                   </div>
                 ) : (
                   <div className={styles.standard6Bed}>
@@ -270,9 +270,9 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
                 <div className={styles.detailsContainerParent}>
                   <div className={styles.detailsContainer}>
                     <div className={styles.divbody2RegroomDetailsco}>
-                      {rooms_private && rooms_private[0] ? (
+                      {rooms_private ? (
                         <div className={styles.bedMixedDorm}>
-                          {rooms_private[0].description}
+                          {rooms_private.description}
                         </div>
                       ) : (
                         <div className={styles.bedMixedDorm}>
@@ -289,13 +289,13 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
                         alt=""
                         src="/frame2.svg"
                       />
-                      {rooms_private &&
-                      rooms_private[0] &&
-                      rooms_private[0].capacity ? (
+                      {
+                     rooms_private &&
+                     rooms_private.capacity ? (
                         <div className={styles.sleeps6Wrapper}>
                           <a className={styles.sleeps6}>
                             {" "}
-                            Sleeps {rooms_private[0].capacity}
+                            Sleeps {rooms_private.capacity}
                           </a>
                         </div>
                       ) : (
@@ -339,10 +339,10 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
             <div className={styles.priceContainer}>
               <div className={styles.innerPriceDetailsWrapper}>
                 <div className={styles.innerPriceDetails}>
-                  {rooms_private?.[0]?.averagePricePerNight?.[0]?.price ? (
+                  {rooms_private?.averagePricePerNight?.[0]?.price ? (
                     <a className={styles.a}>
-                      {rooms_private[0].averagePricePerNight[0].price.currency}{" "}
-                      {rooms_private[0].averagePricePerNight[0].price.value}
+                      {rooms_private.averagePricePerNight[0].price.currency}{" "}
+                      {rooms_private.averagePricePerNight[0].price.value}
                     </a>
                   ) : (
                     <a className={styles.a}>{currency2} 0</a>
@@ -355,8 +355,8 @@ const PrivateroomContainer: React.FC<PrivateroomContainerType> = ({
                       <div className={styles.spanpriceStrikethroughbody}>
                         {rooms_private?.[0]?.totalPrice?.[0]?.price ? (
                           <a className={styles.a2}>
-                            {rooms_private[0].totalPrice[0].price.currency}{" "}
-                            {rooms_private[0].totalPrice[0].price.value}
+                            {rooms_private.totalPrice[0].price.currency}{" "}
+                            {rooms_private.totalPrice[0].price.value}
                           </a>
                         ) : (
                           <a className={styles.a}>{currency2} 0</a>

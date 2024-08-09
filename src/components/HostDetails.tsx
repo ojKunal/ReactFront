@@ -3,7 +3,7 @@ import Column from "./Column";
 import styles from "./HostDetails.module.css";
 import DormroomContainer from "../components/PricingDorm";
 import PrivateroomContainer from "../components/PricingPrivate";
-import { usePricingContext } from './PricingContext';
+import { usePricingContext } from "./PricingContext";
 
 export type HostDetailsType = {
   className?: string;
@@ -22,7 +22,9 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
-  // Use PricingContext
+
+
+  // Using PricingContext
   const {
     setMaxPrice1,
     setDiscountPrice1,
@@ -32,17 +34,32 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
     setIsDormShow1,
   } = usePricingContext();
 
-  if (!setMaxPrice1 || !setDiscountPrice1 || !setSelectedBeds1 || !setCurrency1 || !setPercent1 || !setIsDormShow1) {
-    throw new Error('PricingContext must be used within a PricingProvider');
+  if (
+    !setMaxPrice1 ||
+    !setDiscountPrice1 ||
+    !setSelectedBeds1 ||
+    !setCurrency1 ||
+    !setPercent1 ||
+    !setIsDormShow1
+  ) {
+    throw new Error("PricingContext must be used within a PricingProvider");
   }
 
   console.log("final Pricing data is here", pricingData);
 
-  const rooms_dorms = pricingData ? (pricingData.rooms ? pricingData.rooms.dorms : [null]) : {};
-  const rooms_private = pricingData ? (pricingData.rooms ? pricingData.rooms.privates : [null]) : {};
-  
-  console.log("rooms_dorms are", rooms_dorms);
-  console.log("rooms_private are", rooms_private);
+  const rooms_dorms1 = pricingData
+    ? pricingData.rooms
+      ? pricingData.rooms.dorms
+      : [null]
+    : {};
+  const rooms_private1 = pricingData
+    ? pricingData.rooms
+      ? pricingData.rooms.privates
+      : [null]
+    : {};
+
+  console.log("rooms_dorms are", rooms_dorms1);
+  console.log("rooms_private are", rooms_private1);
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -57,12 +74,14 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
   };
 
   const isTextLong = data?.overview.length > 250;
-  const displayedText = isExpanded ? data?.overview : data?.overview.slice(0, 250);
+  const displayedText = isExpanded
+    ? data?.overview
+    : data?.overview.slice(0, 250);
 
   const facilitiesSummary = data?.facilitiesSummary || [];
   const midpoint = Math.ceil(facilitiesSummary.length / 2);
 
-  // Split the array into two halves
+  // Spliting the array into two halves
   const firstHalf = facilitiesSummary.slice(0, midpoint);
   const secondHalf = facilitiesSummary.slice(midpoint);
 
@@ -181,9 +200,22 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
       <div className={styles.sleepingArea}>
         <div className={styles.whereYoullSleep}>
           <h2 className={styles.whereYoullSleep1}>Dorms</h2>
-          <DormroomContainer rooms_dorms={rooms_dorms} />
+          {Array.isArray(rooms_dorms1) && rooms_dorms1.length > 0 ? (
+            rooms_dorms1.map((rooms_dorms: any, index: number) => (
+              <DormroomContainer rooms_dorms={rooms_dorms} key={index} />
+            ))
+          ) : (
+            <DormroomContainer rooms_dorms={{}} />
+          )}
+
           <h2 className={styles.whereYoullSleep1}>Private Rooms</h2>
-          <PrivateroomContainer rooms_private = {rooms_private}/>
+          {Array.isArray(rooms_dorms1) && rooms_dorms1.length > 0 ? (
+            rooms_private1.map((rooms_private: any, index: number) => (
+              <PrivateroomContainer rooms_private={rooms_private} key={index} />
+            ))
+          ) : (
+            <PrivateroomContainer rooms_private={{}} />
+          )}
         </div>
       </div>
       <div className={styles.dividerFrame}>
