@@ -54,7 +54,7 @@ const Staycation: FunctionComponent<StaycationType> = ({ className = "" }) => {
       <div className="w-[1920px] flex flex-col items-start justify-start gap-[98.3px] max-w-full mq450:gap-[25px] mq900:gap-[49px]">
         <div className="self-stretch flex flex-col items-start justify-start gap-[16.8px] max-w-full">
           <TitleComponentwithButton
-            trendingDestinations="Activity"
+            trendingDestinations="Activity (Coming Soon)"
             placesThatTravelersAreAdd="Keep it local and visit these destinations closer to home"
             divcnSliderArrowsArrowcnS="/mainpage_icon/divcn--slider--arrows--arrowcn--slider--arrows--disabledcn--slider--arrows--prevarrow-2.svg"
             divcnSliderArrowsArrowcnS1="/mainpage_icon/divcn--slider--arrows--arrowcn--slider--arrows--nextarrow-2.svg"
@@ -99,12 +99,14 @@ const Staycation: FunctionComponent<StaycationType> = ({ className = "" }) => {
                       alt=""
                       src="/mainpage_icon/img-2.svg"
                     />
+                    <a href="https://play.google.com/store/apps/details?id=com.TravelPanda&pli=1">
+
                     <img
                       className="self-stretch w-[135px] relative max-h-full overflow-hidden shrink-0 min-h-[40px]"
                       loading="lazy"
                       alt=""
                       src="/mainpage_icon/img-3.svg"
-                    />
+                    /></a>
                   </div>
                 </div>
               </div>
@@ -121,7 +123,7 @@ const Staycation: FunctionComponent<StaycationType> = ({ className = "" }) => {
           <div className="self-stretch flex flex-row items-start justify-center mq650:justify-start py-0 pr-[26px] pl-5 mq650:px-0">
             <div className="flex flex-col items-start justify-start gap-[15.5px]">
               <h1 className="m-0 relative text-inherit leading-[39px] font-semibold font-inherit mq450:text-lgi mq450:leading-[23px] mq900:text-7xl mq900:leading-[31px]">
-                Explore by Trip Type
+                Explore by Trip Type (Coming Soon)
               </h1>
               <div className="flex flex-row items-start justify-start py-0 pr-0 pl-[7px] text-lg text-gray-100 font-poppins">
                 <div className="relative leading-[22px]">

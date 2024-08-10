@@ -48,8 +48,8 @@ const LondonCard: FunctionComponent<DivcnCardcnCard3Type> = ({
           <div className="relative tracking-[0.16px] leading-[19px] font-medium inline-block min-w-[27.9px] whitespace-nowrap z-[1]">
             {prop} 
           </div>
-          <div className="relative tracking-[0.16px] leading-[19px] font-medium inline-block min-w-[79px] z-[1]">
-            {`  per week`}
+          <div className="relative tracking-[0.16px] leading-[19px] font-medium inline-block min-w-[79px] z-[1 ml-2">
+            {`per week`}
             
           </div>
         </div>

@@ -27,15 +27,14 @@ const MainPage: FunctionComponent = () => {
       <main className="w-full flex bg-white flex flex-col items-start justify-start pt-0 px-0 box-border gap-[1.8px] mq450:h-auto mq900:pb-[304px] mq900:box-border mq1275:pb-[50px] mq1275:box-border">
         <Section1 />
         <div className="w-full flex bg-white flex flex-col items-start justify-start pt-0 px-0 box-border gap-[1.8px] mq450:h-auto px-[100px] mq1000:px-0 ">
-          <Section2 />
-          <Deals />
-          <Staycation />
+          <Section2 />  {/* deals, types, banner*/}
+          <Deals /> {/* trending destinations*/}
+          <Staycation />  {/* activites , get the app now banner , explore by trip type*/}
           <SectionBlog />
           {/* <Section_OtherPlatform /> */}
           <Newsletter />
           <Footer />
         </div>
-
       </main>
     </div>
   );

@@ -559,7 +559,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
                   reviewSummary={`$${listing.price_per_night}`}
                 />
 
-                <div className={styles.divider4} />
+                <div className={styles.divider3} />
               </div>
             );
           })}

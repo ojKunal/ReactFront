@@ -927,7 +927,7 @@ left: 400px;
   flex: 1;
   overflow-y: auto;
   flex-direction: column;
-  padding: 40px 40px 67px;
+  padding: 0px 4px 0px;
   box-sizing: border-box;
   gap: 23.5px;
   min-width: 546px;
