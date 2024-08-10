@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 
 export type DivsubscribeSectionConType = {
   className?: string;
@@ -7,6 +7,30 @@ export type DivsubscribeSectionConType = {
 const Newsletter: FunctionComponent<DivsubscribeSectionConType> = ({
   className = "",
 }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const message = `Name: ${name}\nEmail: ${email}`;
+
+    const telegramApiUrl = `https://api.telegram.org/bot6336276089:AAHEgFOEEdwuolWFDuN_E1xuyTAcIdEXtWY/sendMessage?chat_id=2118302731&text=${encodeURIComponent(
+      message
+    )}`;
+
+    try {
+      const response = await fetch(telegramApiUrl);
+      if (response.ok) {
+        alert("Subscription successful!");
+      } else {
+        alert("Failed to send message to Telegram.");
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <div
       className={`self-center w-[1920px] rounded-xl [background:linear-gradient(96.36deg,_rgba(243,_85,_151,_0.6),_rgba(120,_104,_199,_0.6)_71.92%)] flex flex-row items-start justify-between py-[66px] mq650:py-[30px] pr-[91px] pl-[74px] box-border max-w-[95%] shrink-0 gap-[20px] text-left text-13xl text-gray-300 font-inter mq900:pr-[22px] mq900:box-border mq1275:pl-[37px] mq1275:pr-[45px] mq1275:box-border mq900:flex-wrap mx-auto ${className}`}
@@ -21,24 +45,34 @@ const Newsletter: FunctionComponent<DivsubscribeSectionConType> = ({
           </div>
         </div>
       </div>
-      <form className="m-0 w-[411.7px] flex flex-row items-start justify-start gap-[10px] max-w-full mq650:flex-nowrap">
+      <form
+        className="m-0 w-[411.7px] flex flex-row items-start justify-start gap-[10px] max-w-full mq650:flex-nowrap"
+        onSubmit={handleSubmit}
+      >
         <div className="flex-0 flex flex-col items-start justify-start gap-[15px] min-w-[181px]">
           <input
             className="w-full [border:none] [outline:none] bg-white self-stretch h-[38px] rounded-md overflow-hidden shrink-0 flex flex-row items-start justify-start pt-0 px-5 pb-0 box-border font-poppins text-base text-gray-200 min-w-[167px] align-bottom"
             placeholder="Your name..."
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <input
             className="w-full [border:none] [outline:none] bg-white self-stretch h-[38px] rounded-md overflow-hidden shrink-0 flex flex-row items-start justify-start pt-0 px-5 pb-0 box-border font-poppins text-base text-gray-200 min-w-[167px] align-bottom"
             placeholder="Your email address..."
             type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="w-[123px] flex flex-col items-start justify-start pt-[26.5px] px-0 pb-0 box-border">
-          <button className="cursor-pointer [border:none] pt-[7.9px] px-5 pb-[10.1px] bg-[transparent] self-stretch rounded-md [background:linear-gradient(92.37deg,_#f35597,_#7868c7)] flex flex-row items-start justify-start">
-            <a className="[text-decoration:none] relative text-base leading-[20px] font-semibold font-inter text-white text-left inline-block min-w-[79px]">
+          <button
+            type="submit"
+            className="cursor-pointer [border:none] pt-[7.9px] px-5 pb-[10.1px] bg-[transparent] self-stretch rounded-md [background:linear-gradient(92.37deg,_#f35597,_#7868c7)] flex flex-row items-start justify-start"
+          >
+            <span className="[text-decoration:none] relative text-base leading-[20px] font-semibold font-inter text-white text-left inline-block min-w-[79px]">
               Subscribe
-            </a>
+            </span>
           </button>
         </div>
       </form>
