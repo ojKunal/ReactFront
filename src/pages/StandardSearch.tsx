@@ -61,7 +61,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     if (selectedCategories.length > 0) {
       try {
         const jsonCategories = JSON.stringify(selectedCategories);
-        query = query.containedBy("category", jsonCategories);
+        query = query.contains("category", jsonCategories);
         console.log("jsoncategories", jsonCategories);
       } catch (error) {
         console.error("Failed to convert categories to JSON:", error);
