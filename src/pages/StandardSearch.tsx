@@ -49,7 +49,9 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
       .from("Hostelv2")
       .select("*")
       .limit(limit)
-      .eq("isactiveonHW", true);
+      .eq("isactiveonHW", true)
+      .order('overallRating_overall', { ascending: false })
+      ;
 
     // Apply filters conditionally
     if (filterByCity) {
@@ -83,6 +85,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
       .from("Hostelv2")
       .select("city_name")
       .ilike("city_name", `%${input}%`)
+      .order('overallRating_overall', { ascending: false })
       .limit(5);
 
     if (error) {
@@ -549,14 +552,14 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
                   data={listing}
                   image={firstImage}
                   subtitle={listing.name}
-                  rating={listing.overallRating_overall / 20}
-                  cost={listing.lowestPrivatePricePerNight_value}
+                  rating={listing.overallRating_overall}
+                  cost={listing.lowestPricePerNight_value}
                   cityName={cityName}
                   facilities={listing.facilitiesSummary}
                   heart="/heart.svg"
                   guestsEntireHome5Beds={listing.description}
                   star="/star.svg"
-                  reviewSummary={`$${listing.price_per_night}`}
+                  reviewSummary={listing.overallRating_numberOfRatings}
                 />
 
                 <div className={styles.divider3} />
