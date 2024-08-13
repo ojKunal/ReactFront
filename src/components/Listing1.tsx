@@ -95,15 +95,15 @@ const Listing1: FunctionComponent<Listing1Type> = ({
         <div className={styles.divider1} />
         <div className={styles.footer}>
           <div className={styles.review}>
-            <div className={styles.averageRating}>{rating}.0</div>
+            <div className={styles.averageRating}>{rating}</div>
             <img className={styles.starIcon} loading="lazy" alt="" src={star} />
-            <div className={styles.reviews}>(318 reviews)</div>
+            <div className={styles.reviews}>{reviewSummary} reviews</div>
           </div>
           <div className={styles.review1} style={{ marginLeft: 0 }}>
             <div className={styles.reviewSummary}>₹{cost}</div>
             <div className={styles.nightWrapper}>
               <div className={styles.night} style={{}}>
-                /night
+              /night
               </div>
             </div>
           </div>

@@ -26,11 +26,12 @@
   font-weight: 600;
   line-height: 1.2;
   text-align: left;
+  color: black;
 }
 
 .subtitle {
   font-size: 1.25rem;
-  color: #ccc;
+  color: black;
 }
 
 .content {
@@ -102,6 +103,8 @@
   width: 100%;
   height: 150px;
   background: #ccc;
+  background-size: cover;
+  background-position: center;
 }
 
 .blogTitle {
@@ -140,7 +143,7 @@
     font-weight: 600;
     font-size: 23px;
     line-height: 28px;
-    color: #242526;
+    color: black;
     margin-bottom: 10px;
   }
 
@@ -151,6 +154,7 @@
     font-size: 18px;
     line-height: 22px;
     max-width: 75%;
+    color: black;
   }
 
   .browseButton {

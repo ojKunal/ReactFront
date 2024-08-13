@@ -52,7 +52,9 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
       .from("Hostelv2")
       .select("*")
       .limit(limit)
-      .eq("isactiveonHW", true);
+      .eq("isactiveonHW", true)
+      .order('overallRating_overall', { ascending: false })
+      ;
 
     // Apply filters conditionally
     if (filterByCity) {
@@ -64,7 +66,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     if (selectedCategories.length > 0) {
       try {
         const jsonCategories = JSON.stringify(selectedCategories);
-        query = query.containedBy("category", jsonCategories);
+        query = query.contains("category", jsonCategories);
         console.log("jsoncategories", jsonCategories);
       } catch (error) {
         console.error("Failed to convert categories to JSON:", error);
@@ -81,6 +83,25 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
     }
   };
 
+<<<<<<< HEAD
+=======
+  const fetchSuggestions = async (input: string) => {
+    const { data, error } = await supabase
+      .from("Hostelv2")
+      .select("city_name")
+      .ilike("city_name", `%${input}%`)
+      .order('overallRating_overall', { ascending: false })
+      .limit(5);
+
+    if (error) {
+      console.error("Error fetching suggestions:", error);
+    } else {
+      const uniqueSuggestions = Array.from(new Set(data.map((item: any) => item.city_name)));
+      setSuggestions(uniqueSuggestions);
+    }
+  };
+
+>>>>>>> 02d1ecbb9d945a58a763db1e5c412b54ddbb7123
   useEffect(() => {
     // Fetch data when component mounts and when filters or limit changes
     fetchListing();
@@ -410,6 +431,7 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
             {categoryData.length}+ stays in {cityName}
           </div>
           <div className={styles.divider3} />
+<<<<<<< HEAD
           {categoryData.length > 0 ? (
             categoryData.map((listing: any) => {
               // Ensure images_url is an array and has a default fallback
@@ -461,6 +483,36 @@ const StandardSearch: FunctionComponent<StandardSearchType> = ({
           ) : (
             <p>No listings available.</p>
           )}
+=======
+          {categoryData.map((listing: any) => {
+            const imageArray = listing.images_url;
+            const firstImage =
+              imageArray.length > 0 ? imageArray[0] : "/default-image.png";
+            return (
+              <div
+                key={listing.id}
+                onClick={() => handleListingClick(listing.id)}
+                style={{ width: "100%" }}
+              >
+                <Listing1
+                  data={listing}
+                  image={firstImage}
+                  subtitle={listing.name}
+                  rating={listing.overallRating_overall}
+                  cost={listing.lowestPricePerNight_value}
+                  cityName={cityName}
+                  facilities={listing.facilitiesSummary}
+                  heart="/heart.svg"
+                  guestsEntireHome5Beds={listing.description}
+                  star="/star.svg"
+                  reviewSummary={listing.overallRating_numberOfRatings}
+                />
+
+                <div className={styles.divider3} />
+              </div>
+            );
+          })}
+>>>>>>> 02d1ecbb9d945a58a763db1e5c412b54ddbb7123
         </div>
         <div className={styles.left1}>
           <MapComponent hotels={hotels} />

@@ -108,7 +108,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ hotels }) => {
   }, [hotels]);
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "100vh", width: "100%", overflow: "auto"  }}>
       <MapContainer
         ref={mapRef}
         center={[12.9716, 77.5946]}
@@ -116,8 +116,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ hotels }) => {
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer
-          attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">TripThrill</a>'
+          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+          // attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
+          // url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
         {hotels.map((hotel) => (
           <CustomMarker
@@ -138,6 +140,8 @@ export default MapComponent;
 // use different map style :
 {
   /* <TileLayer
+          // attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
+          // url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
 
 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"

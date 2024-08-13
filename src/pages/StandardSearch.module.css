@@ -815,6 +815,9 @@
   gap: 15.5px;
   font-size: 14px;
   color: #374151;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 .nav {
   align-self: stretch;
@@ -927,7 +930,7 @@ left: 400px;
   flex: 1;
   overflow-y: auto;
   flex-direction: column;
-  padding: 40px 40px 67px;
+  padding: 0px 4px 0px;
   box-sizing: border-box;
   gap: 23.5px;
   min-width: 546px;
