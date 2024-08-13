@@ -175,7 +175,7 @@
   width: 770px;
   box-shadow: 0 2px 4px rgba(31, 41, 55, 0.06), 0 4px 6px rgba(31, 41, 55, 0.1);
   border-radius: 1000px;
-  background-color: #fff;
+  /* background-color: #fff; */
   border: 1px solid #e5e7eb;
   box-sizing: border-box;
   padding: 6px 7px 6px 6px;
@@ -977,3 +977,122 @@ left: 400px;
 .selected {
   background-color: #e45a73; /* Example color, change as needed */
 }
+
+/* for Guest Selection */
+/* for choosing guest section */
+.inputnativeInput1 {
+  display: flex;
+  align-items: center;
+  /* Add any other styles you need */
+}
+
+.frameContainer {
+  /* Your frame container styles */
+}
+
+.guestsParent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+}
+
+.guests {
+  /* Style for the Guests label */
+}
+
+.a {
+  font-size: larger;
+  /* font-weight: bold; */
+}
+
+.changeButton {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  /* Add other button styles as needed */
+}
+
+.divinlineFormsmall {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0px 0px;
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.inputnativeInput {
+  display: flex;
+  align-items: center;
+  /* flex-grow: 1; */
+}
+
+.frameWrapper {
+  margin-right: 8px;
+}
+
+.frameIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.datesParent {
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.dates {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.aug22 {
+  font-size: 12px;
+  color: #777;
+}
+
+.divvDividerWrapper {
+  margin: 0 12px;
+}
+
+.divvDivider {
+  width: 1px;
+  height: 24px;
+  background-color: #e0e0e0;
+}
+
+.inputnativeInput1 {
+  display: flex;
+  /* align-items: center; */
+  /* flex-grow: 1; */
+}
+
+.frameContainer {
+  margin-right: 8px;
+}
+
+.frameIcon1 {
+  width: 24px;
+  height: 24px;
+}
+
+.guestsParent {
+  display: flex;
+  flex-direction: column;
+}
+
+.guests {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.a {
+  font-size: 12px;
+  color: #000;
+}
+

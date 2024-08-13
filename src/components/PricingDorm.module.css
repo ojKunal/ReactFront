@@ -341,7 +341,8 @@
 }
 .divnotesDivider {
   align-self: stretch;
-  border-top: 0.6px solid var(--color-gainsboro-100);
+  border-top: 0.3px solid gray;
+  margin-top: 4px;
   box-sizing: border-box;
   flex-direction: row;
   padding: var(--padding-6xs) var(--padding-5xs) var(--padding-6xs-2);
@@ -356,11 +357,12 @@
   align-items: flex-start;
   justify-content: flex-start;
   max-width: 100%;
+  
 }
 .frameParent {
   align-self: stretch;
   flex-direction: column;
-  gap: 47px;
+  /* gap: 47px; */
   flex-shrink: 0;
 }
 .divcarouselParent,
@@ -844,6 +846,7 @@
   font-size: var(--text-base-medium-size);
   color: var(--black);
   font-family: var(--text-sm-regular);
+  background-color: rgb(247, 248, 244);
 }
 @media screen and (max-width: 1600px) {
   .frameWrapper {
@@ -876,11 +879,12 @@
   }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1400px) {
   .divroomContainer {
     flex-wrap: wrap;
   }
 }
+
 
 @media screen and (max-width: 700px) {
   .detailsContainerParent,

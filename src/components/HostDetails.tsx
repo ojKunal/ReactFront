@@ -1,9 +1,10 @@
-import { FunctionComponent, useState, useContext } from "react";
+import { FunctionComponent, useState, useContext, useEffect } from "react";
 import Column from "./Column";
 import styles from "./HostDetails.module.css";
 import DormroomContainer from "../components/PricingDorm";
 import PrivateroomContainer from "../components/PricingPrivate";
 import { usePricingContext } from "./PricingContext";
+
 
 export type HostDetailsType = {
   className?: string;
@@ -22,8 +23,6 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
-
-
   // Using PricingContext
   const {
     setMaxPrice1,
@@ -32,6 +31,14 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
     setCurrency1,
     setPercent1,
     setIsDormShow1,
+    activeHotels,
+    setActiveHotels,
+    bedCounts,
+    setBedCounts,
+    activeHotels1,
+    setActiveHotels1,
+    bedCounts1,
+    setBedCounts1
   } = usePricingContext();
 
   if (
@@ -92,6 +99,87 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
     boxShadow: isHovered ? "0 4px 8px rgba(0, 0, 0, 0.2)" : "none",
   });
 
+  const validRoomsDorms = Array.isArray(rooms_dorms1) ? rooms_dorms1 : [];
+  const validRoomsDorms1 = Array.isArray(rooms_private1) ? rooms_private1 : [];
+  // console.log("ValidateRoomDorms NEW : " + JSON.stringify(validRoomsDorms));
+  // const [activeHotels, setActiveHotels] = useState<boolean[]>(
+  //   validRoomsDorms.map(() => false)
+  // );
+  // const [selectedBeds, setSelectedBeds] = useState<number[]>(
+  //   validRoomsDorms.map(() => 0)
+  // );
+ 
+
+  // const handleDormsPrice = (index: number) => {
+  //   const updatedHotels = [...activeHotels];
+  //   updatedHotels[index] = true;
+  //   setActiveHotels(updatedHotels);
+  // };
+
+  // const handleAddHotel = (hotelId: number) => {
+  //   setActiveHotels((prevActiveHotels) => {
+  //     const updatedActiveHotels = { ...prevActiveHotels };
+  
+  //     if (updatedActiveHotels[hotelId]) {
+  //       delete updatedActiveHotels[hotelId];
+  //     } else {
+  //       updatedActiveHotels[hotelId] = true;
+        
+  //       // Set initial bed count to 1 when adding a hotel
+  //       setBedCounts((prevBedCounts) => ({
+  //         ...prevBedCounts,
+  //         [hotelId]: 1,
+  //       }));
+  //     }
+  
+  //     return updatedActiveHotels;
+  //   });
+  // };
+
+
+//   const handleBedsIncrement = (hotelId: number, totalBedsAvailable: number) => {
+//   setBedCounts((prevBedCounts) => {
+//     const updatedBedCounts = { ...prevBedCounts };
+//     if (updatedBedCounts[hotelId] !== undefined) {
+//       // Check if the current bed count is less than the total beds available
+//       if (updatedBedCounts[hotelId] < totalBedsAvailable) {
+//         updatedBedCounts[hotelId] += 1;
+//       }
+//     } else {
+//       updatedBedCounts[hotelId] = 1; // Initialize with 1 if not present
+//     }
+//     return updatedBedCounts;
+//   });
+// };
+  
+// const handleBedsDecrement = (hotelId: number) => {
+//   setBedCounts((prevBedCounts) => {
+//     const updatedBedCounts = { ...prevBedCounts };
+//     if (updatedBedCounts[hotelId] > 1) {
+//       updatedBedCounts[hotelId] -= 1;
+//     } else {
+//       // Remove the hotel ID from bedCounts if count is 0
+//       const { [hotelId]: _, ...rest } = updatedBedCounts;
+
+//       // Also remove the hotel ID from activeHotels to show the ADD button again
+//       setActiveHotels((prevActiveHotels) => {
+//         const updatedActiveHotels = { ...prevActiveHotels };
+//         delete updatedActiveHotels[hotelId];
+//         return updatedActiveHotels;
+//       });
+
+//       return rest;
+//     }
+//     return updatedBedCounts;
+//   });
+// };
+
+  useEffect(() => {
+    console.log("Activehotels: " + JSON.stringify(activeHotels))
+  }, [activeHotels])
+
+
+  
   return (
     <div className={[styles.hostDetails, className].join(" ")}>
       <div className={styles.hostInfoParent}>
@@ -200,18 +288,32 @@ const HostDetails: FunctionComponent<HostDetailsType> = ({
       <div className={styles.sleepingArea}>
         <div className={styles.whereYoullSleep}>
           <h2 className={styles.whereYoullSleep1}>Dorms</h2>
-          {Array.isArray(rooms_dorms1) && rooms_dorms1.length > 0 ? (
-            rooms_dorms1.map((rooms_dorms: any, index: number) => (
-              <DormroomContainer rooms_dorms={rooms_dorms} key={index} />
+          {validRoomsDorms && validRoomsDorms.length > 0 ? (
+            validRoomsDorms.map((rooms_dorms: any, index: number) => (
+              <DormroomContainer
+                rooms_dorms={rooms_dorms}
+                key={index}
+                activeHotels={activeHotels}
+                setActiveHotels={setActiveHotels}
+                bedCounts={bedCounts}
+                setBedCounts={setBedCounts}
+              />
             ))
           ) : (
             <DormroomContainer rooms_dorms={{}} />
           )}
 
           <h2 className={styles.whereYoullSleep1}>Private Rooms</h2>
-          {Array.isArray(rooms_dorms1) && rooms_dorms1.length > 0 ? (
-            rooms_private1.map((rooms_private: any, index: number) => (
-              <PrivateroomContainer rooms_private={rooms_private} key={index} />
+          {validRoomsDorms1 && validRoomsDorms1.length > 0 ? (
+            validRoomsDorms1.map((rooms_private: any, index: number) => (
+              <PrivateroomContainer
+                rooms_private={rooms_private}
+                key={index}
+                activeHotels1={activeHotels1}
+                setActiveHotels1={setActiveHotels1}
+                bedCounts1={bedCounts1}
+                setBedCounts1={setBedCounts1}
+              />
             ))
           ) : (
             <PrivateroomContainer rooms_private={{}} />

@@ -34,6 +34,19 @@ type PricingContextType = {
   setTitleName2: (value: string) => void;
   selectedDormsData : any[];
   setSelectedDormsData:(value: any[]) => void;
+  // handleBedsIncrement: (hotelId: number, totalBedsAvailable: number) => void;
+  activeHotels:Record<number, boolean>
+  setActiveHotels:React.Dispatch<React.SetStateAction<Record<number, boolean>>>
+  bedCounts:Record<number, number>
+  setBedCounts: React.Dispatch<React.SetStateAction<Record<number, number>>>
+  addedHotels: number[]
+  setAddedHotels: React.Dispatch<React.SetStateAction<number[]>>
+  activeHotels1:Record<number, boolean>
+  setActiveHotels1:React.Dispatch<React.SetStateAction<Record<number, boolean>>>
+  bedCounts1:Record<number, number>
+  setBedCounts1: React.Dispatch<React.SetStateAction<Record<number, number>>>
+  addedHotels1: number[]
+  setAddedHotels1: React.Dispatch<React.SetStateAction<number[]>>
 };
 
 const PricingContext = createContext<PricingContextType | undefined>(undefined);
@@ -55,6 +68,13 @@ export const PricingProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [isDormShow2, setIsDormShow2] = useState<boolean>(false);
   const [titleName2, setTitleName2] = useState<string>("");
   const [selectedDormsData, setSelectedDormsData] = useState<any[]>([]);
+  const [activeHotels, setActiveHotels] = useState<Record<number, boolean>>({});
+  const [bedCounts, setBedCounts] = useState<Record<number, number>>({});
+  const [addedHotels, setAddedHotels] = useState<number[]>([]);
+  const [activeHotels1, setActiveHotels1] = useState<Record<number, boolean>>({});
+  const [bedCounts1, setBedCounts1] = useState<Record<number, number>>({});
+  const [addedHotels1, setAddedHotels1] = useState<number[]>([]);
+
 
   return (
     <PricingContext.Provider
@@ -88,7 +108,20 @@ export const PricingProvider: React.FC<{ children: ReactNode }> = ({ children })
         titleName2,
         setTitleName2,
         selectedDormsData,
-        setSelectedDormsData
+        setSelectedDormsData,
+        activeHotels,
+        setActiveHotels,
+        bedCounts,
+        setBedCounts,
+        addedHotels,
+        setAddedHotels,
+        activeHotels1,
+        setActiveHotels1,
+        bedCounts1,
+        setBedCounts1,
+        addedHotels1,
+        setAddedHotels1
+        
       }}
     >
       {children}

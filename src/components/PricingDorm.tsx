@@ -3,17 +3,27 @@ import { usePricingContext } from "./PricingContext"; // Adjust the import path 
 import styles from "./PricingDorm.module.css";
 import { PiCaretDoubleLeftBold } from "react-icons/pi";
 import { PiCaretDoubleRightBold } from "react-icons/pi";
-
+import { useHotelFunctions } from "./functions";
 export type DivroomContainer1Type = {
   className?: string;
   rooms_dorms?: any;
   key?: number;
+  activeHotels?: Record<number, boolean>;
+  setActiveHotels?: React.Dispatch<
+    React.SetStateAction<Record<number, boolean>>
+  >;
+  bedCounts?: Record<number, number>;
+  setBedCounts?: React.Dispatch<React.SetStateAction<Record<number, number>>>;
 };
 
 const DormroomContainer: React.FC<DivroomContainer1Type> = ({
   className = "",
   rooms_dorms,
   key,
+  activeHotels,
+  setActiveHotels,
+  bedCounts,
+  setBedCounts,
 }) => {
   const {
     maxPrice1,
@@ -36,45 +46,63 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [clickedItemIndex, setClickedItemIndex] = useState<number | null>(null);
+  const { handleAddHotel, handleBedsIncrement, handleBedsDecrement } = useHotelFunctions();
 
-  const handleBedsIncrement = () => {
-    if (rooms_dorms && selectedBeds1 < rooms_dorms.totalBedsAvailable) {
-      setSelectedBeds1(selectedBeds1 + 1);
-    }
-  };
+  // const validRoomsDorms = Array.isArray(rooms_dorms) ? rooms_dorms : [];
 
-  const handleBedsDecrement = () => {
-    if (rooms_dorms && selectedBeds1 > 0) {
-      setSelectedBeds1(selectedBeds1 - 1);
-    }
-    if (selectedBeds1 === 1) {
-      setIsDormShow1(false);
-    }
-  };
+  // const [activeHotels, setActiveHotels] = useState<boolean[]>(validRoomsDorms.map(() => false));
+  // const [selectedBeds, setSelectedBeds] = useState<number[]>(validRoomsDorms.map(() => 0));
 
-  const handleDormsPrice = () => {
-    // setClickedItemIndex(index);
-    setSelectedBeds1(1);
-    setIsDormShow1(true);
-  };
+  // const handleDormsPrice = (index: number) => {
+  //   const updatedHotels = [...activeHotels];
+  //   updatedHotels[index] = true;
+  //   setActiveHotels(updatedHotels);
+  // };
 
-  useEffect(() => {
-    if (rooms_dorms?.images) {
-      const interval = setInterval(() => {
-        setCurrentIndex(
-          (prevIndex) => (prevIndex + 1) % rooms_dorms.images.length
-        );
-      }, 2500);
+  // const handleBedsIncrement = (index: number) => {
+  //   const updatedBeds = [...selectedBeds];
+  //   if (validRoomsDorms[index] && updatedBeds[index] < validRoomsDorms[index].totalBedsAvailable) {
+  //     updatedBeds[index] += 1;
+  //     setSelectedBeds(updatedBeds);
+  //   }
+  // };
 
-      return () => clearInterval(interval);
-    } else {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % dummyImages.length);
-      }, 2500); // Change image every 2 seconds
+  // const handleBedsDecrement = (index: number) => {
+  //   const updatedBeds = [...selectedBeds];
+  //   if (validRoomsDorms[index] && updatedBeds[index] > 0) {
+  //     updatedBeds[index] -= 1;
+  //     setSelectedBeds(updatedBeds);
+  //   }
+  //   if (updatedBeds[index] === 0) {
+  //     const updatedHotels = [...activeHotels];
+  //     updatedHotels[index] = false;
+  //     setActiveHotels(updatedHotels);
+  //   }
+  // };
 
-      return () => clearInterval(interval);
-    }
-  }, [rooms_dorms]);
+  // const handleDormsPrice = () => {
+  //   // setClickedItemIndex(index);
+  //   setSelectedBeds1(1);
+  //   setIsDormShow1(true);
+  // };
+
+  // useEffect(() => {
+  //   if (rooms_dorms?.images) {
+  //     const interval = setInterval(() => {
+  //       setCurrentIndex(
+  //         (prevIndex) => (prevIndex + 1) % rooms_dorms.images.length
+  //       );
+  //     }, 2500);
+
+  //     return () => clearInterval(interval);
+  //   } else {
+  //     const interval = setInterval(() => {
+  //       setCurrentIndex((prevIndex) => (prevIndex + 1) % dummyImages.length);
+  //     }, 2500); // Change image every 2 seconds
+
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [rooms_dorms]);
 
   useEffect(() => {
     if (
@@ -117,7 +145,7 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
     setDoomsName(titleName);
   }, [rooms_dorms, setDoomsName]);
 
-  const images = rooms_dorms?.images || dummyImages;
+  const images = rooms_dorms?.images && rooms_dorms.images.length > 0 && rooms_dorms.images || dummyImages;
 
   const goToPrevious = () => {
     setCurrentIndex(
@@ -168,7 +196,7 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
           </button>
           {images.map((image: any, index: any) => {
             let imageUrl;
-            if (rooms_dorms?.images) {
+            if (rooms_dorms?.images && rooms_dorms.images.length > 0) {
               imageUrl = `https://${image.prefix}${image.suffix}`;
             } else {
               imageUrl = image;
@@ -304,7 +332,7 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
                       {rooms_dorms.averagePricePerNight[0].price.value}
                     </a>
                   ) : (
-                    <a className={styles.a}>{currency1} 0</a>
+                    <a className={styles.a}>INR 500</a>
                   )}
                   <div className={styles.divtagTextParent}>
                     <div className={styles.divtagText1}>
@@ -312,13 +340,13 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
                     </div>
                     <div className={styles.spanpriceStrikethroughbodyWrapper}>
                       <div className={styles.spanpriceStrikethroughbody}>
-                        {rooms_dorms.totalPrice?.[0]?.price ? (
+                        {rooms_dorms && rooms_dorms.totalPrice?.[0]?.price ? (
                           <a className={styles.a2}>
                             {rooms_dorms.totalPrice[0].price.currency}{" "}
                             {rooms_dorms.totalPrice[0].price.value}
                           </a>
                         ) : (
-                          <a className={styles.a}>{currency1} 0</a>
+                          <a className={styles.a}>INR 500</a>
                         )}
                       </div>
                     </div>
@@ -334,44 +362,68 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
                   </div>
                 </div>
               </div>
-              {isDormShow1 && (
-                <div className={styles.divcounterButtonguestsCounParent}>
-                  <div className={styles.divcounterButtonguestsCoun}>
-                    <div
-                      className={styles.counterButtons}
-                      onClick={() => handleBedsDecrement()}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <img
-                        className={styles.emptyCounterButton}
-                        loading="lazy"
-                        alt=""
-                        src="/frame-4.svg"
-                      />
+              {activeHotels?.[rooms_dorms?.id] && (
+                  <div className={styles.divcounterButtonguestsCounParent}>
+                    <div className={styles.divcounterButtonguestsCoun}>
+                      <div
+                        className={styles.counterButtons}
+                        onClick={() => (
+                          handleBedsDecrement(rooms_dorms?.id),
+                          console.log("Decrement: " + bedCounts)
+                        )}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <img
+                          className={styles.emptyCounterButton}
+                          loading="lazy"
+                          alt=""
+                          src="/frame-4.svg"
+                        />
+                      </div>
+                      <a className={styles.guestCount}>
+                        {bedCounts?.[rooms_dorms?.id]}
+                      </a>
+                      <div
+                        className={styles.counterButtons1}
+                        onClick={() => (
+                          handleBedsIncrement(
+                            rooms_dorms?.id,
+                            rooms_dorms?.totalBedsAvailable
+                          ),
+                          console.log(
+                            "Increment: " + JSON.stringify(bedCounts)
+                          ),
+                          console.log(
+                            "Total Beds for: " +
+                              rooms_dorms?.id +
+                              "is " +
+                              rooms_dorms?.totalBedsAvailable
+                          )
+                        )}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <img
+                          className={styles.frameIcon3}
+                          loading="lazy"
+                          alt=""
+                          src="/frame-5.svg"
+                        />
+                      </div>
                     </div>
-                    <a className={styles.guestCount}>{selectedBeds1}</a>
-                    <div
-                      className={styles.counterButtons1}
-                      onClick={() => handleBedsIncrement()}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <img
-                        className={styles.frameIcon3}
-                        loading="lazy"
-                        alt=""
-                        src="/frame-5.svg"
-                      />
+                    <div className={styles.bedWrapper}>
+                      <a className={styles.bed}>
+                        {bedCounts?.[rooms_dorms?.id]} Bed
+                      </a>
                     </div>
                   </div>
-                  <div className={styles.bedWrapper}>
-                    <a className={styles.bed}>{selectedBeds1} Bed</a>
-                  </div>
-                </div>
-              )}
-              {!isDormShow1 && (
+                )}
+              {rooms_dorms && !activeHotels?.[rooms_dorms?.id] && handleAddHotel && (
                 <button
                   className={styles.buttonbtnContent}
-                  onClick={handleDormsPrice}
+                  onClick={() => (
+                    handleAddHotel(rooms_dorms?.id),
+                    console.log("AKahs: " + rooms_dorms?.id)
+                  )}
                 >
                   <div className={styles.emptyButtonContentWrapper}>
                     <img
@@ -384,11 +436,16 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
                   <a className={styles.add}>Add</a>
                 </button>
               )}
+              {!rooms_dorms &&
+                <div>
+                   <a className={styles.add} style={{color:"red"}}>SOLD OUT</a>
+                </div>
+              }
             </div>
           </div>
           <div className={styles.divdivider} />
         </div>
-        <div className={styles.rateContainer}>
+        {/* <div className={styles.rateContainer}>
           <div className={styles.rateDetails}>
             <a className={styles.a3}>€7.01</a>
             <div className={styles.frameParent1}>
@@ -432,7 +489,7 @@ const DormroomContainer: React.FC<DivroomContainer1Type> = ({
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -465,7 +465,7 @@
 .divider3,
 .dividerFrame,
 .sleepingArea {
-  align-self: stretch;
+  /* align-self: stretch; */
   box-sizing: border-box;
   max-width: 100%;
 }

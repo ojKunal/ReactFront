@@ -115,7 +115,7 @@
   justify-content: flex-start;
 }
 .inputnativeInput1 {
-  width: 115.6px;
+  width: 135.6px;
   border-radius: var(--br-base);
   overflow: hidden;
   flex-shrink: 0;
@@ -129,7 +129,9 @@
   border-radius: 20px;
   border: 0.6px solid var(--color-darkgray);
   align-items: flex-start;
-  padding: var(--padding-10xs) var(--padding-9xs) var(--padding-9xs);
+  /* padding: var(--padding-10xs) var(--padding-10xs) var(--padding-10xs); */
+  padding-left: 10px;
+  padding-right: 10px;
   gap: var(--gap-9xs);
 }
 .doubleBedPrivate,
@@ -140,6 +142,9 @@
 }
 .doubleBedPrivate {
   font-weight: 800;
+  /* background-color: #f25621; */
+  max-width: 100%;
+  
 }
 .room,
 .x1Night {
@@ -159,6 +164,8 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  /* background-color: #f25621; */
+  max-width: 100%;
 }
 .b {
   position: relative;
@@ -271,6 +278,9 @@
   align-self: stretch;
   flex-direction: row;
   gap: 11.3px;
+  max-width: 90%;
+
+  /* background-color: aqua; */
 }
 .basicDoubleBed {
   position: relative;
@@ -510,14 +520,15 @@
   padding: var(--padding-mini) 0 3.9px;
   gap: var(--gap-9xs);
 }
-.divrateParent,
-.divroomRates {
+/* .divrateParent, */
+/* .divroomRates {
   flex-direction: column;
   align-items: flex-start;
 }
 .divroomRates {
-  /* height: 369.6px; */
-  /* overflow: hidden; */
+  max-height: 100px;
+  overflow: hidden;
+  width: 92%;
   flex-shrink: 0;
   padding: 20px var(--padding-12xs) 16.1px 0;
   box-sizing: border-box;
@@ -526,7 +537,7 @@
   font-size: var(--text-base-medium-size);
   color: var(--color-gray-100);
   font-family: var(--text-sm-regular);
-}
+} */
 .payableNow,
 .total {
   position: relative;
@@ -677,6 +688,7 @@
 .frameParent3 {
   gap: 16.1px;
   flex-shrink: 0;
+  /* max-width: 90%; */
 }
 .imgIcon,
 .imgIcon1 {
@@ -712,9 +724,16 @@
 .imageContainerWrapper {
   padding: 0 var(--padding-5xs);
 }
+.divbreakdownWrapperhasRate{
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  max-height: 670px;
+  border-radius: 20px;
+}
 .divbreakdownWrapperhasRate,
 .frameSection {
-  margin-top: 0px;
+ 
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -722,8 +741,14 @@
   box-sizing: border-box;
   text-align: left;
   font-family: var(--text-sm-regular);
+  padding: 10px;
+   padding-left:20px;
+  /* padding-right:10px;  */
+  
+  box-shadow: 0 px 0px rgba(0, 0, 0, 0.1); 
 }
 .frameSection {
+  margin-top: 5px;
   align-self: stretch;
   height: 297.3px;
   padding: 0 var(--padding-12xs) 3.3px 0;
@@ -732,33 +757,80 @@
   color: var(--black);
 }
 
+/* for choosing guest section */
+.inputnativeInput1 {
+  display: flex;
+  align-items: center;
+  /* Add any other styles you need */
+}
+
+.frameContainer {
+  /* Your frame container styles */
+}
+
+.guestsParent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+}
+
+.guests {
+  /* Style for the Guests label */
+}
+
+.a {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.changeButton {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  /* Add other button styles as needed */
+}
 
 /* PricingDorm.module.css */
 
 /* Existing styles */
-.divbreakdownWrapperhasRate {
-  width: 366px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  border-radius: 32px;
-  background-color: var(--white);
-  max-width: 100%;
-  padding: var(--padding-base) var(--padding-mini) 22.2px var(--padding-base);
-  gap: var(--gap-base-8);
-  line-height: normal;
-  letter-spacing: normal;
-  font-size: var(--text-xs-medium-size);
-  color: var(--color-slategray-200);
+.divroomRates {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-height: 400px; /* Set your desired fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+   /* Ensure the width is 100% to avoid hidden content */
+  padding: 20px 16px 16px 0; /* Adjust the padding as needed */
+  box-sizing: border-box;
+  gap: 16px;
+  text-align: left;
+  font-size: var(--text-base-medium-size);
+  color: var(--color-gray-100);
+  font-family: var(--text-sm-regular);
+  
+  /* Hide scrollbar */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }
+
+.divroomRates::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
 
 /* Sticky class */
 .sticky {
   position: fixed; /* Fixes the element in place */
   top: 10px; /* Distance from the top of the viewport */
-  width: 366px; /* Ensure the width is consistent */
+  right:10px;
+  width: 376px; /* Ensure the width is consistent */
   z-index: 1000; /* Ensure it's above other content */
   /* Optional: Add a background color to ensure visibility */
   background-color: var(--white); 
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Maintain box-shadow if needed */
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1); /* Maintain box-shadow if needed */
 }
 
 /* Media query for small devices */

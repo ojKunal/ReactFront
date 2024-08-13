@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import NavBar from "../NavBar";
 
 export type FrameComponent5Type = {
   className?: string;
@@ -41,8 +42,8 @@ const Section1: FunctionComponent<FrameComponent5Type> = ({
           </div>
         </div>
         {/* search bar starts here*/}
-        <div className="w-[100%] flex justify-center mt-6">
-          <div className="w-[60%] mq650:w-[90%] relative rounded-[37px] bg-white flex flex-row items-start justify-center pt-3 pb-0 pr-0 pl-[25px] mq650:py-[12px] mq650:pl-1 box-border gap-[10px] leading-[normal] tracking-[normal] text-left text-base text-gray-300 font-inter mq673:flex-wrap mq673:pl-5 mq673:pr-5 mq673:box-border">
+        <div className="w-[100%] flex justify-center mt-6 relative z-[3000px]">
+          {/* <div className="w-[60%] mq650:w-[90%] relative rounded-[37px] bg-white flex flex-row items-start justify-center pt-3 pb-0 pr-0 pl-[25px] mq650:py-[12px] mq650:pl-1 box-border gap-[10px] leading-[normal] tracking-[normal] text-left text-base text-gray-300 font-inter mq673:flex-wrap mq673:pl-5 mq673:pr-5 mq673:box-border">
             <div className="flex-1 box-border flex items-center justify-center py-1 px-2 min-w-[196px] text-gray-200 border-r border-whitesmoke">
               <div className="flex flex-col items-center justify-center py-2">
                 <img
@@ -120,7 +121,8 @@ const Section1: FunctionComponent<FrameComponent5Type> = ({
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+          {/* <NavBar></NavBar> */}
         </div>
       </div>
     </section>

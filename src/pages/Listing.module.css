@@ -225,6 +225,128 @@
   min-width: 361px;
   min-height: 400px;
 }
+.logoWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 8px 0 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+logoIcon {
+  align-self: stretch;
+  height: 40px;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.right {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.right {
+  max-width: 100%;
+}
+.right {
+  flex: 1;
+  justify-content: flex-end;
+  gap: 16px;
+  font-size: 14px;
+}
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 14px 0 0;
+}
+.title {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 118px;
+  white-space: nowrap;
+}
+.globeWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 12px 0 0;
+}
+.globeIcon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.profileDropdown,
+.right {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.profileDropdown {
+  width: 88px;
+  border-radius: 100px;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  padding: 6px 7px 6px 15px;
+  gap: 8px;
+}
+.menuWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4px 0 0;
+}
+.menuIcon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.avatarIcon {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  object-fit: contain;
+}
+.nav,
+.navBottom,
+.right1 {
+  gap: 8px;
+  max-width: 100%;
+}
+.nav,
+.navBottom {
+  gap: 15.5px;
+  font-size: 14px;
+  color: #374151;
+}
+.nav {
+  align-self: stretch;
+  box-shadow: 0-1px 0#f3f4f6 inset;
+  background-color: #fff;
+  flex-direction: column;
+  padding: 24px 6px 16px;
+  box-sizing: border-box;
+  gap: 24px;
+  text-align: left;
+  font-size: 12px;
+  color: #000;
+  font-family: Inter;
+}
 .imageIcon1,
 .imageIcon2 {
   min-width: 178px;

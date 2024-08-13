@@ -11,6 +11,7 @@ import AirbnbFooter from "../components/AirbnbFooter";
 import styles from "./Listing.module.css";
 import FinalPricingContainer from "../components/PricingFinalBreakdown";
 import axios from "axios";
+import NavBar from "../components/NavBar";
 
 const Listing: FunctionComponent = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,6 +33,7 @@ const Listing: FunctionComponent = () => {
   const [currency1, setCurrency1] = useState();
   const [percent1, setPercent1] = useState<number>(0);
   const [isdormShow1, setIsdormShow1] = useState<boolean>(false);
+  
   const navigate = useNavigate();
 
   // for now data is fetched based on id, will have to update the query once (checkin,checkout,param1,param2,param3) updated in database //
@@ -71,8 +73,8 @@ const Listing: FunctionComponent = () => {
         const url = "";
         const hotelid = id;
         const cityid = listingData.city_id;
-        const checkin = "2024-08-10";
-        const checkout = "2024-08-11";
+        const checkin = "2024-09-20";
+        const checkout = "2024-09-21";
 
         const apiUrl = `https://919huplmmh.execute-api.ap-south-1.amazonaws.com/prodTravelAPI/lambdafunction/HW?user_id=${userName}&checkin=${checkin}&checkout=${checkout}&members=${members}&hotelid=${hotelid}&cityid=${cityid}&url=${url}&timestamp=${timestamp}`;
 
@@ -122,9 +124,53 @@ const Listing: FunctionComponent = () => {
     navigate("/gallery", { state: { imagesArray: listingData.images_url } });
   };
 
+  
+
   return (
     <div className={styles.listing}>
-      <AirbnbNav />
+      <div className="w-full flex  items-center mt-6 mb-5 justify-evenly px-10">
+        <div className="flex justify-center">
+          <img
+            style={{ height: "40px" }}
+            className=""
+            loading="lazy"
+            alt=""
+            src="/logo.svg"
+          />
+        </div>
+        <div className="">
+          <NavBar />
+        </div>
+        <div className="flex gap-4">
+          {/* <div className={styles.titleWrapper}>
+            <div className={styles.title}>Join Travel Group</div>
+          </div> */}
+          <div className={styles.globeWrapper}>
+            <img
+              className={styles.globeIcon}
+              loading="lazy"
+              alt=""
+              src="/globe.svg"
+            />
+          </div>
+          <div className={styles.profileDropdown}>
+            <div className={styles.menuWrapper}>
+              <img
+                className={styles.menuIcon}
+                loading="lazy"
+                alt=""
+                src="/menu.svg"
+              />
+            </div>
+            <img
+              className={styles.avatarIcon}
+              loading="lazy"
+              alt=""
+              src="/avatar@2x.png"
+            />
+          </div>
+        </div>
+      </div>
       <main className={styles.page}>
         {/* Main Content Section */}
         <div className={styles.mainContent}>
@@ -179,7 +225,8 @@ const Listing: FunctionComponent = () => {
         {/* Image Grid Section */}
         <section className={styles.imageGrid}>
           <img
-            style={imageStyle(hoveredImage === "first")}
+            // style={imageStyle(hoveredImage === "first")}
+            style={{ maxHeight: "690px" }}
             className={styles.imageIcon}
             loading="lazy"
             alt=""
@@ -256,6 +303,7 @@ const Listing: FunctionComponent = () => {
           />
           <div className={styles.bookingContainer}>
             <FinalPricingContainer
+              roomsData={pricingData}
               // setMaxPrice1={setMaxPrice1}
               // setDiscountPrice1={setDiscountPrice1}
               // setSelectedBeds1={setSelectedBeds1}
