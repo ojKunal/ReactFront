@@ -19,7 +19,7 @@ export default function DatePickerComponent() {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <BrowserV7SingleInputRangeField
               value={dateRange}
-              onChange={(newValue) => setDateRange(newValue as [Dayjs | null, Dayjs | null])}
+              onChange={(newValue : any) => setDateRange(newValue as [Dayjs | null, Dayjs | null])}
               slotProps={{
                 field: { clearable: true },
               }}
